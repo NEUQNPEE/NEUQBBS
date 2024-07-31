@@ -13,6 +13,18 @@
       "PackagePath": "staticwebassets\\BlazorBBSDemo.styles.css"
     },
     {
+      "Id": "E:\\CX\\WebapiDemo\\BlazorBBSDemo\\wwwroot\\assets\\images\\file-hidden.png",
+      "PackagePath": "staticwebassets\\assets\\images\\file-hidden.png"
+    },
+    {
+      "Id": "E:\\CX\\WebapiDemo\\BlazorBBSDemo\\wwwroot\\assets\\images\\file-open.png",
+      "PackagePath": "staticwebassets\\assets\\images\\file-open.png"
+    },
+    {
+      "Id": "E:\\CX\\WebapiDemo\\BlazorBBSDemo\\wwwroot\\assets\\images\\user-head-default.png",
+      "PackagePath": "staticwebassets\\assets\\images\\user-head-default.png"
+    },
+    {
       "Id": "E:\\CX\\WebapiDemo\\BlazorBBSDemo\\wwwroot\\css\\app.css",
       "PackagePath": "staticwebassets\\css\\app.css"
     },
