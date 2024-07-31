@@ -1,0 +1,97 @@
+{
+  "format": 1,
+  "restore": {
+    "E:\\CX\\WebapiDemo\\BlazorBBSDemo\\BlazorBBSDemo.csproj": {}
+  },
+  "projects": {
+    "E:\\CX\\WebapiDemo\\BlazorBBSDemo\\BlazorBBSDemo.csproj": {
+      "version": "1.0.0",
+      "restore": {
+        "projectUniqueName": "E:\\CX\\WebapiDemo\\BlazorBBSDemo\\BlazorBBSDemo.csproj",
+        "projectName": "BlazorBBSDemo",
+        "projectPath": "E:\\CX\\WebapiDemo\\BlazorBBSDemo\\BlazorBBSDemo.csproj",
+        "packagesPath": "C:\\Users\\tdfsbrx\\.nuget\\packages\\",
+        "outputPath": "E:\\CX\\WebapiDemo\\BlazorBBSDemo\\obj\\",
+        "projectStyle": "PackageReference",
+        "configFilePaths": [
+          "C:\\Users\\tdfsbrx\\AppData\\Roaming\\NuGet\\NuGet.Config",
+          "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
+        ],
+        "originalTargetFrameworks": [
+          "net7.0"
+        ],
+        "sources": {
+          "C:\\Program Files (x86)\\Microsoft SDKs\\NuGetPackages\\": {},
+          "https://api.nuget.org/v3/index.json": {}
+        },
+        "frameworks": {
+          "net7.0": {
+            "targetAlias": "net7.0",
+            "projectReferences": {}
+          }
+        },
+        "warningProperties": {
+          "warnAsError": [
+            "NU1605"
+          ]
+        }
+      },
+      "frameworks": {
+        "net7.0": {
+          "targetAlias": "net7.0",
+          "dependencies": {
+            "AntDesign": {
+              "target": "Package",
+              "version": "[0.19.6.2, )"
+            },
+            "Microsoft.AspNetCore.Components.WebAssembly": {
+              "target": "Package",
+              "version": "[7.0.5, )"
+            },
+            "Microsoft.AspNetCore.Components.WebAssembly.DevServer": {
+              "suppressParent": "All",
+              "target": "Package",
+              "version": "[7.0.5, )"
+            },
+            "TinyMCE": {
+              "target": "Package",
+              "version": "[7.2.1, )"
+            },
+            "TinyMCE.Blazor": {
+              "target": "Package",
+              "version": "[1.0.4, )"
+            }
+          },
+          "imports": [
+            "net461",
+            "net462",
+            "net47",
+            "net471",
+            "net472",
+            "net48",
+            "net481"
+          ],
+          "assetTargetFallback": true,
+          "warn": true,
+          "downloadDependencies": [
+            {
+              "name": "Microsoft.NETCore.App.Runtime.Mono.browser-wasm",
+              "version": "[7.0.5, 7.0.5]"
+            }
+          ],
+          "frameworkReferences": {
+            "Microsoft.NETCore.App": {
+              "privateAssets": "all"
+            }
+          },
+          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\7.0.203\\RuntimeIdentifierGraph.json"
+        }
+      },
+      "runtimes": {
+        "browser-wasm": {
+          "#import": []
+        }
+      }
+    }
+  }
+}

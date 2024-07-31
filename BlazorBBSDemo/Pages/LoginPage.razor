@@ -1,0 +1,190 @@
+@page "/loginpage"
+@page "/loginpage/{Id:int}"
+@inject HttpClient Http
+@inject IJSRuntime JSRuntime
+@inject NavigationManager NavigationManager
+@using System.ComponentModel.DataAnnotations;
+@using System.Text.Json;
+@using System.ComponentModel
+@using Microsoft.AspNetCore.Components.Forms
+@using AntDesign
+@using AntDesign.Form
+@using Microsoft.JSInterop
+@using System.Net.Http.Json
+
+<div id="loginPage">
+    <h3>用户登录</h3>
+    <Form Model="@model" OnFinish="OnFinish" OnFinishFailed="OnFinishFailed" LabelColSpan="4" WrapperColSpan="20">
+        <p>
+            <FormItem Label="用户名" LabelAlign="AntLabelAlignType.Left">
+                <Input @bind-Value="@context.Username" />
+            </FormItem>
+        </p>
+        <p>
+            <FormItem Label="密码" LabelAlign="AntLabelAlignType.Left">
+                <InputPassword @bind-Value="@context.Password" />
+            </FormItem>
+        </p>
+        <p>
+            <FormItem>
+                <Checkbox @bind-Value="context.RememberMe">记住我</Checkbox>
+            </FormItem>
+        </p>
+        <p>
+            <Button Type="@ButtonType.Primary" HtmlType="submit" OnClick="Login">
+                登录
+            </Button>
+            <Button Type="@ButtonType.Primary" HtmlType="submit" OnClick="Register">
+                注册
+            </Button>
+        </p>
+    </Form>
+
+    @if (loginFailed)
+    {
+        <div class="alert">
+            <Alert Type="@AlertType.Error" Message="用户名或密码错误！" />
+        </div>
+    }
+</div>
+
+
+<style>
+    * {
+        margin: 0;
+        padding: 0;
+        font-family: "Microsoft YaHei";
+    }
+
+    #loginPage {
+        width: 586px;
+        height: 300px;
+        box-shadow: 0 0 10px #666;
+        margin: auto;
+        margin-top: 10%;
+    }
+
+    #loginPage h3 {
+        text-align: center;
+        padding: 16px 0;
+    }
+
+    #loginPage p {
+        width: 80%;
+        margin: auto;
+        margin-bottom: 20px;
+    }
+
+    #loginPage p:last-child {
+        text-align: center;
+        display: flex;
+        justify-content: space-between;
+    }
+
+    #loginPage p button {
+        width: 48%;
+    }
+
+    .alert {
+        width: 80%;
+        margin: auto;
+        margin-top: 20px;
+    }
+</style>
+
+
+@code
+{
+    [Parameter]
+    public int Id { get; set; }
+    private Model model = new Model { Username = "", Password = "" };
+
+    private bool loginFailed = false;
+    public class Model
+    {
+        [Required]
+        public required string Username { get; set; }
+        [Required]
+        public required string Password { get; set; }
+        public bool RememberMe { get; set; } = true;
+    }
+    public class LoginRequest
+    {
+        public string? UserName { get; set; }
+        public string? Password { get; set; }
+
+        public bool RememberMe { get; set; }
+
+        public string? AutoLoginToken { get; set; }
+    }
+    private void OnFinish(EditContext editContext)
+    {
+        if (!editContext.Validate())
+        {
+            return;
+        }
+    }
+
+    private void OnFinishFailed(EditContext editContext)
+    {
+        Console.WriteLine($"Failed:{JsonSerializer.Serialize(model)}");
+    }
+
+    protected override async Task OnInitializedAsync()
+    {
+        @* 检查浏览器cookie如果有autologintoken,直接发自动登录请求并跳主页面 *@
+        string autoLoginToken = await JSRuntime.InvokeAsync<string>("cookieHelper.getCookie", "AutoLoginToken");
+        if (!string.IsNullOrEmpty(autoLoginToken))
+        {
+            var response = await Http.PostAsJsonAsync("http://localhost:5286/LoginApi/login",
+            new LoginRequest
+                {
+                    AutoLoginToken = autoLoginToken
+                });
+            if (response.IsSuccessStatusCode)
+            {
+                var userId = response.Headers.GetValues("userId").FirstOrDefault();
+                await JSRuntime.InvokeVoidAsync("cookieHelper.setCookieWithExpiry", "userId", userId, 1);
+                NavigationManager.NavigateTo("/sectionpage");
+            }
+        }
+        if (Id != 0)
+        {
+            int id = int.Parse(await JSRuntime.InvokeAsync<string>("cookieHelper.getCookie", "userId"));
+            model.Username = await Http.GetStringAsync($"http://localhost:5286/LoginApi/username/{id}");
+        }
+    }
+
+    private async Task Login()
+    {
+        var response = await Http.PostAsJsonAsync("http://localhost:5286/LoginApi/login", model);
+
+        if (response.IsSuccessStatusCode)
+        {
+            var userId = response.Headers.GetValues("userId").FirstOrDefault();
+            await JSRuntime.InvokeVoidAsync("cookieHelper.setCookieWithExpiry", "userId", userId, 1);
+
+            if (model.RememberMe)
+            {
+                var autoLoginToken = response.Headers.GetValues("AutoLoginToken").FirstOrDefault();
+                if (autoLoginToken != null)
+                {
+                    await JSRuntime.InvokeVoidAsync("cookieHelper.setCookieWithExpiry", "AutoLoginToken", autoLoginToken, 1);
+                }
+            }
+
+            NavigationManager.NavigateTo("/sectionpage");
+        }
+        else
+        {
+            loginFailed = true;
+            Console.WriteLine("登录失败");
+        }
+
+    }
+
+    private void Register()
+    {
+        NavigationManager.NavigateTo("/registerpage");
+    }
+}

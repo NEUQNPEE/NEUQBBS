@@ -1,0 +1,140 @@
+@page "/registerpage"
+@inject HttpClient Http
+@inject IJSRuntime JSRuntime
+@inject NavigationManager NavigationManager
+@using System.ComponentModel.DataAnnotations;
+@using System.Text.Json;
+@using System.ComponentModel
+@using Microsoft.AspNetCore.Components.Forms
+@using AntDesign
+@using AntDesign.Form
+@using Microsoft.JSInterop
+@using System.Net.Http.Json
+
+
+<div id="registerPage">
+    <h3>用户注册</h3>
+    <Form Model="@newUser" OnFinish="OnFinish" OnFinishFailed="OnFinishFailed" LabelColSpan="4" WrapperColSpan="20">
+        <p>
+            <FormItem Label="用户名" LabelAlign="AntLabelAlignType.Left">
+                <Input @bind-Value="@newUser.UserName" />
+            </FormItem>
+        </p>
+        <p>
+            <FormItem Label="密码" LabelAlign="AntLabelAlignType.Left">
+                <InputPassword @bind-Value="@newUser.Password" />
+            </FormItem>
+        </p>
+        <p>
+            <FormItem Label="昵称" LabelAlign="AntLabelAlignType.Left">
+                <Input @bind-Value="@newUser.NickName" />
+            </FormItem>
+        </p>
+        <p>
+            <FormItem Label="性别" LabelAlign="AntLabelAlignType.Left">
+                <Input @bind-Value="@newUser.Gender" />
+            </FormItem>
+        </p>
+        <p>
+            <FormItem Label="个性签名" LabelAlign="AntLabelAlignType.Left">
+                <Input @bind-Value="@newUser.Signature" />
+            </FormItem>
+        </p>
+        <p>
+            <FormItem Label="头像" LabelAlign="AntLabelAlignType.Left">
+                <Input @bind-Value="@newUser.Avatar" />
+            </FormItem>
+        </p>
+        <p>
+            <Button Type="@ButtonType.Primary" HtmlType="submit">
+                注册
+            </Button>
+        </p>
+    </Form>
+</div>
+
+<style>
+    * {
+        margin: 0;
+        padding: 0;
+        font-family: "Microsoft YaHei";
+    }
+
+    #registerPage {
+        width: 586px;
+        height: 470px;
+        box-shadow: 0 0 10px #666;
+        margin: auto;
+        margin-top: 10%;
+    }
+
+    #registerPage h3 {
+        text-align: center;
+        padding: 16px 0;
+    }
+
+    #registerPage p {
+        width: 80%;
+        margin: auto;
+        margin-bottom: 20px;
+    }
+
+    #registerPage p:last-child {
+        text-align: center;
+    }
+
+    #registerPage p button {
+        width: 60%;
+    }
+</style>
+
+@code {
+    private UserRegistrationModel newUser = new UserRegistrationModel();
+
+
+    public class UserRegistrationModel
+    {
+        [Required]
+        public string UserName { get; set; } = string.Empty;
+
+        [Required]
+        public string Password { get; set; } = string.Empty;
+
+        public string? NickName { get; set; }
+
+        public string? Gender { get; set; }
+
+        public string? Signature { get; set; }
+
+        public string? Avatar { get; set; }
+    }
+
+    private async Task OnFinish(EditContext context)
+    {
+        @* Console.WriteLine($"Success:{JsonSerializer.Serialize(newUser)}"); *@
+        await Register();
+    }
+
+    private void OnFinishFailed(EditContext context)
+    {
+        Console.WriteLine($"Failed:{JsonSerializer.Serialize(newUser)}");
+    }
+
+    private async Task Register()
+    {
+        var response = await Http.PostAsJsonAsync("http://localhost:5286/LoginApi", newUser);
+        
+        if (response.IsSuccessStatusCode)
+        {
+            await JSRuntime.InvokeVoidAsync("alert", "注册成功");
+            @* 存储附带的cookie,key为"userId" *@
+            var userId = response.Headers.GetValues("userId").FirstOrDefault();
+            await JSRuntime.InvokeVoidAsync("cookieHelper.setCookie", "userId", userId);
+            NavigationManager.NavigateTo($"/loginpage/{userId}");
+        }
+        else
+        {
+            await JSRuntime.InvokeVoidAsync("alert", "注册失败");
+        }
+    }
+}

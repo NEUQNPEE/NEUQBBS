@@ -1,0 +1,318 @@
+@page "/userpage/{UserId:int}"
+@inject NavigationManager NavigationManager
+@inject HttpClient Http
+@inject IJSRuntime JSRuntime
+
+@using System.ComponentModel
+@using AntDesign
+@using Microsoft.JSInterop
+@using System.Net.Http.Json
+
+@if (user == null)
+{
+    <p>用户不存在</p>
+}
+else
+{
+    <div class="user-page">
+        <div class="left">
+            <div class="avatar">
+                <div class="head">
+                    <div class="title">
+                        头像
+                    </div>
+                    <div class="id">
+                        ID @user.Id
+                    </div>
+                </div>
+
+                <img src="@user.Avatar" alt="avatar" />
+                @if (editAvatar.Flag)
+                {
+                    <div class="edit-avatar">
+                        <Input Placeholder="请输入Url" @bind-Value="@AvatarUrl" />
+                        <Button OnClick="SaveAvatar">保存</Button>
+                    </div>
+                }
+                else
+                {
+                    <div class="tips" @onclick="() => EditAvatar(editAvatar.Name)">
+                        修改头像
+                    </div>
+                }
+            </div>
+
+            <div class="stattistics-info">
+                <div class="head">
+                    <div class="title">
+                        统计信息
+                    </div>
+                </div>
+                <p>@user.UserName</p>
+                <p>积分：@user.Points</p>
+                <p>注册时间：@user.RegisterTime</p>
+                <p>最后登录：@user.LastLoginTime</p>
+            </div>
+
+        </div>
+
+        <div class="right">
+            <div class="personal-info">
+                <div class="head">
+                    <div class="title">
+                        个人资料
+                    </div>
+                    <div class="tips" @onclick="() => EditAvatar(editPersonalInfo.Name)">
+                        编辑个人资料
+                    </div>
+                </div>
+                @if (editPersonalInfo.Flag)
+                {
+                    <div class="edit">
+                        <Input Placeholder="昵称" @bind-Value="@user.NickName" />
+                        <Input Placeholder="性别" @bind-Value="@user.Gender" />
+                        <Input Placeholder="个性签名" @bind-Value="@user.Signature" />
+                        <Button OnClick="SavePersonalInfo">保存</Button>
+                    </div>
+                }
+                else
+                {
+                    <p>昵称 @user.NickName</p>
+                    <p>性别 @user.Gender</p>
+                    <p>个性签名 @user.Signature</p>
+                    <p>用户等级 @user.UserLevel</p>
+                }
+            </div>
+        </div>
+
+    </div>
+}
+
+<style>
+    * {
+        margin: 0;
+        padding: 0;
+        font-family: "Microsoft YaHei";
+    }
+
+    .user-page {
+        display: flex;
+        justify-content: space-between;
+        width: 60%;
+        margin: 0 auto;
+        padding: 20px;
+    }
+
+    .user-page .left {
+        display: grid;
+        width: 30%;
+    }
+
+    .user-page .left .avatar {
+        border: 1px solid #CCC;
+        flex-direction: column;
+        width: 100%;
+        height: fit-content;
+        margin: 0 auto;
+    }
+
+    .user-page .left .avatar .head {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        margin: 0;
+        padding: 10px;
+        border-bottom: 1px solid #CCC;
+        background-color: #EAF1F2;
+    }
+
+    .user-page .left .avatar img {
+        width: 100%;
+        height: 100%;
+        padding: 20px;
+    }
+
+    .user-page .left .avatar .tips {
+        text-align: center;
+    }
+
+    .user-page .left .avatar .tips:hover {
+        cursor: pointer;
+        color: blue;
+    }
+
+    .user-page .left .avatar .edit-avatar {
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+    }
+
+    .user-page .left .stattistics-info {
+        text-align: left;
+        margin-top: 20px;
+        border: 1px solid #CCC;
+    }
+
+    .user-page .left .stattistics-info .head {
+        background-color: #EAF1F2;
+    }
+
+    .user-page .left .stattistics-info .head .title {
+        padding: 10px;
+        border-bottom: 1px solid #CCC;
+    }
+
+    .user-page .left .stattistics-info p {
+        padding-top: 10px;
+        padding-left: 10px;
+        margin: 0;
+    }
+
+    .user-page .right {
+        width: 60%;
+    }
+
+    .user-page .right .personal-info {
+        border: 1px solid #CCC;
+    }
+
+    .user-page .right .personal-info .head {
+        background-color: #EAF1F2;
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        padding: 10px;
+        border-bottom: 1px solid #CCC;
+    }
+
+    .user-page .right .personal-info .head .tips:hover {
+        cursor: pointer;
+        color: blue;
+    }
+
+    .user-page .right .personal-info p {
+        padding-top: 10px;
+        padding-left: 10px;
+        margin: 0;
+    }
+</style>
+
+@code {
+    [Parameter]
+    public int UserId { get; set; }
+
+    private UserInfoResponse? user;
+
+    @* 修改标记,同时间只能有一个修改标记为true *@
+    private List<EditFlag> editFlags = new();
+
+    public class EditFlag
+    {
+        public required string Name { get; set; }
+        public bool Flag { get; set; }
+    }
+
+    private EditFlag editAvatar = new EditFlag { Name = "editAvatar", Flag = false };
+
+    private EditFlag editPersonalInfo = new EditFlag { Name = "editPersonalInfo", Flag = false };
+
+    public required string AvatarUrl { get; set; }
+
+    private void EditAvatar(string name)
+    {
+        if (editFlags.Count > 0)
+        {
+            foreach (var item in editFlags)
+            {
+                if (item.Name == name)
+                {
+                    item.Flag = true;
+                }
+                else
+                {
+                    item.Flag = false;
+                }
+            }
+        }
+    }
+    public class UserInfoResponse
+    {
+        public int Id { get; set; }
+        public required string UserName { get; set; }
+
+        public required string NickName { get; set; }
+
+        public required string Gender { get; set; }
+
+        public required string Signature { get; set; }
+
+        public required string Avatar { get; set; }
+
+        public required string RegisterTime { get; set; }
+
+        public required string LastLoginTime { get; set; }
+
+        public int UserLevel { get; set; }
+
+        public int Points { get; set; }
+    }
+
+    public class UserUpdateRequest
+    {
+        public required int Id { get; set; }
+        public string? Password { get; set; }
+        public string? NickName { get; set; }
+        public string? Gender { get; set; }
+        public string? Signature { get; set; }
+        public string? Avatar { get; set; }
+    }
+    private async Task SaveAvatar()
+    {
+        if (user == null)
+        {
+            return;
+        }
+
+        var response = await Http.PutAsJsonAsync<UserUpdateRequest>("http://localhost:5286/LoginApi", new UserUpdateRequest
+            {
+                Id = user.Id,
+                Avatar = AvatarUrl
+            });
+
+        if (response.IsSuccessStatusCode)
+        {
+            editAvatar.Flag = false;
+            StateHasChanged();
+        }
+    }
+
+    private async Task SavePersonalInfo()
+    {
+        if (user == null)
+        {
+            return;
+        }
+        
+        var response = await Http.PutAsJsonAsync<UserUpdateRequest>("http://localhost:5286/LoginApi", new UserUpdateRequest
+            {
+                Id = user.Id,
+                NickName = user.NickName,
+                Gender = user.Gender,
+                Signature = user.Signature
+            });
+
+        if (response.IsSuccessStatusCode)
+        {
+            editPersonalInfo.Flag = false;
+            StateHasChanged();
+        }
+    }
+    protected override async Task OnInitializedAsync()
+    {
+        user = await Http.GetFromJsonAsync<UserInfoResponse>($"http://localhost:5286/LoginApi/info/{UserId}");
+
+        editFlags.Add(editAvatar);
+        editFlags.Add(editPersonalInfo);
+    }
+}

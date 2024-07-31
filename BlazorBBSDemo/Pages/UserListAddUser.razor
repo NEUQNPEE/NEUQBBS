@@ -1,0 +1,75 @@
+@page "/userlist/adduser"
+
+<h3>User List</h3>
+
+@inject NavigationManager NavigationManager
+@inject HttpClient Http
+@using System.ComponentModel
+@using AntDesign
+@using AntDesign.TableModels
+
+<div class="user-update">
+    <div class="input">
+        Username:
+        <Input Placeholder="Username" @bind-Value="@Username" />
+        <br />
+        <br />
+        Password:
+        <Input Placeholder="Password" @bind-Value="@Password" />
+        <br />
+        <br />
+        Address:
+        <Input Placeholder="Address" @bind-Value="@Address" />
+        <br />
+        <br />
+        <Button Block type="primary" OnClick="@(e => AddUser(Username, Password, Address))">新增用户</Button>
+        <br />
+        <br />
+        <Button Block OnClick="NavigateToUserList">返回列表</Button>
+    
+    </div>
+</div>
+
+<style>
+    .user-update {
+        border: 1px solid #ccc;
+        width: 300px;
+        margin: 0 auto;
+        margin-top: 300px;
+    }
+
+    .user-update .input {
+        padding: 20px;
+    }
+</style>
+
+@code {
+    public string? Username { get; set; }
+
+    public string? Password { get; set; }
+
+    public string? Address { get; set; }
+
+    public class User
+    {
+        public int Id { get; set; }
+        public string? Username { get; set; }
+        public string? Password { get; set; }
+        public string? Address { get; set; }
+    }
+
+    private async void AddUser(string? username, string? password, string? address)
+    {
+        await Http.PostAsJsonAsync("http://localhost:5286/LoginApi/web4user", new User
+            {
+                Username = username,
+                Password = password,
+                Address = address
+            });
+    }
+
+    private void NavigateToUserList()
+    {
+        NavigationManager.NavigateTo("/userlist");
+    }
+}

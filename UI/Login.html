@@ -1,0 +1,107 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script src="./js/axios.js"></script>
+    <script src="./lib/vue.js"></script>
+    <script src="./lib/elementui.js"></script>
+    <link rel="stylesheet" href="./lib/elementui.css">
+</head>
+
+<body>
+    <div id="loginPage">
+        <h3>用户登录</h3>
+        <p>
+            <el-input placeholder="请输入登录账号" v-model="userNO">
+                <template slot="prepend">账号</template>
+            </el-input>
+        </p>
+        <p>
+            <el-input placeholder="请输入登录密码" v-model="password" type="password">
+                <template slot="prepend">密码</template>
+            </el-input>
+        </p>
+        <p>
+            <el-checkbox v-model="remMe">记住我</el-checkbox>
+        </p>
+        <p>
+            <el-button type="primary" v-on:click="login">登录</el-button>
+            <el-button type="info">返回</el-button>
+        </p>
+    </div>
+</body>
+
+<body>
+
+</body>
+
+<script>
+    new Vue({
+        el: '#loginPage',
+        data: {
+            userNO: "root",
+            password: "root",
+            remMe: true
+        },
+        methods: {
+            login() {
+                var userNO = this.userNO;
+                var password = this.password;
+                var remMe = this.remMe;
+
+                axios.get(`http://localhost:5286/LoginApi/${userNO}/${password}/`).then(res => {
+                    localStorage["token"] = res.data.id;
+                    console.log(res)
+                })
+            }
+        }
+    })
+</script>
+
+<style>
+    * {
+        margin: 0;
+        padding: 0;
+    }
+
+    #loginPage {
+        width: 586px;
+        height: 300px;
+        box-shadow: 0 0 10px #666;
+        margin: auto;
+        margin-top: 10%;
+    }
+
+    #loginPage h3 {
+        text-align: center;
+        padding: 16px 0;
+    }
+
+    #loginPage p {
+        width: 80%;
+        margin: auto;
+        margin-bottom: 20px;
+    }
+
+    #loginPage p:last-child {
+        text-align: center;
+    }
+
+    #loginPage p button {
+        width: 48%;
+    }
+</style>
+
+
+
+
+
+
+
+
+
+
+</html>

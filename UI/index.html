@@ -1,0 +1,158 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <!-- Source -->
+    <script src="./js/axios.js"></script>
+    <script src="./lib/vue.js"></script>
+    <script src="./lib/elementui.js"></script>
+    <link rel="stylesheet" href="./lib/elementui.css">
+</head>
+
+<body>
+    <script>
+        axios.get("http://localhost:5286/api/Values?name=123&helloWord=123").then(function (data) {
+            console.log(data)
+        })
+
+    </script>
+
+    <div id="postList">
+        <h1>welcome to the world of UI</h1>
+
+        <div class="sent-post">
+            <el-button type="primary">发帖</el-button>
+        </div>
+
+        <div class="post-list">
+            <table>
+                <thead>
+                    <tr>
+                        <td colspan="2">
+                            <span>全部</span>
+                            <span>最新</span>
+                            <span>热门</span>
+                            <span>热帖</span>
+                            <span>精华</span>
+                        </td>
+                        <td>作者</td>
+                        <td>回复/查看</td>
+                        <td>最后回复</td>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td style="width: 32px;">
+                            <img src="./assets/images/file-hidden.png" width="35px" height="35px" alt="">
+                        </td>
+
+                        <td>
+                            <span><a class="post-type" href="javascript:;">[种类]</a></span>
+                            <a href="./PostDetail.html">标题</a>
+                        </td>
+                        <td style="width: 180px;">
+                            <p>作者</p>
+                            <p>2024年4月16日21:12:08</p>
+                        </td>
+                        <td style="width: 80px;">
+                            <p>996</p>
+                            <p>1007</p>
+                        </td>
+                        <td style="width: 180px;">
+                            <p>最后回复者</p>
+                            <p>2024年4月16日21:12:08</p>
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+
+        <div class="post-page">
+            <el-pagination background layout="prev, pager, next" :page-size="30" :total="1000">
+            </el-pagination>
+        </div>
+
+    </div>
+
+
+</body>
+
+<script>
+    new Vue({
+        el: '#postList',
+    })
+</script>
+
+<style>
+    * {
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+    }
+
+    a {
+        text-decoration: none;
+        color : #333;
+    }
+
+    a.post-type {
+        color: blue;
+    }
+
+    a:hover {
+        text-decoration: underline;
+        color: blue;
+    }
+
+    .sent-post {
+        width: 98%;
+        margin: auto;
+    }
+
+    .post-list {
+        width: 98%;
+        margin: 16px auto;
+        border: 1px solid #CCC;
+        border-bottom: 0 none;
+    }
+
+    .post-list table {
+        width: 100%;
+        border-collapse: collapse;
+        font-size: 10px;
+    }
+
+    .post-list table thead tr td {
+        background-color: #eee;
+        height: 30px;
+    }
+
+    .post-list table thead tr td span {
+        margin-right: 16px;
+        color: blue;
+    }
+
+    .post-list table tr td {
+        border-bottom: 1px solid #CCC;
+        height: 30px;
+    }
+
+    .post-list table tr td span {
+        color: blue;
+        padding: 4px;
+    }
+
+    .post-list table tr td p:last-child {
+        color: #999;
+    }
+
+    .post-page {
+        text-align: right;
+        margin-bottom: 36px;
+    }
+</style>
+
+</html>

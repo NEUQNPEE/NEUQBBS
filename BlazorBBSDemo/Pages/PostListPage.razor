@@ -1,0 +1,290 @@
+@page "/{sectionId:int}"
+
+@inject HttpClient Http
+@inject NavigationManager NavigationManager
+@inject IJSRuntime JSRuntime
+
+@using System.ComponentModel.DataAnnotations;
+@using System.Text.Json;
+@using System.Net.Http.Json
+@using Microsoft.JSInterop
+
+<div class="top-bar">
+    @if (LoginUser == null)
+    {
+        <span class="text" @onclick="Login">登录</span>
+        <span>|</span>
+        <span class="text" @onclick="Register">注册</span>
+    }
+    else
+    {
+        <span class="text" @onclick="() => NavigateToUserPage(LoginUser.Id)">@LoginUser.Username</span>
+        <span>|</span>
+        <span>积分：@LoginUser.Points</span>
+        <span>|</span>
+        <span class="text" @onclick="Logout">退出</span>
+    }
+</div>
+
+<div class="post-list">
+    <table>
+        <thead>
+            <tr>
+                <td colspan="2">
+                    <span>全部</span>
+                    <span>最新</span>
+                    <span>热门</span>
+                    <span>热帖</span>
+                    <span>精华</span>
+                </td>
+                <td>作者</td>
+                <td>回复/查看</td>
+                <td>最后回复</td>
+            </tr>
+        </thead>
+        @foreach (var post in postsMainInfo)
+        {
+            <tr>
+                <td style="width: 32px;">
+                    <img src="./assets/images/file-hidden.png" width="35px" height="35px" alt="">
+                </td>
+
+                <td>
+                    <span><a class="post-type" href="javascript:;">@post.Type</a></span>
+                    <a href="javascript:;" @onclick="() => NavigateToPostDetail(post.Id)">@post.Title</a>
+                </td>
+                <td style="width: 180px;">
+                    <p>@userIdAndNames.FirstOrDefault(u => u.UserId == post.UserId)?.Username</p>
+                    <p>@post.PublishTime</p>
+                </td>
+                <td style="width: 80px;">
+                    <p>@post.ReplyNum</p>
+                    <p>@post.ViewNum</p>
+                </td>
+                <td style="width: 180px;">
+                    <p>@post.LastReplyUsername</p>
+                    <p>@post.LastReplyTime</p>
+                </td>
+            </tr>
+        }
+    </table>
+</div>
+
+<style>
+    * {
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+    }
+
+    .top-bar {
+        display: flex;
+        justify-content: flex-end;
+        align-items: center;
+        height: 36px;
+        padding: 0 16px;
+        background-color: #e5edf2;
+    }
+
+    .top-bar .text:hover {
+        color: blue;
+        cursor: pointer;
+    }
+
+    .post-list {
+        width: 98%;
+        margin: 16px auto;
+        border: 1px solid #CCC;
+        border-bottom: 0 none;
+    }
+
+    .post-list table {
+        width: 100%;
+        border-collapse: collapse;
+        font-size: 10px;
+    }
+
+    .post-list table thead tr td {
+        background-color: #eee;
+        height: 30px;
+    }
+
+    .post-list table thead tr td span {
+        margin-right: 16px;
+        color: blue;
+    }
+
+    .post-list table tr td {
+        border-bottom: 1px solid #CCC;
+        height: 30px;
+    }
+
+    .post-list table tr td p {
+        margin-top: 5px;
+        margin-bottom: 5px;
+    }
+
+    .post-list table tr td span {
+        color: blue;
+        padding: 4px;
+    }
+
+    .post-list table tr td p:last-child {
+        color: #999;
+    }
+</style>
+
+@code {
+    [Parameter]
+    public int sectionId { get; set; }
+    public UserBaseInfoResponse? LoginUser { get; set; }
+
+    public List<Post> mainPosts = new List<Post>();
+
+    public List<PostMainInfo> postsMainInfo = new List<PostMainInfo>();
+
+    public List<UserIdAndName> userIdAndNames = new List<UserIdAndName>();
+
+    public class UserIdAndName
+    {
+        public int UserId { get; set; }
+        public required string Username { get; set; }
+    }
+    public class Post
+    {
+        public int Id { get; set; }
+        public int UserId { get; set; }
+        public required string Content { get; set; }
+        public DateTime PublishTime { get; set; }
+        public int UpVote { get; set; }
+        public int DownVote { get; set; }
+        public int MainPostId { get; set; }
+        public bool IsMainPost { get; set; }
+        public string? Type { get; set; }
+        public string? Title { get; set; }
+        public int ViewNum { get; set; }
+        public int ReplyNum { get; set; }
+        public bool IsDeleted { get; set; }
+    }
+
+    public class PostMainInfo
+    {
+        public int Id { get; set; }
+        public int UserId { get; set; }
+        public DateTime PublishTime { get; set; }
+        public string? Type { get; set; }
+        public string? Title { get; set; }
+        public int ViewNum { get; set; }
+        public int ReplyNum { get; set; }
+        public string? LastReplyUsername { get; set; }
+        public DateTime LastReplyTime { get; set; }
+    }
+
+    public class UserBaseInfoResponse
+    {
+        public int Id { get; set; }
+        public required string Username { get; set; }
+        public required string RegisterTime { get; set; }
+        public int Points { get; set; }
+    }
+
+    public class LastReplyInfoResponse
+    {
+        public int MainPostId { get; set; }
+        public required string Username { get; set; }
+
+        public DateTime ReplyTime { get; set; }
+    }
+
+    private void Login()
+    {
+        NavigationManager.NavigateTo("/loginpage");
+    }
+
+    private void Register()
+    {
+        NavigationManager.NavigateTo("/registerpage");
+    }
+
+    private void Logout()
+    {
+        LoginUser = null;
+        JSRuntime.InvokeVoidAsync("cookieHelper.deleteCookie", "userId");
+        JSRuntime.InvokeVoidAsync("cookieHelper.deleteCookie", "AutoLoginToken");
+        StateHasChanged();
+    }
+
+    protected override async Task OnInitializedAsync()
+    {
+        await GetUserInfoByCookie();
+
+        await LoadMainPosts();
+
+        await LoadUserIdAndNames();
+    }
+
+    private async Task LoadMainPosts()
+    {
+        mainPosts = await Http.GetFromJsonAsync<List<Post>>($"http://localhost:5286/SectionApi/mainposts/{sectionId}") ?? new
+        List<Post>();
+
+        List<int> mainPostIds = mainPosts.Select(p => p.Id).ToList();
+        HttpResponseMessage response = await Http.PostAsJsonAsync($"http://localhost:5286/SectionApi/lastreplyinfo/{sectionId}",
+        mainPostIds);
+        response.EnsureSuccessStatusCode();
+
+        List<LastReplyInfoResponse> lastReplyInfos = await response.Content.ReadFromJsonAsync<List<LastReplyInfoResponse>>() ??
+        new List<LastReplyInfoResponse>();
+
+        postsMainInfo = mainPosts.Select(p => new PostMainInfo
+            {
+                Id = p.Id,
+                UserId = p.UserId,
+                PublishTime = p.PublishTime,
+                Type = p.Type,
+                Title = p.Title,
+                ViewNum = p.ViewNum,
+                ReplyNum = p.ReplyNum,
+                LastReplyUsername = lastReplyInfos.FirstOrDefault(l => l.MainPostId == p.Id)?.Username,
+                LastReplyTime = lastReplyInfos.FirstOrDefault(l => l.MainPostId == p.Id)?.ReplyTime ?? DateTime.MinValue
+            }).ToList();
+
+        postsMainInfo = postsMainInfo.OrderByDescending(p => p.LastReplyTime).ToList();
+    }
+
+    private async Task GetUserInfoByCookie()
+    {
+        var userId = await JSRuntime.InvokeAsync<string>("cookieHelper.getCookie", "userId");
+        if (!string.IsNullOrEmpty(userId))
+        {
+            LoginUser = await Http.GetFromJsonAsync<UserBaseInfoResponse>($"http://localhost:5286/LoginApi/baseinfo/{userId}");
+        }
+    }
+
+    private void NavigateToPostDetail(int postId)
+    {
+        Http.PutAsync($"http://localhost:5286/PostApi/view/{sectionId}/{postId}", null);
+        NavigationManager.NavigateTo($"/{sectionId}/{postId}");
+    }
+
+    private void NavigateToUserPage(int userId)
+    {
+        NavigationManager.NavigateTo($"/userpage/{userId}");
+    }
+
+    private async Task LoadUserIdAndNames()
+    {
+        foreach (var post in postsMainInfo)
+        {
+            if (!userIdAndNames.Any(u => u.UserId == post.UserId))
+            {
+                var username = await Http.GetStringAsync($"http://localhost:5286/LoginApi/username/{post.UserId}");
+                userIdAndNames.Add(new UserIdAndName
+                    {
+                        UserId = post.UserId,
+                        Username = username
+                    });
+            }
+        }
+    }
+}

@@ -1,0 +1,70 @@
+@page "/userlist"
+
+<div style="display: flex; justify-content: space-between; align-items: center;">
+    <h3>User List</h3>
+    <Button OnClick="NavigateToAddUserPage">新增用户</Button>
+</div>
+
+@inject NavigationManager NavigationManager
+@inject HttpClient Http
+
+@using System.ComponentModel
+@using AntDesign
+@using AntDesign.TableModels
+
+
+<Table DataSource="@userList" Bordered=@true HidePagination="@true">
+    <PropertyColumn Property="c=>c.Id" Title="ID" />
+    <PropertyColumn Property="c=>c.Username" Title="USERNAME" />
+    <PropertyColumn Property="c=>c.Password" Title="PASSWORD" />
+    <PropertyColumn Property="c=>c.Address" Title="ADDRESS" />
+    <ActionColumn Title="操作">
+
+        <Button Type="@ButtonType.Primary" OnClick="() => NavigateToUpdateUserPage(context.Id)">修改</Button>
+        <Button Danger Type="@ButtonType.Primary" OnClick="() => DeleteUser(context.Id)">删除</Button>
+
+    </ActionColumn>
+</Table>
+
+
+@code {
+    User[]? userList;
+    private async Task LoadUserList()
+    {
+        userList = await Http.GetFromJsonAsync<User[]>("http://localhost:5286/LoginApi/web4user");
+    }
+
+    protected override async Task OnInitializedAsync()
+    {
+        await LoadUserList();
+    }
+
+    private void NavigateToAddUserPage()
+    {
+        NavigationManager.NavigateTo("/userlist/adduser");
+    }
+
+    private void NavigateToUpdateUserPage(int id)
+    {
+        NavigationManager.NavigateTo($"/userlist/updateuser/{id}");
+    }
+
+    private async void DeleteUser(int id)
+    {
+        await Http.DeleteAsync($"http://localhost:5286/LoginApi/web4user/{id}");
+        await LoadUserList();
+        StateHasChanged();
+    }
+    public class User
+    {
+        [DisplayName("ID")]
+        public int Id { get; set; }
+        [DisplayName("USERNAME")]
+        public string? Username { get; set; }
+        [DisplayName("PASSWORD")]
+        public string? Password { get; set; }
+
+        [DisplayName("ADDRESS")]
+        public string? Address { get; set; }
+    }
+}

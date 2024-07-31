@@ -1,0 +1,93 @@
+is_global = true
+build_property.TargetFramework = net7.0
+build_property.TargetPlatformMinVersion = 
+build_property.UsingMicrosoftNETSdkWeb = 
+build_property.ProjectTypeGuids = 
+build_property.InvariantGlobalization = false
+build_property.PlatformNeutralAssembly = 
+build_property.EnforceExtendedAnalyzerRules = 
+build_property._SupportedPlatformList = browser
+build_property.RootNamespace = BlazorBBSDemo
+build_property.RootNamespace = BlazorBBSDemo
+build_property.ProjectDir = E:\CX\WebapiDemo\BlazorBBSDemo\
+build_property.RazorLangVersion = 7.0
+build_property.SupportLocalizedComponentNames = 
+build_property.GenerateRazorMetadataSourceChecksumAttributes = 
+build_property.MSBuildProjectDirectory = E:\CX\WebapiDemo\BlazorBBSDemo
+build_property._RazorSourceGeneratorDebug = 
+
+[E:/CX/WebapiDemo/BlazorBBSDemo/App.razor]
+build_metadata.AdditionalFiles.TargetPath = QXBwLnJhem9y
+build_metadata.AdditionalFiles.CssScope = 
+
+[E:/CX/WebapiDemo/BlazorBBSDemo/Pages/Counter.razor]
+build_metadata.AdditionalFiles.TargetPath = UGFnZXNcQ291bnRlci5yYXpvcg==
+build_metadata.AdditionalFiles.CssScope = 
+
+[E:/CX/WebapiDemo/BlazorBBSDemo/Pages/FetchData.razor]
+build_metadata.AdditionalFiles.TargetPath = UGFnZXNcRmV0Y2hEYXRhLnJhem9y
+build_metadata.AdditionalFiles.CssScope = 
+
+[E:/CX/WebapiDemo/BlazorBBSDemo/Pages/Index.razor]
+build_metadata.AdditionalFiles.TargetPath = UGFnZXNcSW5kZXgucmF6b3I=
+build_metadata.AdditionalFiles.CssScope = 
+
+[E:/CX/WebapiDemo/BlazorBBSDemo/Pages/LoginPage.razor]
+build_metadata.AdditionalFiles.TargetPath = UGFnZXNcTG9naW5QYWdlLnJhem9y
+build_metadata.AdditionalFiles.CssScope = 
+
+[E:/CX/WebapiDemo/BlazorBBSDemo/Pages/MainPage.razor]
+build_metadata.AdditionalFiles.TargetPath = UGFnZXNcTWFpblBhZ2UucmF6b3I=
+build_metadata.AdditionalFiles.CssScope = 
+
+[E:/CX/WebapiDemo/BlazorBBSDemo/Pages/NewPostPage.razor]
+build_metadata.AdditionalFiles.TargetPath = UGFnZXNcTmV3UG9zdFBhZ2UucmF6b3I=
+build_metadata.AdditionalFiles.CssScope = 
+
+[E:/CX/WebapiDemo/BlazorBBSDemo/Pages/PostListPage.razor]
+build_metadata.AdditionalFiles.TargetPath = UGFnZXNcUG9zdExpc3RQYWdlLnJhem9y
+build_metadata.AdditionalFiles.CssScope = 
+
+[E:/CX/WebapiDemo/BlazorBBSDemo/Pages/RegisterPage.razor]
+build_metadata.AdditionalFiles.TargetPath = UGFnZXNcUmVnaXN0ZXJQYWdlLnJhem9y
+build_metadata.AdditionalFiles.CssScope = 
+
+[E:/CX/WebapiDemo/BlazorBBSDemo/Pages/SectionsPage.razor]
+build_metadata.AdditionalFiles.TargetPath = UGFnZXNcU2VjdGlvbnNQYWdlLnJhem9y
+build_metadata.AdditionalFiles.CssScope = 
+
+[E:/CX/WebapiDemo/BlazorBBSDemo/Pages/UserList.razor]
+build_metadata.AdditionalFiles.TargetPath = UGFnZXNcVXNlckxpc3QucmF6b3I=
+build_metadata.AdditionalFiles.CssScope = 
+
+[E:/CX/WebapiDemo/BlazorBBSDemo/Pages/UserListAddUser.razor]
+build_metadata.AdditionalFiles.TargetPath = UGFnZXNcVXNlckxpc3RBZGRVc2VyLnJhem9y
+build_metadata.AdditionalFiles.CssScope = 
+
+[E:/CX/WebapiDemo/BlazorBBSDemo/Pages/UserListUpdate.razor]
+build_metadata.AdditionalFiles.TargetPath = UGFnZXNcVXNlckxpc3RVcGRhdGUucmF6b3I=
+build_metadata.AdditionalFiles.CssScope = 
+
+[E:/CX/WebapiDemo/BlazorBBSDemo/Pages/UserPage.razor]
+build_metadata.AdditionalFiles.TargetPath = UGFnZXNcVXNlclBhZ2UucmF6b3I=
+build_metadata.AdditionalFiles.CssScope = 
+
+[E:/CX/WebapiDemo/BlazorBBSDemo/Shared/MainPageLayout.razor]
+build_metadata.AdditionalFiles.TargetPath = U2hhcmVkXE1haW5QYWdlTGF5b3V0LnJhem9y
+build_metadata.AdditionalFiles.CssScope = 
+
+[E:/CX/WebapiDemo/BlazorBBSDemo/Shared/SurveyPrompt.razor]
+build_metadata.AdditionalFiles.TargetPath = U2hhcmVkXFN1cnZleVByb21wdC5yYXpvcg==
+build_metadata.AdditionalFiles.CssScope = 
+
+[E:/CX/WebapiDemo/BlazorBBSDemo/_Imports.razor]
+build_metadata.AdditionalFiles.TargetPath = X0ltcG9ydHMucmF6b3I=
+build_metadata.AdditionalFiles.CssScope = 
+
+[E:/CX/WebapiDemo/BlazorBBSDemo/Shared/MainLayout.razor]
+build_metadata.AdditionalFiles.TargetPath = U2hhcmVkXE1haW5MYXlvdXQucmF6b3I=
+build_metadata.AdditionalFiles.CssScope = b-g62n6dg4em
+
+[E:/CX/WebapiDemo/BlazorBBSDemo/Shared/NavMenu.razor]
+build_metadata.AdditionalFiles.TargetPath = U2hhcmVkXE5hdk1lbnUucmF6b3I=
+build_metadata.AdditionalFiles.CssScope = b-22erg79ux8

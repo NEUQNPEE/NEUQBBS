@@ -1,0 +1,52 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 17
+VisualStudioVersion = 17.0.31903.59
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "WebapiDemo", "WebapiDemo\WebapiDemo.csproj", "{7FD00DFF-23AD-4A1B-8A35-530E47AF0E4C}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "WebApiDemo.DAL", "WebApiDemo.DAL\WebApiDemo.DAL.csproj", "{D31A6AC1-944B-46CB-846D-DF04A2696E70}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "WebApiDemo.BLL", "WebApiDemo.BLL\WebApiDemo.BLL.csproj", "{2B15F244-037C-410B-BCDB-B08A0D9EB075}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "WebApiDemoCommon", "WebApiDemoCommon\WebApiDemoCommon.csproj", "{56EB1FB3-E46F-44A3-97CB-76DB2CEAD7C8}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "WebApiDemo.Entities", "WebApiDemo.Entities\WebApiDemo.Entities.csproj", "{52DF2214-E058-440B-9070-7ABFFA29F4A4}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "BlazorBBSDemo", "BlazorBBSDemo\BlazorBBSDemo.csproj", "{93C2EB99-E45E-4E61-993C-3063422C78F2}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{7FD00DFF-23AD-4A1B-8A35-530E47AF0E4C}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{7FD00DFF-23AD-4A1B-8A35-530E47AF0E4C}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{7FD00DFF-23AD-4A1B-8A35-530E47AF0E4C}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{7FD00DFF-23AD-4A1B-8A35-530E47AF0E4C}.Release|Any CPU.Build.0 = Release|Any CPU
+		{D31A6AC1-944B-46CB-846D-DF04A2696E70}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{D31A6AC1-944B-46CB-846D-DF04A2696E70}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{D31A6AC1-944B-46CB-846D-DF04A2696E70}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{D31A6AC1-944B-46CB-846D-DF04A2696E70}.Release|Any CPU.Build.0 = Release|Any CPU
+		{2B15F244-037C-410B-BCDB-B08A0D9EB075}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{2B15F244-037C-410B-BCDB-B08A0D9EB075}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{2B15F244-037C-410B-BCDB-B08A0D9EB075}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{2B15F244-037C-410B-BCDB-B08A0D9EB075}.Release|Any CPU.Build.0 = Release|Any CPU
+		{56EB1FB3-E46F-44A3-97CB-76DB2CEAD7C8}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{56EB1FB3-E46F-44A3-97CB-76DB2CEAD7C8}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{56EB1FB3-E46F-44A3-97CB-76DB2CEAD7C8}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{56EB1FB3-E46F-44A3-97CB-76DB2CEAD7C8}.Release|Any CPU.Build.0 = Release|Any CPU
+		{52DF2214-E058-440B-9070-7ABFFA29F4A4}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{52DF2214-E058-440B-9070-7ABFFA29F4A4}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{52DF2214-E058-440B-9070-7ABFFA29F4A4}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{52DF2214-E058-440B-9070-7ABFFA29F4A4}.Release|Any CPU.Build.0 = Release|Any CPU
+		{93C2EB99-E45E-4E61-993C-3063422C78F2}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{93C2EB99-E45E-4E61-993C-3063422C78F2}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{93C2EB99-E45E-4E61-993C-3063422C78F2}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{93C2EB99-E45E-4E61-993C-3063422C78F2}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+EndGlobal

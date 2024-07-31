@@ -1,0 +1,228 @@
+@page "/newpostpage/{sectionId:int}"
+@inject HttpClient Http
+@inject IJSRuntime JSRuntime
+@inject NavigationManager NavigationManager
+@using System.ComponentModel.DataAnnotations;
+@using System.Text.Json;
+@using System.ComponentModel
+@using Microsoft.AspNetCore.Components.Forms
+@using AntDesign
+@using AntDesign.Form
+@using Microsoft.JSInterop
+@using System.Net.Http.Json
+
+<div class="top-bar">
+    @if (LoginUser == null)
+    {
+        <span class="text" @onclick="Login">登录</span>
+        <span>|</span>
+        <span class="text" @onclick="Register">注册</span>
+    }
+    else
+    {
+        <span class="text" @onclick="() => NavigateToUserPage(LoginUser.Id)">@LoginUser.Username</span>
+        <span>|</span>
+        <span>积分：@LoginUser.Points</span>
+        <span>|</span>
+        <span class="text" @onclick="Logout">退出</span>
+    }
+</div>
+
+<div id="new-post">
+    <h3>发表新帖</h3>
+    <Form Model="@newPost" OnFinish="OnFinish" OnFinishFailed="OnFinishFailed" LabelColSpan="4" WrapperColSpan="20">
+        <p>
+            <FormItem Label="类型" LabelAlign="AntLabelAlignType.Left">
+                <Input @bind-Value="@newPost.Type" />
+            </FormItem>
+        </p>
+        <p>
+            <FormItem Label="标题" LabelAlign="AntLabelAlignType.Left">
+                <Input @bind-Value="@newPost.Title" />
+            </FormItem>
+        </p>
+    </Form>
+    <p>
+        <TinyMCE.Blazor.Editor @bind-value=@newPost.Content Conf="@TinyMCEConfig" />
+    </p>
+    <p>
+        <Button Type="@ButtonType.Primary" OnClick="AddNewPost">
+            发表
+        </Button>
+    </p>
+</div>
+
+<style>
+    * {
+        margin: 0;
+        padding: 0;
+        font-family: "Microsoft YaHei";
+    }
+
+    .top-bar {
+        display: flex;
+        justify-content: flex-end;
+        align-items: center;
+        height: 36px;
+        padding: 0 16px;
+        background-color: #e5edf2;
+    }
+
+
+    #new-post {
+        width: 586px;
+        height: 470px;
+        box-shadow: 0 0 10px #666;
+        margin: auto;
+        margin-top: 10%;
+    }
+
+    #new-post h3 {
+        text-align: center;
+        padding: 16px 0;
+    }
+
+    #new-post p {
+        width: 80%;
+        margin: auto;
+        margin-bottom: 20px;
+    }
+
+    #new-post p:last-child {
+        text-align: center;
+    }
+
+    #new-post p button {
+        width: 60%;
+    }
+</style>
+
+@code {
+    [Parameter]
+    public int sectionId { get; set; }
+    private Post newPost = new Post() { };
+    public UserBaseInfoResponse? LoginUser { get; set; }
+    public class Post
+    {
+        public int Id { get; set; }
+        public int UserId { get; set; }
+        [Required]
+        public string? Content { get; set; }
+        public DateTime PublishTime { get; set; }
+        public int UpVote { get; set; }
+        public int DownVote { get; set; }
+        public int MainPostId { get; set; }
+        public bool IsMainPost { get; set; }
+        [Required]
+        public string? Type { get; set; }
+        [Required]
+        public string? Title { get; set; }
+        public int ViewNum { get; set; }
+        public int ReplyNum { get; set; }
+        public bool IsDeleted { get; set; }
+    }
+
+    public class UserBaseInfoResponse
+    {
+        public int Id { get; set; }
+        public required string Username { get; set; }
+        public required string RegisterTime { get; set; }
+        public int Points { get; set; }
+    }
+
+    public static Dictionary<string, object> TinyMCEConfig { get; set; } = new()
+{
+{"menubar", false },
+{ "promotion", false },
+{ "toolbar","fontfamily fontsize forecolor "},
+{ "toolbar_mode", "floating" },
+{ "min_height", 200 },
+{ "max_height", 200 },
+};
+
+    private void OnFinish(EditContext editContext)
+    {
+        if (!editContext.Validate())
+        {
+            return;
+        }
+    }
+
+    private void OnFinishFailed(EditContext editContext)
+    {
+    }
+
+    public class PostInsertRequest
+    {
+        public int UserId { get; set; }
+        public required string Content { get; set; }
+        public int MainPostId { get; set; }
+        public bool IsMainPost { get; set; }
+        public string? Type { get; set; }
+        public string? Title { get; set; }
+        public int ViewNum { get; set; }
+        public int ReplyNum { get; set; }
+    }
+
+    private async Task AddNewPost()
+    {
+        if (LoginUser == null)
+        {
+            NavigationManager.NavigateTo("/loginpage");
+            return;
+        }
+
+        if (string.IsNullOrEmpty(newPost.Content))
+        {
+            return;
+        }
+
+        var response = await Http.PostAsJsonAsync($"http://localhost:5286/PostApi/{sectionId}", new PostInsertRequest
+            {
+                UserId = LoginUser.Id,
+                Content = newPost.Content,
+                MainPostId = -1,
+                IsMainPost = true,
+                Type = newPost.Type,
+                Title = newPost.Title,
+                ViewNum = 0,
+                ReplyNum = 0
+            });
+    }
+
+    private void NavigateToUserPage(int userId)
+    {
+        NavigationManager.NavigateTo($"/userpage/{userId}");
+    }
+
+    private async Task GetUserInfoByCookie()
+    {
+        var userId = await JSRuntime.InvokeAsync<string>("cookieHelper.getCookie", "userId");
+        if (!string.IsNullOrEmpty(userId))
+        {
+            LoginUser = await Http.GetFromJsonAsync<UserBaseInfoResponse>($"http://localhost:5286/LoginApi/baseinfo/{userId}");
+        }
+    }
+
+    protected override async Task OnInitializedAsync()
+    {
+        await GetUserInfoByCookie();
+    }
+
+        private void Login()
+    {
+        NavigationManager.NavigateTo("/loginpage");
+    }
+
+    private void Register()
+    {
+        NavigationManager.NavigateTo("/registerpage");
+    }
+
+    private void Logout()
+    {
+        LoginUser = null;
+        JSRuntime.InvokeVoidAsync("cookieHelper.deleteCookie", "userId");
+        StateHasChanged();
+    }
+}

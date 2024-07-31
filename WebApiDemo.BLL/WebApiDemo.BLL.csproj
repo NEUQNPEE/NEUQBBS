@@ -1,0 +1,15 @@
+<Project Sdk="Microsoft.NET.Sdk">
+
+  <ItemGroup>
+    <ProjectReference Include="..\WebApiDemo.DAL\WebApiDemo.DAL.csproj" />
+    <ProjectReference Include="..\WebApiDemo.Entities\WebApiDemo.Entities.csproj" />
+    <ProjectReference Include="..\WebApiDemoCommon\WebApiDemoCommon.csproj" />
+  </ItemGroup>
+
+  <PropertyGroup>
+    <TargetFramework>net7.0</TargetFramework>
+    <ImplicitUsings>enable</ImplicitUsings>
+    <Nullable>enable</Nullable>
+  </PropertyGroup>
+
+</Project>

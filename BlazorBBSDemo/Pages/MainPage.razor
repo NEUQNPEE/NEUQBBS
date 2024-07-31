@@ -1,0 +1,514 @@
+@page "/mainpage"
+@page "/{sectionId:int}/{postID:int}"
+@inject NavigationManager NavigationManager
+@inject HttpClient Http
+@inject IJSRuntime JSRuntime
+
+@using System.ComponentModel
+@using AntDesign
+@using Microsoft.JSInterop
+@using System.Net.Http.Json
+
+
+<div class="top-bar">
+    @if (LoginUser == null)
+    {
+        <span class="text" @onclick="Login">登录</span>
+        <span>|</span>
+        <span class="text" @onclick="Register">注册</span>
+    }
+    else
+    {
+        <span class="text" @onclick="() => NavigateToUserPage(LoginUser.Id)">@LoginUser.Username</span>
+        <span>|</span>
+        <span>积分：@LoginUser.Points</span>
+        <span>|</span>
+        <span class="text" @onclick="Logout">退出</span>
+    }
+</div>
+<div id="postDetail">
+    <div class="newpost-reply-pagination">
+        <div class="newpost">
+            <Button Block Type="@ButtonType.Primary" @onclick="NavigateToNewPostPage">发帖</Button>
+        </div>
+
+        <div class="reply">
+            @* <Button Block Type="@ButtonType.Primary">回复</Button> *@
+            <Button Block Type="@ButtonType.Primary" @onclick="ScrollToBottom">回复</Button>
+        </div>
+        <div class="pagination">
+            <Pagination Size="PaginationSize.Small" PageIndex="1" Total="@PostNum" ShowSizeChanger="false"
+                PageSize="30"></Pagination>
+        </div>
+    </div>
+    <div class="post-title">
+        <div class="left">
+            查看: @mainPost?.ViewNum | 回复: @mainPost?.ReplyNum
+        </div>
+        <div class="right">
+            @mainPost?.Title
+        </div>
+    </div>
+
+    <ul>
+        @if (postList == null || userList == null)
+        {
+            <p>Loading...</p>
+        }
+        else
+        {
+            foreach (var post in postList)
+            {
+                <li>
+                    <div class="content-item">
+                        <div class="left">
+                            <div class="user-name">
+                                @userList?.FirstOrDefault(u => u.Id == post.UserId)?.Username
+                            </div>
+                            <div class="user-info">
+                                <img src="./assets/images/user-head-default.png" width="100px" height="100px">
+                                <p class="user-id">
+                                    ID：@userList?.FirstOrDefault(u => u.Id == post.UserId)?.Id
+                                </p>
+                                <p class="user-points">
+                                    积分：@userList?.FirstOrDefault(u => u.Id == post.UserId)?.Points
+                                </p>
+                                <p class="user-register-time">
+                                    注册时间：@userList?.FirstOrDefault(u => u.Id ==
+                                        post.UserId)?.RegisterTime
+                                </p>
+                            </div>
+                        </div>
+
+                        <div class="right">
+                            <div class="sent-time">
+                                发表于: @post.PublishTime.ToString("yyyy-MM-dd HH:mm:ss")
+                            </div>
+
+                            <div class="content-detail">
+                                @* @post.Content *@
+                                @((MarkupString)post.Content)
+                            </div>
+                            <div class="content-foot">
+                                @* <span>点赞(@post.UpVote)</span>其 *@
+                                <span @onclick="() => UpVote(post.Id)">点赞(@post.UpVote)</span>
+                                @* <span>点赞(@post.DownVote)</span> *@
+                                <span @onclick="() => DownVote(post.Id)">点踩(@post.DownVote)</span>
+                            </div>
+                        </div>
+                    </div>
+                </li>
+            }
+        }
+    </ul>
+
+    <div class="newpost-reply-pagination">
+        <div class="newpost">
+            <Button Block Type="@ButtonType.Primary" @onclick="NavigateToNewPostPage">发帖</Button>
+        </div>
+
+        <div class="reply">
+            @* <Button Block Type="@ButtonType.Primary">回复</Button> *@
+            <Button Block Type="@ButtonType.Primary" @onclick="ScrollToBottom">回复</Button>
+        </div>
+
+
+        <div class="pagination">
+            <Pagination Size="PaginationSize.Small" PageIndex="1" Total="@PostNum" ShowSizeChanger="false"
+                PageSize="30"></Pagination>
+        </div>
+    </div>
+
+    <div class="write-pad">
+        <div id="content">
+            <TinyMCE.Blazor.Editor @bind-value=@replyContent Conf="@TinyMCEConfig" />
+        </div>
+        <div class="send">
+            @if (unLoginUserTestReply)
+            {
+                <Alert Type="AlertType.Error" Message="请先登录！" />
+            }
+            else if (isNoReplyContent)
+            {
+                <Alert Type="AlertType.Error" Message="回复内容不能为空！" />
+            }
+            <Button Type="@ButtonType.Primary" @onclick="Reply">发送</Button>
+        </div>
+    </div>
+</div>
+
+<style>
+    * {
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+    }
+
+    .top-bar {
+        display: flex;
+        justify-content: flex-end;
+        align-items: center;
+        height: 36px;
+        padding: 0 16px;
+        background-color: #e5edf2;
+    }
+
+    .top-bar .text:hover {
+        color: blue;
+        text-decoration: underline;
+        cursor: pointer;
+    }
+
+    #postDetail {
+        padding: 0 16px;
+    }
+
+
+    .send-pad {
+        height: 50px;
+        margin-top: 20px;
+    }
+
+    .post-title {
+        display: flex;
+        background-color: #e5edf2;
+        height: 42px;
+        line-height: 36px;
+        border-bottom: 6px solid #c2d5e3;
+    }
+
+    .post-title .left {
+        width: 140px;
+        float: left;
+        font-size: 10px;
+        font-weight: lighter;
+        text-align: center;
+    }
+
+    .post-title .right {
+        flex-grow: 1;
+        font-size: 16px;
+        font-weight: bold;
+        padding-left: 15px;
+    }
+
+    ul {
+        list-style: none;
+        padding-left: 0;
+    }
+
+    .content-item {
+        border-bottom: 6px solid #c2d5e3;
+    }
+
+    .content-item .left {
+        width: 140px;
+        min-height: 210px;
+        background-color: #e5edf2;
+    @*padding-bottom:6px;*@float: left;
+    }
+
+    .content-item .left .user-name {
+        height: 36px;
+        line-height: 36px;
+        border-bottom: 1px #ccc dashed;
+        text-align: center;
+        font-weight: bold;
+        font-size: 15px;
+    }
+
+    .content-item .left .user-info {
+        text-align: center;
+    }
+
+    .content-item .left .user-info img {
+        border: 5px #fff solid;
+        width: 100px;
+        height: 100px;
+    }
+
+    .content-item .left .user-info p {
+        text-align-last: left;
+        padding-left: 10px;
+        font-size: 10px;
+    }
+
+    .content-item .left .user-info .user-id {
+        margin-top: 14px;
+        margin-bottom: 0;
+    }
+
+    .content-item .left .user-info .user-points {
+        margin-bottom: 0;
+    }
+
+    .content-item .left .user-info .user-register-time {
+        margin-bottom: 0;
+    }
+
+    .content-item .right {
+        min-height: 210px;
+        background-color: #fff;
+        font-size: 14px;
+        overflow: hidden;
+        padding: 0 6px;
+    }
+
+    .content-item .right .sent-time {
+        height: 36px;
+        line-height: 36px;
+        border-bottom: 1px #ccc dashed;
+    }
+
+    .content-item .right .content-detail {
+        min-height: 138px;
+    }
+
+    .content-item .right .content-foot {
+        height: 36px;
+        line-height: 36px;
+        border-top: 1px #ccc dashed;
+    }
+
+    .content-item .right .content-foot span {
+        margin-right: 16px;
+    }
+
+    .newpost-reply-pagination {
+        display: flex;
+        align-items: center;
+        margin-top: 16px;
+        margin-bottom: 16px;
+    }
+
+    .newpost-reply-pagination .newpost {
+        width: 16%;
+    }
+
+    .newpost-reply-pagination .reply {
+        width: 16%;
+        padding-left: 6px;
+    }
+
+    .newpost-reply-pagination .pagination {
+        margin-left: auto;
+    }
+
+    .write-pad {
+        width: 90%;
+        margin: auto;
+    }
+
+    .write-pad #content {
+        height: 200px;
+    }
+
+    .write-pad .send {
+        display: flex;
+        justify-content: flex-end;
+    }
+</style>
+
+
+
+@code {
+    [Parameter]
+    public int sectionId { get; set; }
+    [Parameter]
+    public int postID { get; set; }
+    public int PostNum { get; set; }
+    public UserBaseInfoResponse? LoginUser { get; set; }
+    List<Post>? postList;
+    Post? mainPost;
+    private string replyContent = "";
+
+    private bool isNoReplyContent = false;
+
+    private bool unLoginUserTestReply = false;
+
+    private void Login()
+    {
+        NavigationManager.NavigateTo("/loginpage");
+    }
+
+    private void Register()
+    {
+        NavigationManager.NavigateTo("/registerpage");
+    }
+
+    private void Logout()
+    {
+        LoginUser = null;
+        JSRuntime.InvokeVoidAsync("cookieHelper.deleteCookie", "userId");
+        StateHasChanged();
+    }
+
+    private async Task LoadPostList()
+    {
+        postList = await Http.GetFromJsonAsync<List<Post>>($"http://localhost:5286/PostApi/{sectionId}/{postID}");
+        if (postList == null)
+        {
+            Console.WriteLine("板块" + sectionId + "的帖子" + postID + "不存在");
+            return;
+        }
+        mainPost = postList.FirstOrDefault(p => p.IsMainPost);
+
+        PostNum = postList.Count();
+    }
+    public class Post
+    {
+        public int Id { get; set; }
+        public int UserId { get; set; }
+        public required string Content { get; set; }
+        public DateTime PublishTime { get; set; }
+        public int UpVote { get; set; }
+        public int DownVote { get; set; }
+        public int MainPostId { get; set; }
+        public bool IsMainPost { get; set; }
+        public string? Type { get; set; }
+        public string? Title { get; set; }
+        public int ViewNum { get; set; }
+        public int ReplyNum { get; set; }
+        public bool IsDeleted { get; set; }
+    }
+
+    List<UserBaseInfoResponse>? userList;
+    public class UserBaseInfoResponse
+    {
+        public int Id { get; set; }
+        public required string Username { get; set; }
+        public required string RegisterTime { get; set; }
+        public int Points { get; set; }
+    }
+
+    private async Task LoadUserList()
+    {
+        userList = await
+        Http.GetFromJsonAsync<List<UserBaseInfoResponse>>($"http://localhost:5286/PostApi/alluser/{sectionId}");
+    }
+
+    protected override async Task OnInitializedAsync()
+    {
+        await LoadPostList();
+
+        await LoadUserList();
+
+        await GetUserInfoByCookie();
+    }
+
+    private async Task GetUserInfoByCookie()
+    {
+        var userId = await JSRuntime.InvokeAsync<string>("cookieHelper.getCookie", "userId");
+        if (!string.IsNullOrEmpty(userId))
+        {
+            LoginUser = await Http.GetFromJsonAsync<UserBaseInfoResponse>($"http://localhost:5286/LoginApi/baseinfo/{userId}");
+        }
+    }
+
+    public static Dictionary<string, object> TinyMCEConfig { get; set; } = new()
+{
+{"menubar", false },
+{ "promotion", false },
+{ "toolbar","fontfamily fontsize forecolor "},
+{ "toolbar_mode", "floating" },
+{ "min_height", 200 },
+{ "max_height", 200 },
+{"license_key", "gpl"}
+};
+
+    @* 页面跳转到底部 *@
+    protected async Task ScrollToBottom()
+    {
+        await JSRuntime.InvokeVoidAsync("scrollToBottom");
+    }
+
+    @* 回复 *@
+    private async Task Reply()
+    {
+        var userId = await JSRuntime.InvokeAsync<string>("cookieHelper.getCookie", "userId");
+        if (string.IsNullOrEmpty(userId))
+        {
+            unLoginUserTestReply = true;
+            return;
+        }
+
+
+        if (string.IsNullOrEmpty(replyContent))
+        {
+            isNoReplyContent = true;
+            return;
+        }
+
+        if (LoginUser == null)
+        {
+            Console.WriteLine("未登录用户绕过了cookie!");
+            NavigationManager.NavigateTo("/loginpage");
+            return;
+        }
+
+        if (mainPost == null)
+        {
+            Console.WriteLine("板块" + sectionId + "的帖子" + postID + "不存在");
+            return;
+        }
+
+        var reply = new Post
+            {
+                UserId = LoginUser.Id,
+                Content = replyContent,
+                PublishTime = DateTime.Now,
+                MainPostId = mainPost.Id,
+                IsMainPost = false,
+                Type = mainPost.Type,
+                Title = mainPost.Title,
+                ViewNum = 0,
+                ReplyNum = 0,
+                IsDeleted = false
+            };
+
+        var response = await Http.PostAsJsonAsync($"http://localhost:5286/PostApi/{sectionId}", reply);
+        if (response.IsSuccessStatusCode)
+        {
+            replyContent = "";
+            await LoadPostList();
+            StateHasChanged();
+        }
+    }
+
+    private void NavigateToUserPage(int userId)
+    {
+        NavigationManager.NavigateTo($"/userpage/{userId}");
+    }
+
+    private void NavigateToNewPostPage()
+    {
+        NavigationManager.NavigateTo($"/newpostpage/{sectionId}");
+    }
+    public class PostUpdateRequest
+    {
+        public bool UpVote { get; set; }
+        public bool DownVote { get; set; }
+    }
+
+    @* 点赞与点踩 *@
+    private async Task UpVote(int postId)
+    {
+        var response = await Http.PutAsJsonAsync($"http://localhost:5286/PostApi/{sectionId}/{postId}", new PostUpdateRequest { UpVote = true });
+        if (response.IsSuccessStatusCode)
+        {
+            await LoadPostList();
+            StateHasChanged();
+        }
+    }
+
+    private async Task DownVote(int postId)
+    {
+        var response = await Http.PutAsJsonAsync($"http://localhost:5286/PostApi/{sectionId}/{postId}", new PostUpdateRequest { DownVote = true });
+        if (response.IsSuccessStatusCode)
+        {
+            await LoadPostList();
+            StateHasChanged();
+        }
+    }
+
+}

@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script src="./js/axios.js"></script>
+    <script src="./lib/vue.js"></script>
+    <script src="./lib/elementui.js"></script>
+    <link rel="stylesheet" href="./lib/elementui.css">
+</head>
+
+<body>
+    <div id="table">
+        <template>
+            <el-table :data="tableData" border style="width: 80%">
+                <el-table-column prop="id" label="ID" width="50">
+                </el-table-column>
+                <el-table-column prop="name" label="NAME" width="90">
+                </el-table-column>
+                <el-table-column prop="password" label="PASSWORD" width="120">
+                </el-table-column>
+                <el-table-column prop="address" label="ADDRESS" width="120">
+                </el-table-column>
+                <!-- 更新和删除按钮 -->
+                <el-table-column label="OPERATION">
+                    <template slot-scope="scope">
+                        <!-- <el-button type="primary" size="mini">更新</el-button>
+                        <el-button type="danger" size="mini">删除</el-button> -->
+                        <!-- 更新按钮按下后，跳转到WebTest4_UserUpdate.html -->
+                        <el-button type="primary" size="mini"
+                            onclick="window.location.href='./WebTest4_UserUpdate.html'">更新</el-button>
+                        <!-- 删除按钮按下后，弹出确认框 -->
+                        <el-button type="danger" size="mini" @click="deleteRow(scope.$index)">删除</el-button>
+                    </template>
+                </el-table-column>
+            </el-table>
+        </template>
+    </div>
+</body>
+
+<script>
+    new Vue({
+        el: '#table',
+        data: {
+            tableData: [{
+                id: '1',
+                name: 'Tom',
+                password: '123456',
+                address: 'New York'
+            }, {
+                id: '2',
+                name: 'Jerry',
+                password: '123456',
+                address: 'Los Angeles'
+            }, {
+                id: '3',
+                name: 'Mickey',
+                password: '123456',
+                address: 'Chicago'
+            }, {
+                id: '4',
+                name: 'Donald',
+                password: '123456',
+                address: 'Houston'
+            }]
+        }
+    })
+</script>
+
+<style>
+    .el-table {
+        /* 上下左右居中 */
+        margin: 0 auto;
+
+        /* 顶部距离 */
+        margin-top: 300px;
+    }
+</style>
+
+</html>
