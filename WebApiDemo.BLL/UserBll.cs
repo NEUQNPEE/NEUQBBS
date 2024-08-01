@@ -1,7 +1,6 @@
 ﻿using WebApiDemo.BLL.Interfaces;
 using WebApiDemo.DAL;
 using WebApiDemo.Entities.BModels;
-using WebApiDemo.Entities.EUser;
 using WebApiDemoCommon;
 
 namespace WebApiDemo.BLL
