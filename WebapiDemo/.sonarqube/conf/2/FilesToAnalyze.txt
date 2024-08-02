@@ -1,8 +1,0 @@
-﻿E:\CX\WebapiDemo\WebApiDemo.DAL\ComprehensiveSectionPostDal.cs
-E:\CX\WebapiDemo\WebApiDemo.DAL\Factorys\PostDalFactory.cs
-E:\CX\WebapiDemo\WebApiDemo.DAL\Interfaces\IPostDal.cs
-E:\CX\WebapiDemo\WebApiDemo.DAL\Interfaces\IPostDalFactory.cs
-E:\CX\WebapiDemo\WebApiDemo.DAL\Mapper\UserBToDMapper.cs
-E:\CX\WebapiDemo\WebApiDemo.DAL\Mapper\UserDToBMapper.cs
-E:\CX\WebapiDemo\WebApiDemo.DAL\SectionDal.cs
-E:\CX\WebapiDemo\WebApiDemo.DAL\UserDal.cs

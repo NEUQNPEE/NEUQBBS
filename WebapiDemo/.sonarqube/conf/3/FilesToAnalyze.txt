@@ -1,6 +1,0 @@
-﻿E:\CX\WebapiDemo\WebApiDemo.BLL\Interfaces\IPostBll.cs
-E:\CX\WebapiDemo\WebApiDemo.BLL\Interfaces\ISectionBll.cs
-E:\CX\WebapiDemo\WebApiDemo.BLL\Interfaces\IUserBll.cs
-E:\CX\WebapiDemo\WebApiDemo.BLL\PostBll.cs
-E:\CX\WebapiDemo\WebApiDemo.BLL\SectionBll.cs
-E:\CX\WebapiDemo\WebApiDemo.BLL\UserBll.cs
