@@ -1,3 +1,4 @@
 .sonarqube/
 **/.sonarqube/
 coverage.xml
+**/obj/
