@@ -14,14 +14,14 @@ namespace WebapiDemo.Models
 
     public static class UserBToVUserBaseInfoResponseMapper
     {
-        public static UserBaseInfoResponse ToBaseResponse(this UserBModel userBaseInfoBModel)
+        public static UserBaseInfoResponse ToUserBaseInfoResponse(this UserBModel u)
         {
             return new UserBaseInfoResponse
             {
-                Id = userBaseInfoBModel.Id,
-                UserName = userBaseInfoBModel.UserName?? "用户名空引用！",
-                RegisterTime = userBaseInfoBModel.RegisterTime.ToString("yyyy-MM-dd"),
-                Points = userBaseInfoBModel.Points
+                Id = u.Id,
+                UserName = u.UserName?? "用户名空引用！",
+                RegisterTime = u.RegisterTime.ToString("yyyy-MM-dd"),
+                Points = u.Points
             };
         }
     }

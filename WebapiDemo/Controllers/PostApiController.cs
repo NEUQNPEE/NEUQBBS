@@ -13,111 +13,104 @@ namespace WebapiDemo.Controllers
     public class PostApiController : ControllerBase
     {
         private readonly IPostBll postBll;
+        private readonly ILogger<PostApiController> logger;
 
-        public PostApiController(IPostBll postBll)
+        public PostApiController(IPostBll postBll, ILogger<PostApiController> logger)
         {
             this.postBll = postBll;
+            this.logger = logger;
         }
 
         [HttpGet("allpost/{sectionId}")]
-        public List<Post?>? GetAllPost(int sectionId)
+        public List<Post>? GetAllPostsBySectionId(int sectionId)
         {
+            logger.LogDebug("获取板块({sectionId})的所有帖子", sectionId);
             return postBll.GetAllPosts(sectionId);
         }
 
         [HttpGet("{sectionId}/{mainPostId}")]
-        public List<Post?>? GetPosts(int sectionId, int mainPostId)
+        public List<Post>? GetPostsByMainPostId(int sectionId, int mainPostId)
         {
+            logger.LogInformation("获取板块({sectionId})的主贴({mainPostId})的所有回复", sectionId, mainPostId);
             return postBll.GetPosts(sectionId, mainPostId);
         }
 
         [HttpGet("alluser/{sectionId}")]
-        public List<UserBaseInfoResponse?>? GetAllUser(int sectionId)
+        public ActionResult<List<UserBaseInfoResponse?>> GetAllUsersBaseInfoBySectionId(int sectionId)
         {
-            List<UserBModel?>? user = postBll.GetAllUsers(sectionId);
+            List<UserBModel>? user = postBll.GetAllUsers(sectionId);
             if (user == null)
             {
-                return null;
+                return NotFound("未找到用户基本信息");
             }
 
-            List<UserBaseInfoResponse?>? result = new();
-            foreach (UserBModel? u in user)
-            {
-                if (u == null)
-                {
-                    continue;
-                }
-                result.Add(
-                    new UserBaseInfoResponse
-                    {
-                        Id = u.Id,
-                        UserName = u.UserName ?? "用户名空引用！",
-                        RegisterTime = u.RegisterTime.ToString("yyyy-MM-dd"),
-                        Points = u.Points
-                    }
-                );
-            }
-
-            return result;
+            logger.LogInformation("获取在板块({sectionId})中发过帖的所有用户的基本信息", sectionId);
+            return Ok(user.Select(u => u.ToUserBaseInfoResponse()));
         }
 
         [HttpGet("post/{sectionId}")]
-        public List<Post?>? GetPosts(int sectionId, [FromBody] PostGetInRangeRequest request)
+        public List<Post>? GetPostsInRangeBySectionId(
+            [FromQuery] int sectionId,
+            [FromQuery] int beginNum,
+            [FromQuery] int needNum
+        )
         {
+            logger.LogInformation(
+                "获取板块({sectionId})自第{beginNum}条开始的{needNum}条帖子",
+                sectionId,
+                beginNum,
+                needNum
+            );
             return postBll.GetPosts(
                 new PostListBModel
                 {
                     SectionId = sectionId,
-                    BeginNum = request.BeginNum,
-                    NeedNum = request.NeedNum
+                    BeginNum = beginNum,
+                    NeedNum = needNum
                 }
             );
         }
 
         [HttpGet("user/{sectionId}")]
-        public List<UserBaseInfoResponse?>? GetUsers(
-            int sectionId,
-            [FromBody] PostGetInRangeRequest request
+        public ActionResult<List<UserBaseInfoResponse?>> GetUsersBaseInfoInRangeBySectionId(
+            [FromQuery] int sectionId,
+            [FromQuery] int beginNum,
+            [FromQuery] int needNum
         )
         {
-            List<UserBModel?>? user = postBll.GetUsers(
+            List<UserBModel>? user = postBll.GetUsers(
                 new PostListBModel
                 {
                     SectionId = sectionId,
-                    BeginNum = request.BeginNum,
-                    NeedNum = request.NeedNum
+                    BeginNum = beginNum,
+                    NeedNum = needNum
                 }
             );
 
             if (user == null)
             {
-                return null;
-            }
-
-            List<UserBaseInfoResponse?>? result = new();
-            foreach (UserBModel? u in user)
-            {
-                if (u == null)
-                {
-                    continue;
-                }
-                result.Add(
-                    new UserBaseInfoResponse
-                    {
-                        Id = u.Id,
-                        UserName = u.UserName ?? "用户名空引用！",
-                        RegisterTime = u.RegisterTime.ToString("yyyy-MM-dd"),
-                        Points = u.Points
-                    }
+                logger.LogWarning(
+                    "获取板块({sectionId})自第{beginNum}条开始的{needNum}条帖子的用户基本信息表为空！",
+                    sectionId,
+                    beginNum,
+                    needNum
                 );
+                return NotFound("未找到用户基本信息");
             }
 
-            return result;
+            logger.LogInformation(
+                "获取板块({sectionId})自第{beginNum}条开始的{needNum}条帖子的用户基本信息表",
+                    sectionId,
+                    beginNum,
+                    needNum
+            );
+            return Ok(ConvertToUserBaseInfoResponse(user));
         }
 
         [HttpPost("{sectionId}")]
         public int Insert(int sectionId, [FromBody] PostInsertRequest request)
         {
+            logger.LogInformation("用户({userId})在板块({sectionId})发表了帖子", request.UserId, sectionId);
             return postBll.AddPost(sectionId, request.ToPost());
         }
 
@@ -128,11 +121,15 @@ namespace WebapiDemo.Controllers
             if (request.UpVote)
             {
                 postBll.UpVote(sectionId, postId);
+                // todo 需要知道点赞者id
+                logger.LogInformation("用户(暂无)在板块({sectionId})的帖子({postId})点赞了", sectionId, postId);
                 return "操作成功！";
             }
             else if (request.DownVote)
             {
                 postBll.DownVote(sectionId, postId);
+                // todo 需要知道踩者id
+                logger.LogInformation("用户(暂无)在板块({sectionId})的帖子({postId})点踩了", sectionId, postId);
                 return "操作成功！";
             }
 
@@ -143,7 +140,13 @@ namespace WebapiDemo.Controllers
         [HttpPut("view/{sectionId}/{postId}")]
         public void UpdateView(int sectionId, int postId)
         {
+            logger.LogInformation("板块({sectionId})的帖子({postId})被浏览了", sectionId, postId);
             postBll.UpdateView(sectionId, postId);
+        }
+
+        private static List<UserBaseInfoResponse> ConvertToUserBaseInfoResponse(List<UserBModel> users)
+        {
+            return users.Select(u => u.ToUserBaseInfoResponse()).ToList();
         }
     }
 }

@@ -15,7 +15,7 @@ namespace WebApiDemo.BLL
             _postDalFactory = postDalFactory;
         }
 
-        public List<Post?>? GetAllPosts(int sectionId)
+        public List<Post>? GetAllPosts(int sectionId)
         {
             string? tableName = SectionDal.GetSectionById(sectionId)?.TableName;
             if (tableName == null)
@@ -25,21 +25,21 @@ namespace WebApiDemo.BLL
             return _postDalFactory.GetPostDal(tableName).GetAllPosts();
         }
 
-        public List<UserBModel?>? GetAllUsers(int sectionId)
+        public List<UserBModel>? GetAllUsers(int sectionId)
         {
             string? tableName = SectionDal.GetSectionById(sectionId)?.TableName;
             if (tableName == null)
             {
                 return null;
             }
-            List<UserBModel?>? users = _postDalFactory.GetPostDal(tableName).GetAllUsers();
+            List<UserBModel>? users = _postDalFactory.GetPostDal(tableName).GetAllUsers();
             // 保留Id,userName,RigisterTime和Points字段,注意排除IsDeleted字段
             if (users == null)
             {
                 return null;
             }
 
-            List<UserBModel?>? result = new();
+            List<UserBModel>? result = new();
             foreach (UserBModel? user in users)
             {
                 if (user == null)
@@ -60,7 +60,7 @@ namespace WebApiDemo.BLL
             return result;
         }
 
-        public List<Post?>? GetPosts(PostListBModel postListBModel)
+        public List<Post>? GetPosts(PostListBModel postListBModel)
         {
             string? tableName = SectionDal.GetSectionById(postListBModel.SectionId)?.TableName;
             if (tableName == null)
@@ -72,7 +72,7 @@ namespace WebApiDemo.BLL
                 .GetPosts(postListBModel.BeginNum, postListBModel.NeedNum);
         }
 
-        public List<Post?>? GetPosts(int sectionId, int mainPostId)
+        public List<Post>? GetPosts(int sectionId, int mainPostId)
         {
             string? tableName = SectionDal.GetSectionById(sectionId)?.TableName;
             if (tableName == null)
@@ -102,14 +102,14 @@ namespace WebApiDemo.BLL
             return id;
         }
 
-        public List<UserBModel?>? GetUsers(PostListBModel postListBModel)
+        public List<UserBModel>? GetUsers(PostListBModel postListBModel)
         {
             string? tableName = SectionDal.GetSectionById(postListBModel.SectionId)?.TableName;
             if (tableName == null)
             {
                 return null;
             }
-            List<UserBModel?>? users = _postDalFactory
+            List<UserBModel>? users = _postDalFactory
                 .GetPostDal(tableName)
                 .GetUsers(postListBModel.BeginNum, postListBModel.NeedNum);
             // 保留Id,userName,RigisterTime和Points字段,注意排除IsDeleted字段
@@ -118,7 +118,7 @@ namespace WebApiDemo.BLL
                 return null;
             }
 
-            List<UserBModel?>? result = new();
+            List<UserBModel>? result = new();
             foreach (UserBModel? user in users)
             {
                 if (user == null)

@@ -7,6 +7,5 @@ namespace WebApiDemo.Entities.BModels
         public int BeginNum { get; set; }
 
         public int NeedNum { get; set; }
-        
     }
 }

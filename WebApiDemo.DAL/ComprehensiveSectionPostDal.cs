@@ -8,34 +8,28 @@ namespace WebApiDemo.DAL
 {
     public class ComprehensiveSectionPostDal : IPostDal
     {
-        public List<Post?>? GetAllPosts()
+        public List<Post>? GetAllPosts()
         {
             using var context = DbContextFactory.GetDbContext();
-            List<Post?> posts = context.ComprehensiveSectionPosts.ToList().OfType<Post?>().ToList();
-            if (posts == null)
-            {
-                return null;
-            }
+            List<Post> posts = context.ComprehensiveSectionPosts.ToList().Select(p => p as Post).Where(p => p != null).Select(p => p!).ToList();
             return posts;
         }
 
-        public List<Post?>? GetPosts(int beginIndex, int needNum)
+        public List<Post>? GetPosts(int beginIndex, int needNum)
         {
             using var context = DbContextFactory.GetDbContext();
-            List<Post?> posts = context.ComprehensiveSectionPosts
+            List<Post> posts = context.ComprehensiveSectionPosts
                 .Skip(beginIndex)
                 .Take(needNum)
                 .ToList()
-                .OfType<Post?>()
+                .Select(p => p as Post)
+                .Where(p => p != null)
+                .Select(p => p!)
                 .ToList();
-            if (posts == null)
-            {
-                return null;
-            }
             return posts;
         }
 
-        public List<Post?>? GetPosts(int mainPostId)
+        public List<Post>? GetPosts(int mainPostId)
         {
             using var context = DbContextFactory.GetDbContext();
             Post? mainPost = context.ComprehensiveSectionPosts.Find(mainPostId);
@@ -44,12 +38,14 @@ namespace WebApiDemo.DAL
                 return null;
             }
 
-            List<Post?> posts = new List<Post?> { mainPost };
+            List<Post> posts = new() { mainPost };
 
             posts.AddRange(context.ComprehensiveSectionPosts
                 .Where(p => p.MainPostId == mainPostId)
                 .ToList()
-                .OfType<Post?>()
+                .Select(p => p as Post)
+                .Where(p => p != null)
+                .Select(p => p!)
                 .ToList());
 
             // 按发布时间排序
@@ -87,22 +83,18 @@ namespace WebApiDemo.DAL
             }
         }
 
-        public List<UserBModel?>? GetAllUsers()
+        public List<UserBModel>? GetAllUsers()
         {
             using var context = DbContextFactory.GetDbContext();
             var userIds = context.ComprehensiveSectionPosts
                 .Select(p => p.UserId)
                 .Distinct()
                 .ToList();
-            var users = userIds.Select(id => context.Users.Find(id)?.ToUserBModel()).ToList();
-            if (users == null)
-            {
-                return null;
-            }
+            var users = userIds.Select(id => context.Users.Find(id)?.ToUserBModel()).Where(u => u != null).Select(u => u!).ToList();
             return users;
         }
 
-        public List<UserBModel?>? GetUsers(int beginNum, int needNum)
+        public List<UserBModel>? GetUsers(int beginNum, int needNum)
         {
             using var context = DbContextFactory.GetDbContext();
             var userIds = context.ComprehensiveSectionPosts
@@ -111,11 +103,7 @@ namespace WebApiDemo.DAL
                 .Skip(beginNum)
                 .Take(needNum)
                 .ToList();
-            var users = userIds.Select(id => context.Users.Find(id)?.ToUserBModel()).ToList();
-            if (users == null)
-            {
-                return null;
-            }
+            var users = userIds.Select(id => context.Users.Find(id)?.ToUserBModel()).Where(u => u != null).Select(u => u!).ToList();
             return users;
         }
 

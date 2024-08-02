@@ -76,7 +76,7 @@ namespace WebapiDemo.Controllers
         public UserBaseInfoResponse? GetBaseInfoById(int id)
         {
             logger.LogInformation("id为{id}的用户获取了基本信息", id);
-            return userBll.GetUserBaseInfoById(id)?.ToBaseResponse();
+            return userBll.GetUserBaseInfoById(id)?.ToUserBaseInfoResponse();
         }
 
         // 按id获取详细信息
