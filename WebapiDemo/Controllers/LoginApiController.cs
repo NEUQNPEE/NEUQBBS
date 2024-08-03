@@ -2,11 +2,11 @@
  * @Author       : NieFire planet_class@foxmail.com
  * @Date         : 2024-05-16 15:10:29
  * @LastEditors  : NieFire planet_class@foxmail.com
- * @LastEditTime : 2024-08-01 17:24:19
+ * @LastEditTime : 2024-08-03 10:05:31
  * @FilePath     : \CS_Computer-Science-and-Technologye:\CX\WebapiDemo\WebapiDemo\Controllers\LoginApiController.cs
  * @Description  : 用户登录相关API
  * ( ﾟ∀。)只要加满注释一切都会好起来的( ﾟ∀。)
- * Copyright (c) 2024 by NieFire, All Rights Reserved. 
+ * Copyright (c) 2024 by NieFire, All Rights Reserved.
 
  update 2024年8月1日 本文件补全日志功能
  */
@@ -113,7 +113,7 @@ namespace WebapiDemo.Controllers
 
             if (!request.RememberMe)
             {
-                AddUserIdHeader(userId);
+                AddHeader("UserId", userId.ToString());
                 logger.LogInformation("用户:{userName}的登录成功，不记住密码", request.UserName);
                 return Ok("登录成功！");
             }
@@ -125,8 +125,14 @@ namespace WebapiDemo.Controllers
                     return BadRequest("自动登录Token生成失败");
                 }
 
-                AddUserIdHeader(userId);
-                Response.Headers.Add("AutoLoginToken", token);
+                // UserId的键值对
+                Dictionary<string, string> tokens = new()
+                {
+                    { "UserId", userId.ToString() },
+                    { "AutoLoginToken", token }
+                };
+                
+                AddHeader(tokens);
 
                 logger.LogInformation("用户:{userName}的登录成功，记住密码", request.UserName);
                 return Ok("登录成功,Token生成成功");
@@ -148,7 +154,7 @@ namespace WebapiDemo.Controllers
                 return false;
             }
 
-            AddUserIdHeader(userId);
+            AddHeader("UserId", userId.ToString());
 
             logger.LogInformation("用户:{userName}的自动登录成功", request.UserName);
             return true;
@@ -186,7 +192,7 @@ namespace WebapiDemo.Controllers
             }
             else
             {
-                AddUserIdHeader(userId);
+                AddHeader("UserId", userId.ToString());
                 logger.LogInformation("用户:{userName}的注册成功", request.UserName);
                 return Ok("注册成功！");
             }
@@ -208,10 +214,20 @@ namespace WebapiDemo.Controllers
             return userBll.RemoveUser(id);
         }
 
-        private void AddUserIdHeader(int userId)
+        private void AddHeader(Dictionary<string, string> tokens)
         {
-            Response.Headers.Add("Access-Control-Expose-Headers", "UserId");
-            Response.Headers.Add("UserId", userId.ToString());
+            Response.Headers.Add("Access-Control-Expose-Headers", string.Join(",", tokens.Keys));
+
+            foreach (KeyValuePair<string, string> token in tokens)
+            {
+                Response.Headers.Add(token.Key, token.Value);
+            }
+        }
+
+        private void AddHeader(string key, string value)
+        {
+            Response.Headers.Add("Access-Control-Expose-Headers", key);
+            Response.Headers.Add(key, value);
         }
     }
 }
