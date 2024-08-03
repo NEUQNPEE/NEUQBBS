@@ -1,2 +1,0 @@
-2024-08-02 11:44:32.553 +08:00 [WRN] Failed to determine the https port for redirect.
-2024-08-02 11:53:34.150 +08:00 [WRN] Failed to determine the https port for redirect.
