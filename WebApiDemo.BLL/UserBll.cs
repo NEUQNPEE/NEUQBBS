@@ -9,7 +9,7 @@ namespace WebApiDemo.BLL
     {
         // readonly UserDal userDal = new();
 
-        public List<UserBModel?>? DebugGetAllUsers()
+        public List<UserBModel>? DebugGetAllUsers()
         {
             return UserDal.DebugGetAllUsers();
         }

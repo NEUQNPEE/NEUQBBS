@@ -5,7 +5,7 @@ namespace WebApiDemo.BLL.Interfaces
 {
     public interface IUserBll
     {
-        List<UserBModel?>? DebugGetAllUsers();
+        List<UserBModel>? DebugGetAllUsers();
 
         UserBModel? DebugGetUserById(int id);
 

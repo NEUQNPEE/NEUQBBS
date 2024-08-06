@@ -2,6 +2,7 @@ using Microsoft.AspNetCore.Cors;
 using Microsoft.AspNetCore.Mvc;
 using WebapiDemo.Models;
 using WebApiDemo.BLL.Interfaces;
+using WebApiDemo.DAL.Interfaces;
 using WebApiDemo.Entities.BModels;
 using WebApiDemo.Entities.EPost;
 
@@ -21,6 +22,11 @@ namespace WebapiDemo.Controllers
             this.logger = logger;
         }
 
+        /// <summary>
+        /// 获取板块({sectionId})的所有帖子
+        /// </summary>
+        /// <param name="sectionId"></param>
+        /// <returns></returns>
         [HttpGet("allpost/{sectionId}")]
         public ActionResult<List<Post>> GetAllPostsBySectionId(int sectionId)
         {
@@ -33,6 +39,12 @@ namespace WebapiDemo.Controllers
             return Ok(posts);
         }
 
+        /// <summary>
+        /// 获取板块({sectionId})的主贴({mainPostId})的所有回复
+        /// </summary>
+        /// <param name="sectionId"></param>
+        /// <param name="mainPostId"></param>
+        /// <returns></returns>
         [HttpGet("{sectionId}/{mainPostId}")]
         public ActionResult<List<Post>> GetPostsByMainPostId(int sectionId, int mainPostId)
         {
@@ -45,6 +57,11 @@ namespace WebapiDemo.Controllers
             return Ok(posts);
         }
 
+        /// <summary>
+        /// 获取在板块({sectionId})中发过帖的所有用户
+        /// </summary>
+        /// <param name="sectionId"></param>
+        /// <returns></returns>
         [HttpGet("alluser/{sectionId}")]
         public ActionResult<IEnumerable<UserBaseInfoResponse>> GetAllUsersBaseInfoBySectionId(
             int sectionId
@@ -60,6 +77,13 @@ namespace WebapiDemo.Controllers
             return Ok(users.Select(u => u.ToUserBaseInfoResponse()));
         }
 
+        /// <summary>
+        /// 获取板块({sectionId})自第{beginNum}条开始的{needNum}条帖子
+        /// </summary>
+        /// <param name="sectionId"></param>
+        /// <param name="beginNum"></param>
+        /// <param name="needNum"></param>
+        /// <returns></returns>
         [HttpGet("post/{sectionId}")]
         public ActionResult<List<Post>> GetPostsInRangeBySectionId(
             [FromQuery] int sectionId,
