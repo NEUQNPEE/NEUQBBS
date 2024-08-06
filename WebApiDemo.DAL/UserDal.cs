@@ -8,18 +8,17 @@ namespace WebApiDemo.DAL;
 
 public class UserDal
 {
-    public static List<UserBModel?>? DebugGetAllUsers()
+    public static List<UserBModel> DebugGetAllUsers()
     {
         using var context = DbContextFactory.GetDbContext();
         var users = context.Users.ToList();
-        if (users == null)
-        {
-            return null;
-        }
-        return users.Select(user => user.ToUserBModel()).ToList();
+        return users
+            .Select(user => user?.ToUserBModel())
+            .Where(UserBModel => UserBModel != null)
+            .ToList()!;
     }
 
-        public static UserBModel? DebugGetUserById(int id)
+    public static UserBModel? DebugGetUserById(int id)
     {
         using var context = DbContextFactory.GetDbContext();
         return context.Users.Find(id)?.ToUserBModel();
@@ -31,14 +30,12 @@ public class UserDal
         return context.Users.Find(id)?.ToPublicUserBModel();
     }
 
-    public static List<UserBModel?>? GetUserByUserNameAndPassword(string userName, string password)
+    public static List<UserBModel>? GetUserByUserNameAndPassword(string userName, string password)
     {
         using var context = DbContextFactory.GetDbContext();
-        var users = context.Users.Where(user => user.UserName == userName && user.Password == password).ToList();
-        if (users == null)
-        {
-            return null;
-        }
+        var users = context.Users
+            .Where(user => user.UserName == userName && user.Password == password)
+            .ToList();
         return users.Select(user => user.ToUserBModel()).ToList();
     }
 
@@ -52,12 +49,14 @@ public class UserDal
             return string.Empty;
         }
         string token = Guid.NewGuid().ToString();
-        context.AuthTokens.Add(new AuthToken
-        {
-            UserId = userId,
-            Token = token,
-            ExpireTime = DateTime.Now.AddDays(7)
-        });
+        context.AuthTokens.Add(
+            new AuthToken
+            {
+                UserId = userId,
+                Token = token,
+                ExpireTime = DateTime.Now.AddDays(7)
+            }
+        );
         context.SaveChanges();
         return token;
     }
@@ -79,6 +78,7 @@ public class UserDal
         }
         return authToken.UserId;
     }
+
     public static bool CheckUserExist(string userName)
     {
         using var context = DbContextFactory.GetDbContext();
@@ -91,7 +91,6 @@ public class UserDal
         context.Users.Add(userBModel.ToUser());
         context.SaveChanges();
         return context.Users.Max(user => user.Id);
-
     }
 
     public static int UpdateUser(UserBModel userBModel)
@@ -105,7 +104,6 @@ public class UserDal
         context.Users.Update(userToUpdate.UpdateFromBModel(userBModel));
         return context.SaveChanges();
     }
-
 
     public static int RemoveUser(int id)
     {
