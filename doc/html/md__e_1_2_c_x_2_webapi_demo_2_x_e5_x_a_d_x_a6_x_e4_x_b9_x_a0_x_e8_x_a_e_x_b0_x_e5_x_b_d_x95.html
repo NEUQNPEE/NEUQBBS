@@ -1,0 +1,233 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "https://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" lang="zh">
+<head>
+<meta http-equiv="Content-Type" content="text/xhtml;charset=UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=11"/>
+<meta name="generator" content="Doxygen 1.12.0"/>
+<meta name="viewport" content="width=device-width, initial-scale=1"/>
+<title>WebApiDoc: 学习记录</title>
+<link href="tabs.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="jquery.js"></script>
+<script type="text/javascript" src="dynsections.js"></script>
+<script type="text/javascript" src="clipboard.js"></script>
+<link href="navtree.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="navtreedata.js"></script>
+<script type="text/javascript" src="navtree.js"></script>
+<script type="text/javascript" src="resize.js"></script>
+<script type="text/javascript" src="cookie.js"></script>
+<link href="search/search.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="search/searchdata.js"></script>
+<script type="text/javascript" src="search/search.js"></script>
+<link href="doxygen.css" rel="stylesheet" type="text/css" />
+</head>
+<body>
+<div id="top"><!-- do not remove this div, it is closed by doxygen! -->
+<div id="titlearea">
+<table cellspacing="0" cellpadding="0">
+ <tbody>
+ <tr id="projectrow">
+  <td id="projectalign">
+   <div id="projectname">WebApiDoc<span id="projectnumber">&#160;v1.0</span>
+   </div>
+   <div id="projectbrief">WebApi 后端项目文档</div>
+  </td>
+ </tr>
+ </tbody>
+</table>
+</div>
+<!-- end header part -->
+<!-- 制作者 Doxygen 1.12.0 -->
+<script type="text/javascript">
+/* @license magnet:?xt=urn:btih:d3d9a9a6595521f9666a5e94cc830dab83b65699&amp;dn=expat.txt MIT */
+var searchBox = new SearchBox("searchBox", "search/",'.html');
+/* @license-end */
+</script>
+<script type="text/javascript">
+/* @license magnet:?xt=urn:btih:d3d9a9a6595521f9666a5e94cc830dab83b65699&amp;dn=expat.txt MIT */
+$(function() { codefold.init(0); });
+/* @license-end */
+</script>
+<script type="text/javascript" src="menudata.js"></script>
+<script type="text/javascript" src="menu.js"></script>
+<script type="text/javascript">
+/* @license magnet:?xt=urn:btih:d3d9a9a6595521f9666a5e94cc830dab83b65699&amp;dn=expat.txt MIT */
+$(function() {
+  initMenu('',true,false,'search.php','搜索',true);
+  $(function() { init_search(); });
+});
+/* @license-end */
+</script>
+<div id="main-nav"></div>
+</div><!-- top -->
+<div id="side-nav" class="ui-resizable side-nav-resizable">
+  <div id="nav-tree">
+    <div id="nav-tree-contents">
+      <div id="nav-sync" class="sync"></div>
+    </div>
+  </div>
+  <div id="splitbar" style="-moz-user-select:none;" 
+       class="ui-resizable-handle">
+  </div>
+</div>
+<script type="text/javascript">
+/* @license magnet:?xt=urn:btih:d3d9a9a6595521f9666a5e94cc830dab83b65699&amp;dn=expat.txt MIT */
+$(function(){initNavTree('md__e_1_2_c_x_2_webapi_demo_2_x_e5_x_a_d_x_a6_x_e4_x_b9_x_a0_x_e8_x_a_e_x_b0_x_e5_x_b_d_x95.html',''); initResizable(true); });
+/* @license-end */
+</script>
+<div id="doc-content">
+<!-- window showing the filter options -->
+<div id="MSearchSelectWindow"
+     onmouseover="return searchBox.OnSearchSelectShow()"
+     onmouseout="return searchBox.OnSearchSelectHide()"
+     onkeydown="return searchBox.OnSearchSelectKey(event)">
+</div>
+
+<!-- iframe showing the search results (closed by default) -->
+<div id="MSearchResultsWindow">
+<div id="MSearchResults">
+<div class="SRPage">
+<div id="SRIndex">
+<div id="SRResults"></div>
+<div class="SRStatus" id="Loading">载入中...</div>
+<div class="SRStatus" id="Searching">搜索中...</div>
+<div class="SRStatus" id="NoMatches">未找到</div>
+</div>
+</div>
+</div>
+</div>
+
+<div><div class="header">
+  <div class="headertitle"><div class="title">学习记录</div></div>
+</div><!--header-->
+<div class="contents">
+<div class="textblock"><p><a class="anchor" id="autotoc_md0"></a></p>
+<h1><a class="anchor" id="autotoc_md1"></a>
+2024年8月4日</h1>
+<p>在处理Dal层返回值问题时意识到返回可空类型的问题。如： </p><div class="fragment"><div class="line"><span class="keyword">public</span> <span class="keyword">static</span> UserBModel? DebugGetUserById(<span class="keywordtype">int</span> <span class="keywordtype">id</span>)</div>
+<div class="line">{</div>
+<div class="line">    <span class="keyword">using </span>var context = DbContextFactory.GetDbContext();</div>
+<div class="line">    <span class="keywordflow">return</span> context.Users.Find(<span class="keywordtype">id</span>)?.ToUserBModel();</div>
+<div class="line">}</div>
+<div class="line"> </div>
+<div class="line"><span class="keyword">public</span> <span class="keyword">static</span> UserBModel? GetUserById(<span class="keywordtype">int</span> <span class="keywordtype">id</span>)</div>
+<div class="line">{</div>
+<div class="line">    <span class="keyword">using </span>var context = DbContextFactory.GetDbContext();</div>
+<div class="line">    <span class="keywordflow">return</span> context.Users.Find(<span class="keywordtype">id</span>)?.ToPublicUserBModel();</div>
+<div class="line">}</div>
+<div class="line"> </div>
+<div class="line"><span class="keyword">public</span> <span class="keyword">static</span> List&lt;UserBModel&gt;? GetUserByUserNameAndPassword(<span class="keywordtype">string</span> userName, <span class="keywordtype">string</span> password)</div>
+<div class="line">{</div>
+<div class="line">    <span class="keyword">using </span>var context = DbContextFactory.GetDbContext();</div>
+<div class="line">    var users = context.Users</div>
+<div class="line">        .Where(user =&gt; user.UserName == userName &amp;&amp; user.Password == password)</div>
+<div class="line">        .ToList();</div>
+<div class="line">    <span class="keywordflow">if</span> (users == <span class="keyword">null</span>)</div>
+<div class="line">    {</div>
+<div class="line">        <span class="keywordflow">return</span> <span class="keyword">null</span>;</div>
+<div class="line">    }</div>
+<div class="line">    <span class="keywordflow">return</span> users.Select(user =&gt; user.ToUserBModel()).ToList();</div>
+<div class="line">}</div>
+</div><!-- fragment --><p>首先应确定一点：如返回值为集合类型，不要返回Null，至少返回一个空集合。理由是null值的语义更接近：应该有返回值，但发生了未知错误导致返回值消失；而空集合意味着没有返回值。(参考<a href="https://stackoverflow.com/questions/1969993/is-it-better-to-return-null-or-empty-collection">Is it better to return null or empty collection?</a>)</p>
+<p>如返回值为对象类型，返回值是空值还是默认值引发了激烈争论，且公说公有理婆说婆有理，让我们来看看程序员们吵成什么样子：</p>
+<p>(<a href="https://stackoverflow.com/questions/175532/should-a-retrieval-method-return-null-or-throw-an-exception-when-it-cant-prod">Should a retrieval method return 'null' or throw an exception when it can't produce the return value? [closed]</a>)</p>
+<p>首先被淘汰的方案是只要有Null就抛异常让上层的异常处理模块处理。原因是：异常仅在程序出现了“出现了非预期行为”时才应该被抛出。当然，大量抛异常会影响程序性能，不过这并没有被作为主要的原因，大概这群偏执的程序员们不在乎这个。但出于安全性考虑，你也不想前端传来无数非法参数导致你的日志被异常信息挤爆。</p>
+<p>其次默认值方案被忽略。显而易见没人会给每个不同的对象安排一个不同的默认值，调用者会想杀人的（我tm怎么知道默认值是什么，我tm为什么要处理默认值?）</p>
+<p>那全返回null如何？从程序安全性上讲，C#的Object?已经是null对象模式了，不必像C++一样担心空引用异常。从程序功能是来讲，上面给出的三个函数中DebugGetUserById与GetUserById的确可能返回空值，毕竟传入的id的确不一定有对应的数据。但这陷入了语义上的冲突：返回null究竟是数据库里没有这个数据，还是发生了未知错误导致返回值消失？虽然上层代码不关心报错原因，但上层代码肯定关心到底是没数据还是报错：没数据那就没数据一切正常，报错了赶快给同事打电话修bug!</p>
+<p>那现在我们要做的事情就显得比较清晰：返回值要携带的信息需要多一些，既然如此，一个流行的优化方案油然而生：统一返回值对象。</p>
+<p>由此得到了优化工作的第一步：</p>
+<ol type="1">
+<li>统一返回值类型，封装为唯一类型，其中不仅包括原有的返回数据，也包括结果是否成功的标识，以及错误信息等上可能需要的信息。(参考<a href="https://zhuanlan.zhihu.com/p/656464576">【规范】SpringBoot接口返回结果及异常统一处理，这样封装才优雅</a>)</li>
+</ol>
+<h1><a class="anchor" id="autotoc_md2"></a>
+2024年8月5日</h1>
+<p>上一次优化将返回值类型统一后，我们要先做一点小更新：</p>
+<p>为DAL层添加日志。</p>
+<p>然后来处理后续的三个问题：异步方法，DTO与上下文依赖注入。</p>
+<p>异步操作可以避免阻塞线程，特别是对于数据库操作。可以使用 async 和 await 来改进性能。 </p><div class="fragment"><div class="line"><span class="keyword">public</span> <span class="keyword">static</span> async Task&lt;Result&lt;List&lt;UserBModel&gt;&gt;&gt; DebugGetAllUsersAsync()</div>
+<div class="line">{</div>
+<div class="line">    <span class="keyword">using </span>var context = DbContextFactory.GetDbContext();</div>
+<div class="line">    var users = await context.Users.ToListAsync();</div>
+<div class="line">    var userBModels = users</div>
+<div class="line">        .Select(user =&gt; user?.ToUserBModel())</div>
+<div class="line">        .Where(userBModel =&gt; userBModel != <span class="keyword">null</span>)</div>
+<div class="line">        .ToList();</div>
+<div class="line">    </div>
+<div class="line">    <span class="keywordflow">return</span> Result&lt;List&lt;UserBModel&gt;&gt;.Success(userBModels);</div>
+<div class="line">}</div>
+</div><!-- fragment --><p>避免暴露数据库模型。 </p><div class="fragment"><div class="line"><span class="keyword">public</span> <span class="keyword">class </span>UserDto</div>
+<div class="line">{</div>
+<div class="line">    <span class="keyword">public</span> <span class="keywordtype">int</span> Id { <span class="keyword">get</span>; <span class="keyword">set</span>; }</div>
+<div class="line">    <span class="keyword">public</span> <span class="keywordtype">string</span> UserName { <span class="keyword">get</span>; <span class="keyword">set</span>; }</div>
+<div class="line">    <span class="comment">// other properties</span></div>
+<div class="line">}</div>
+<div class="line"> </div>
+<div class="line"><span class="keyword">public</span> <span class="keyword">static</span> async Task&lt;Result&lt;UserDto?&gt;&gt; DebugGetUserByIdAsync(<span class="keywordtype">int</span> <span class="keywordtype">id</span>)</div>
+<div class="line">{</div>
+<div class="line">    <span class="keyword">using </span>var context = DbContextFactory.GetDbContext();</div>
+<div class="line">    <span class="keywordflow">try</span></div>
+<div class="line">    {</div>
+<div class="line">        var user = await context.Users.FindAsync(<span class="keywordtype">id</span>);</div>
+<div class="line">        <span class="keywordflow">if</span> (user == <span class="keyword">null</span>) <span class="keywordflow">return</span> Result&lt;UserDto?&gt;.Failure(<span class="stringliteral">&quot;User not found&quot;</span>);</div>
+<div class="line"> </div>
+<div class="line">        var userDto = <span class="keyword">new</span> UserDto</div>
+<div class="line">        {</div>
+<div class="line">            Id = user.Id,</div>
+<div class="line">            UserName = user.UserName,</div>
+<div class="line">            <span class="comment">// map other properties</span></div>
+<div class="line">        };</div>
+<div class="line"> </div>
+<div class="line">        <span class="keywordflow">return</span> Result&lt;UserDto?&gt;.Success(userDto);</div>
+<div class="line">    }</div>
+<div class="line">    <span class="keywordflow">catch</span> (Exception ex)</div>
+<div class="line">    {</div>
+<div class="line">        <span class="comment">// Log the exception</span></div>
+<div class="line">        <span class="keywordflow">return</span> Result&lt;UserDto?&gt;.Failure(ex.Message);</div>
+<div class="line">    }</div>
+<div class="line">}</div>
+</div><!-- fragment --><p> 注：参考<a href="https://zhuanlan.zhihu.com/p/76849437">那些年，我们见过的Java服务端乱象</a>的第四点。</p>
+<p>在现有代码中，IPostDal、IPostDalFactory与仅有的一个实现ComprehensiveSectionPostDal已经实现了服务化的项目设计。你可以发现在API层试图从IPostDalFactory拿到PostDal时vscode提示你无法访问，成功完成了防呆防盗设计！接下来SectionDal与UserDal也要修改！</p>
+<p>依赖注入可以提高代码的可测试性和可维护性。可以通过构造函数注入 DbContext。 </p><div class="fragment"><div class="line"><span class="keyword">public</span> <span class="keyword">class </span>UserDal</div>
+<div class="line">{</div>
+<div class="line">    <span class="keyword">private</span> readonly DbContext _context;</div>
+<div class="line"> </div>
+<div class="line">    <span class="keyword">public</span> UserDal(DbContext context)</div>
+<div class="line">    {</div>
+<div class="line">        _context = context;</div>
+<div class="line">    }</div>
+<div class="line"> </div>
+<div class="line">    <span class="keyword">public</span> async Task&lt;Result&lt;List&lt;UserBModel&gt;&gt;&gt; DebugGetAllUsersAsync()</div>
+<div class="line">    {</div>
+<div class="line">        var users = await _context.Users.ToListAsync();</div>
+<div class="line">        var userBModels = users</div>
+<div class="line">            .Select(user =&gt; user?.ToUserBModel())</div>
+<div class="line">            .Where(userBModel =&gt; userBModel != <span class="keyword">null</span>)</div>
+<div class="line">            .ToList();</div>
+<div class="line">        </div>
+<div class="line">        <span class="keywordflow">return</span> Result&lt;List&lt;UserBModel&gt;&gt;.Success(userBModels);</div>
+<div class="line">    }</div>
+<div class="line">}</div>
+</div><!-- fragment --><p>注：EF Core 的 DbContext 是非线程安全的，它设计为短时间内使用的对象。在 Web 应用程序中，通常会将 DbContext 注册为作用域级服务（Scoped），以便每个请求有一个独立的 DbContext 实例。</p>
+<p>在这里，DebugGetAllUsersAsync 方法是异步的，并且使用了 await 关键字来异步获取用户列表。由于 await 会释放当前线程，它会在线程池中分配一个新的线程来继续执行。这种方式通常不会导致多线程问题，因为每次调用 DebugGetAllUsersAsync 都会使用单个线程来处理 DbContext 实例。</p>
+<p>具体需要添加的代码为： </p><div class="fragment"><div class="line"><span class="comment">// 添加DbContext服务</span></div>
+<div class="line"><a class="code hl_variable" href="_blazor_b_b_s_demo_2_program_8cs.html#a2f78352277081c620fd4cf92a5ce15e5">builder</a>.Services.AddDbContext&lt;MyDbContext&gt;(options =&gt;</div>
+<div class="line">    options.UseSqlServer(<a class="code hl_variable" href="_blazor_b_b_s_demo_2_program_8cs.html#a2f78352277081c620fd4cf92a5ce15e5">builder</a>.Configuration.GetConnectionString(<span class="stringliteral">&quot;DefaultConnection&quot;</span>))</div>
+<div class="line">);</div>
+<div class="ttc" id="a_blazor_b_b_s_demo_2_program_8cs_html_a2f78352277081c620fd4cf92a5ce15e5"><div class="ttname"><a href="_blazor_b_b_s_demo_2_program_8cs.html#a2f78352277081c620fd4cf92a5ce15e5">builder</a></div><div class="ttdeci">var builder</div><div class="ttdef"><b>定义</b> <a href="_blazor_b_b_s_demo_2_program_8cs_source.html#l00005">Program.cs:5</a></div></div>
+</div><!-- fragment --><p> 注意增加配置文件。</p>
+<h1><a class="anchor" id="autotoc_md3"></a>
+2024年8月6日</h1>
+<p>尝试引入XML文档自动生成工具。</p>
+<p>在C#代码中，输入“///"将自动在代码中添加XML文档注释；在.csproj文件中，添加“&lt;GenerateDocumentationFile&gt;true&lt;/GenerateDocumentationFile&gt;”将在项目生成时于bin/Debug/netx.x下生成XML注释文件。同时代码提示中会增加对公共类型或成员缺少XML注释的警告。而从 XML 注释创建输出这一步，微软推荐了三个工具：DocFX、Sandcastle、Doxygen。见&lt;a href="<a href="https://learn.microsoft.com/zh-cn/dotnet/csharp/language-reference/xmldoc/">https://learn.microsoft.com/zh-cn/dotnet/csharp/language-reference/xmldoc/</a>" &gt;接受 XML 文档输入的工具&lt;/a&gt;。
+
+再参考&lt;a href="<a href="https://www.cnblogs.com/memoyu/p/16896143.html">https://www.cnblogs.com/memoyu/p/16896143.html</a>" &gt;浅尝 API文档生成框架，迅速排除Sandcastle，剩余两者中首先考虑了DocFX，并在详细调研后发现：2022年11月Microsoft Learn不再使用DocFX作为工具，原因是Microsoft Learn转向了更动态的架构，而不再考虑静态站点生成。他们新搭建了一个组合层，该层将各种格式的数据资产组合在一起生成最终的html页面，DocFX以后只作为一个小工具用来从markdown内容中生成文档和html。其次，考虑到跨语言跨平台问题与类继承图、调用图的生成，最终排除DocFX决定采用Doxygen。 </p>
+</div></div><!-- contents -->
+</div><!-- PageDoc -->
+</div><!-- doc-content -->
+<!-- start footer part -->
+<div id="nav-path" class="navpath"><!-- id is needed for treeview function! -->
+  <ul>
+    <li class="footer">制作者 <a href="https://www.doxygen.org/index.html"><img class="footer" src="doxygen.svg" width="104" height="31" alt="doxygen"/></a> 1.12.0 </li>
+  </ul>
+</div>
+</body>
+</html>
