@@ -1,0 +1,184 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "https://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" lang="zh">
+<head>
+<meta http-equiv="Content-Type" content="text/xhtml;charset=UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=11"/>
+<meta name="generator" content="Doxygen 1.12.0"/>
+<meta name="viewport" content="width=device-width, initial-scale=1"/>
+<title>WebApiDoc: E:/CX/WebapiDemo/WebApiDemo.DAL/Mapper/UserDToBMapper.cs 源文件</title>
+<link href="tabs.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="jquery.js"></script>
+<script type="text/javascript" src="dynsections.js"></script>
+<script type="text/javascript" src="clipboard.js"></script>
+<link href="navtree.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="navtreedata.js"></script>
+<script type="text/javascript" src="navtree.js"></script>
+<script type="text/javascript" src="resize.js"></script>
+<script type="text/javascript" src="cookie.js"></script>
+<link href="search/search.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="search/searchdata.js"></script>
+<script type="text/javascript" src="search/search.js"></script>
+<link href="doxygen.css" rel="stylesheet" type="text/css" />
+</head>
+<body>
+<div id="top"><!-- do not remove this div, it is closed by doxygen! -->
+<div id="titlearea">
+<table cellspacing="0" cellpadding="0">
+ <tbody>
+ <tr id="projectrow">
+  <td id="projectalign">
+   <div id="projectname">WebApiDoc<span id="projectnumber">&#160;v1.0</span>
+   </div>
+   <div id="projectbrief">WebApi 后端项目文档</div>
+  </td>
+ </tr>
+ </tbody>
+</table>
+</div>
+<!-- end header part -->
+<!-- 制作者 Doxygen 1.12.0 -->
+<script type="text/javascript">
+/* @license magnet:?xt=urn:btih:d3d9a9a6595521f9666a5e94cc830dab83b65699&amp;dn=expat.txt MIT */
+var searchBox = new SearchBox("searchBox", "search/",'.html');
+/* @license-end */
+</script>
+<script type="text/javascript">
+/* @license magnet:?xt=urn:btih:d3d9a9a6595521f9666a5e94cc830dab83b65699&amp;dn=expat.txt MIT */
+$(function() { codefold.init(0); });
+/* @license-end */
+</script>
+<script type="text/javascript" src="menudata.js"></script>
+<script type="text/javascript" src="menu.js"></script>
+<script type="text/javascript">
+/* @license magnet:?xt=urn:btih:d3d9a9a6595521f9666a5e94cc830dab83b65699&amp;dn=expat.txt MIT */
+$(function() {
+  initMenu('',true,false,'search.php','搜索',true);
+  $(function() { init_search(); });
+});
+/* @license-end */
+</script>
+<div id="main-nav"></div>
+</div><!-- top -->
+<div id="side-nav" class="ui-resizable side-nav-resizable">
+  <div id="nav-tree">
+    <div id="nav-tree-contents">
+      <div id="nav-sync" class="sync"></div>
+    </div>
+  </div>
+  <div id="splitbar" style="-moz-user-select:none;" 
+       class="ui-resizable-handle">
+  </div>
+</div>
+<script type="text/javascript">
+/* @license magnet:?xt=urn:btih:d3d9a9a6595521f9666a5e94cc830dab83b65699&amp;dn=expat.txt MIT */
+$(function(){initNavTree('_user_d_to_b_mapper_8cs_source.html',''); initResizable(true); });
+/* @license-end */
+</script>
+<div id="doc-content">
+<!-- window showing the filter options -->
+<div id="MSearchSelectWindow"
+     onmouseover="return searchBox.OnSearchSelectShow()"
+     onmouseout="return searchBox.OnSearchSelectHide()"
+     onkeydown="return searchBox.OnSearchSelectKey(event)">
+</div>
+
+<!-- iframe showing the search results (closed by default) -->
+<div id="MSearchResultsWindow">
+<div id="MSearchResults">
+<div class="SRPage">
+<div id="SRIndex">
+<div id="SRResults"></div>
+<div class="SRStatus" id="Loading">载入中...</div>
+<div class="SRStatus" id="Searching">搜索中...</div>
+<div class="SRStatus" id="NoMatches">未找到</div>
+</div>
+</div>
+</div>
+</div>
+
+<div class="header">
+  <div class="headertitle"><div class="title">UserDToBMapper.cs</div></div>
+</div><!--header-->
+<div class="contents">
+<a href="_user_d_to_b_mapper_8cs.html">浏览该文件的文档.</a><div class="fragment"><div class="line"><a id="l00001" name="l00001"></a><span class="lineno">    1</span><span class="keyword">using </span><a class="code hl_namespace" href="namespace_web_api_demo_1_1_entities_1_1_b_models.html">WebApiDemo.Entities.BModels</a>;</div>
+<div class="line"><a id="l00002" name="l00002"></a><span class="lineno">    2</span><span class="keyword">using </span><a class="code hl_namespace" href="namespace_web_api_demo_1_1_entities_1_1_e_user.html">WebApiDemo.Entities.EUser</a>;</div>
+<div class="line"><a id="l00003" name="l00003"></a><span class="lineno">    3</span> </div>
+<div class="line"><a id="l00004" name="l00004"></a><span class="lineno">    4</span><span class="keyword">namespace </span><a class="code hl_namespace" href="namespace_web_api_demo_1_1_d_a_l_1_1_mapper.html">WebApiDemo.DAL.Mapper</a></div>
+<div class="line"><a id="l00005" name="l00005"></a><span class="lineno">    5</span>{</div>
+<div class="line"><a id="l00006" name="l00006"></a><span class="lineno">    6</span>    <span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">class </span>UserDToBMapper</div>
+<div class="line"><a id="l00007" name="l00007"></a><span class="lineno">    7</span>    {</div>
+<div class="line"><a id="l00008" name="l00008"></a><span class="lineno">    8</span>        <span class="keyword">public</span> <span class="keyword">static</span> <a class="code hl_class" href="class_web_api_demo_1_1_entities_1_1_b_models_1_1_user_b_model.html">UserBModel</a> ToUserBModel(<span class="keyword">this</span> <a class="code hl_class" href="class_web_api_demo_1_1_entities_1_1_e_user_1_1_user.html">User</a> user)</div>
+<div class="line"><a id="l00009" name="l00009"></a><span class="lineno">    9</span>        {</div>
+<div class="line"><a id="l00010" name="l00010"></a><span class="lineno">   10</span>            <span class="keywordflow">if</span> (user == <span class="keyword">null</span>)</div>
+<div class="line"><a id="l00011" name="l00011"></a><span class="lineno">   11</span>            {</div>
+<div class="line"><a id="l00012" name="l00012"></a><span class="lineno">   12</span>                <span class="keywordflow">throw</span> <span class="keyword">new</span> ArgumentNullException(nameof(user));</div>
+<div class="line"><a id="l00013" name="l00013"></a><span class="lineno">   13</span>            }</div>
+<div class="line"><a id="l00014" name="l00014"></a><span class="lineno">   14</span>            <span class="keywordflow">return</span> <span class="keyword">new</span> <a class="code hl_class" href="class_web_api_demo_1_1_entities_1_1_b_models_1_1_user_b_model.html">UserBModel</a></div>
+<div class="line"><a id="l00015" name="l00015"></a><span class="lineno">   15</span>            {</div>
+<div class="line"><a id="l00016" name="l00016"></a><span class="lineno">   16</span>                Id = user.<a class="code hl_property" href="class_web_api_demo_1_1_entities_1_1_e_user_1_1_user.html#a5a29cb60b02ab9a1aedca4953266b1f4">Id</a>,</div>
+<div class="line"><a id="l00017" name="l00017"></a><span class="lineno">   17</span>                UserName = user.<a class="code hl_property" href="class_web_api_demo_1_1_entities_1_1_e_user_1_1_user.html#a6f32c00334f492681ab3bfeadcfb9a45">UserName</a>,</div>
+<div class="line"><a id="l00018" name="l00018"></a><span class="lineno">   18</span>                Password = user.<a class="code hl_property" href="class_web_api_demo_1_1_entities_1_1_e_user_1_1_user.html#a3923bfb1ebc839a79be6993fcf2486cb">Password</a>,</div>
+<div class="line"><a id="l00019" name="l00019"></a><span class="lineno">   19</span>                NickName = user.<a class="code hl_property" href="class_web_api_demo_1_1_entities_1_1_e_user_1_1_user.html#a562fe844e76ad5147467dc03d9741110">NickName</a>,</div>
+<div class="line"><a id="l00020" name="l00020"></a><span class="lineno">   20</span>                <a class="code hl_enumeration" href="namespace_web_api_demo_1_1_entities_1_1_e_user.html#add189f2fd71fe3cc369de29dcece20e2">Gender</a> = user.<a class="code hl_property" href="class_web_api_demo_1_1_entities_1_1_e_user_1_1_user.html#af4473319929eb396a03ab03b66635cd0">Gender</a>.ToString(),</div>
+<div class="line"><a id="l00021" name="l00021"></a><span class="lineno">   21</span>                Signature = user.<a class="code hl_property" href="class_web_api_demo_1_1_entities_1_1_e_user_1_1_user.html#abe4fe0aaa2102c0cebaa4d29fb8950b2">Signature</a>,</div>
+<div class="line"><a id="l00022" name="l00022"></a><span class="lineno">   22</span>                Avatar = user.<a class="code hl_property" href="class_web_api_demo_1_1_entities_1_1_e_user_1_1_user.html#a74c088fc87e804e060c6a38a11d24f5a">Avatar</a>,</div>
+<div class="line"><a id="l00023" name="l00023"></a><span class="lineno">   23</span>                RegisterTime = user.<a class="code hl_property" href="class_web_api_demo_1_1_entities_1_1_e_user_1_1_user.html#a9dd1d215b0705a70f28dc70d4272922c">RegisterTime</a>,</div>
+<div class="line"><a id="l00024" name="l00024"></a><span class="lineno">   24</span>                LastLoginTime = user.<a class="code hl_property" href="class_web_api_demo_1_1_entities_1_1_e_user_1_1_user.html#a408d274dca341e7433a011e817fb1c98">LastLoginTime</a>,</div>
+<div class="line"><a id="l00025" name="l00025"></a><span class="lineno">   25</span>                UserLevel = user.<a class="code hl_property" href="class_web_api_demo_1_1_entities_1_1_e_user_1_1_user.html#ade11ce3e912d2069274ac7a092db8fac">UserLevel</a>,</div>
+<div class="line"><a id="l00026" name="l00026"></a><span class="lineno">   26</span>                Points = user.<a class="code hl_property" href="class_web_api_demo_1_1_entities_1_1_e_user_1_1_user.html#a989efa4b2dd8ccdbae5bd900c0af0acf">Points</a>,</div>
+<div class="line"><a id="l00027" name="l00027"></a><span class="lineno">   27</span>                IsDeleted = user.IsDeleted</div>
+<div class="line"><a id="l00028" name="l00028"></a><span class="lineno">   28</span>            };</div>
+<div class="line"><a id="l00029" name="l00029"></a><span class="lineno">   29</span>        }</div>
+<div class="line"><a id="l00030" name="l00030"></a><span class="lineno">   30</span> </div>
+<div class="line"><a id="l00031" name="l00031"></a><span class="lineno">   31</span>        <span class="comment">// 可公开属性包括：Id, UserName, NickName,Gender, Signature, Avatar, RegisterTime, LastLoginTime, UserLevel, Points, IsDeleted</span></div>
+<div class="line"><a id="l00032" name="l00032"></a><span class="lineno">   32</span>        <span class="keyword">public</span> <span class="keyword">static</span> <a class="code hl_class" href="class_web_api_demo_1_1_entities_1_1_b_models_1_1_user_b_model.html">UserBModel</a> ToPublicUserBModel(<span class="keyword">this</span> <a class="code hl_class" href="class_web_api_demo_1_1_entities_1_1_e_user_1_1_user.html">User</a> user)</div>
+<div class="line"><a id="l00033" name="l00033"></a><span class="lineno">   33</span>        {</div>
+<div class="line"><a id="l00034" name="l00034"></a><span class="lineno">   34</span>            <span class="keywordflow">if</span> (user == <span class="keyword">null</span>)</div>
+<div class="line"><a id="l00035" name="l00035"></a><span class="lineno">   35</span>            {</div>
+<div class="line"><a id="l00036" name="l00036"></a><span class="lineno">   36</span>                <span class="keywordflow">throw</span> <span class="keyword">new</span> ArgumentNullException(nameof(user));</div>
+<div class="line"><a id="l00037" name="l00037"></a><span class="lineno">   37</span>            }</div>
+<div class="line"><a id="l00038" name="l00038"></a><span class="lineno">   38</span>            <span class="keywordflow">return</span> <span class="keyword">new</span> <a class="code hl_class" href="class_web_api_demo_1_1_entities_1_1_b_models_1_1_user_b_model.html">UserBModel</a></div>
+<div class="line"><a id="l00039" name="l00039"></a><span class="lineno">   39</span>            {</div>
+<div class="line"><a id="l00040" name="l00040"></a><span class="lineno">   40</span>                Id = user.<a class="code hl_property" href="class_web_api_demo_1_1_entities_1_1_e_user_1_1_user.html#a5a29cb60b02ab9a1aedca4953266b1f4">Id</a>,</div>
+<div class="line"><a id="l00041" name="l00041"></a><span class="lineno">   41</span>                UserName = user.<a class="code hl_property" href="class_web_api_demo_1_1_entities_1_1_e_user_1_1_user.html#a6f32c00334f492681ab3bfeadcfb9a45">UserName</a>,</div>
+<div class="line"><a id="l00042" name="l00042"></a><span class="lineno">   42</span>                NickName = user.<a class="code hl_property" href="class_web_api_demo_1_1_entities_1_1_e_user_1_1_user.html#a562fe844e76ad5147467dc03d9741110">NickName</a>,</div>
+<div class="line"><a id="l00043" name="l00043"></a><span class="lineno">   43</span>                <a class="code hl_enumeration" href="namespace_web_api_demo_1_1_entities_1_1_e_user.html#add189f2fd71fe3cc369de29dcece20e2">Gender</a> = user.<a class="code hl_property" href="class_web_api_demo_1_1_entities_1_1_e_user_1_1_user.html#af4473319929eb396a03ab03b66635cd0">Gender</a>.ToString(),</div>
+<div class="line"><a id="l00044" name="l00044"></a><span class="lineno">   44</span>                Signature = user.<a class="code hl_property" href="class_web_api_demo_1_1_entities_1_1_e_user_1_1_user.html#abe4fe0aaa2102c0cebaa4d29fb8950b2">Signature</a>,</div>
+<div class="line"><a id="l00045" name="l00045"></a><span class="lineno">   45</span>                Avatar = user.<a class="code hl_property" href="class_web_api_demo_1_1_entities_1_1_e_user_1_1_user.html#a74c088fc87e804e060c6a38a11d24f5a">Avatar</a>,</div>
+<div class="line"><a id="l00046" name="l00046"></a><span class="lineno">   46</span>                RegisterTime = user.<a class="code hl_property" href="class_web_api_demo_1_1_entities_1_1_e_user_1_1_user.html#a9dd1d215b0705a70f28dc70d4272922c">RegisterTime</a>,</div>
+<div class="line"><a id="l00047" name="l00047"></a><span class="lineno">   47</span>                LastLoginTime = user.<a class="code hl_property" href="class_web_api_demo_1_1_entities_1_1_e_user_1_1_user.html#a408d274dca341e7433a011e817fb1c98">LastLoginTime</a>,</div>
+<div class="line"><a id="l00048" name="l00048"></a><span class="lineno">   48</span>                UserLevel = user.<a class="code hl_property" href="class_web_api_demo_1_1_entities_1_1_e_user_1_1_user.html#ade11ce3e912d2069274ac7a092db8fac">UserLevel</a>,</div>
+<div class="line"><a id="l00049" name="l00049"></a><span class="lineno">   49</span>                Points = user.<a class="code hl_property" href="class_web_api_demo_1_1_entities_1_1_e_user_1_1_user.html#a989efa4b2dd8ccdbae5bd900c0af0acf">Points</a>,</div>
+<div class="line"><a id="l00050" name="l00050"></a><span class="lineno">   50</span>                IsDeleted = user.IsDeleted</div>
+<div class="line"><a id="l00051" name="l00051"></a><span class="lineno">   51</span>            };</div>
+<div class="line"><a id="l00052" name="l00052"></a><span class="lineno">   52</span>        }</div>
+<div class="line"><a id="l00053" name="l00053"></a><span class="lineno">   53</span>    }</div>
+<div class="line"><a id="l00054" name="l00054"></a><span class="lineno">   54</span>}</div>
+<div class="ttc" id="aclass_web_api_demo_1_1_entities_1_1_b_models_1_1_user_b_model_html"><div class="ttname"><a href="class_web_api_demo_1_1_entities_1_1_b_models_1_1_user_b_model.html">WebApiDemo.Entities.BModels.UserBModel</a></div><div class="ttdef"><b>定义</b> <a href="_user_b_model_8cs_source.html#l00003">UserBModel.cs:4</a></div></div>
+<div class="ttc" id="aclass_web_api_demo_1_1_entities_1_1_e_user_1_1_user_html"><div class="ttname"><a href="class_web_api_demo_1_1_entities_1_1_e_user_1_1_user.html">WebApiDemo.Entities.EUser.User</a></div><div class="ttdef"><b>定义</b> <a href="_user_8cs_source.html#l00030">User.cs:31</a></div></div>
+<div class="ttc" id="aclass_web_api_demo_1_1_entities_1_1_e_user_1_1_user_html_a3923bfb1ebc839a79be6993fcf2486cb"><div class="ttname"><a href="class_web_api_demo_1_1_entities_1_1_e_user_1_1_user.html#a3923bfb1ebc839a79be6993fcf2486cb">WebApiDemo.Entities.EUser.User.Password</a></div><div class="ttdeci">required string Password</div><div class="ttdef"><b>定义</b> <a href="_user_8cs_source.html#l00034">User.cs:34</a></div></div>
+<div class="ttc" id="aclass_web_api_demo_1_1_entities_1_1_e_user_1_1_user_html_a408d274dca341e7433a011e817fb1c98"><div class="ttname"><a href="class_web_api_demo_1_1_entities_1_1_e_user_1_1_user.html#a408d274dca341e7433a011e817fb1c98">WebApiDemo.Entities.EUser.User.LastLoginTime</a></div><div class="ttdeci">DateTime LastLoginTime</div><div class="ttdef"><b>定义</b> <a href="_user_8cs_source.html#l00040">User.cs:40</a></div></div>
+<div class="ttc" id="aclass_web_api_demo_1_1_entities_1_1_e_user_1_1_user_html_a562fe844e76ad5147467dc03d9741110"><div class="ttname"><a href="class_web_api_demo_1_1_entities_1_1_e_user_1_1_user.html#a562fe844e76ad5147467dc03d9741110">WebApiDemo.Entities.EUser.User.NickName</a></div><div class="ttdeci">string? NickName</div><div class="ttdef"><b>定义</b> <a href="_user_8cs_source.html#l00035">User.cs:35</a></div></div>
+<div class="ttc" id="aclass_web_api_demo_1_1_entities_1_1_e_user_1_1_user_html_a5a29cb60b02ab9a1aedca4953266b1f4"><div class="ttname"><a href="class_web_api_demo_1_1_entities_1_1_e_user_1_1_user.html#a5a29cb60b02ab9a1aedca4953266b1f4">WebApiDemo.Entities.EUser.User.Id</a></div><div class="ttdeci">int Id</div><div class="ttdef"><b>定义</b> <a href="_user_8cs_source.html#l00032">User.cs:32</a></div></div>
+<div class="ttc" id="aclass_web_api_demo_1_1_entities_1_1_e_user_1_1_user_html_a6f32c00334f492681ab3bfeadcfb9a45"><div class="ttname"><a href="class_web_api_demo_1_1_entities_1_1_e_user_1_1_user.html#a6f32c00334f492681ab3bfeadcfb9a45">WebApiDemo.Entities.EUser.User.UserName</a></div><div class="ttdeci">required string UserName</div><div class="ttdef"><b>定义</b> <a href="_user_8cs_source.html#l00033">User.cs:33</a></div></div>
+<div class="ttc" id="aclass_web_api_demo_1_1_entities_1_1_e_user_1_1_user_html_a74c088fc87e804e060c6a38a11d24f5a"><div class="ttname"><a href="class_web_api_demo_1_1_entities_1_1_e_user_1_1_user.html#a74c088fc87e804e060c6a38a11d24f5a">WebApiDemo.Entities.EUser.User.Avatar</a></div><div class="ttdeci">string? Avatar</div><div class="ttdef"><b>定义</b> <a href="_user_8cs_source.html#l00038">User.cs:38</a></div></div>
+<div class="ttc" id="aclass_web_api_demo_1_1_entities_1_1_e_user_1_1_user_html_a989efa4b2dd8ccdbae5bd900c0af0acf"><div class="ttname"><a href="class_web_api_demo_1_1_entities_1_1_e_user_1_1_user.html#a989efa4b2dd8ccdbae5bd900c0af0acf">WebApiDemo.Entities.EUser.User.Points</a></div><div class="ttdeci">int Points</div><div class="ttdef"><b>定义</b> <a href="_user_8cs_source.html#l00042">User.cs:42</a></div></div>
+<div class="ttc" id="aclass_web_api_demo_1_1_entities_1_1_e_user_1_1_user_html_a9dd1d215b0705a70f28dc70d4272922c"><div class="ttname"><a href="class_web_api_demo_1_1_entities_1_1_e_user_1_1_user.html#a9dd1d215b0705a70f28dc70d4272922c">WebApiDemo.Entities.EUser.User.RegisterTime</a></div><div class="ttdeci">DateTime RegisterTime</div><div class="ttdef"><b>定义</b> <a href="_user_8cs_source.html#l00039">User.cs:39</a></div></div>
+<div class="ttc" id="aclass_web_api_demo_1_1_entities_1_1_e_user_1_1_user_html_abe4fe0aaa2102c0cebaa4d29fb8950b2"><div class="ttname"><a href="class_web_api_demo_1_1_entities_1_1_e_user_1_1_user.html#abe4fe0aaa2102c0cebaa4d29fb8950b2">WebApiDemo.Entities.EUser.User.Signature</a></div><div class="ttdeci">string? Signature</div><div class="ttdef"><b>定义</b> <a href="_user_8cs_source.html#l00037">User.cs:37</a></div></div>
+<div class="ttc" id="aclass_web_api_demo_1_1_entities_1_1_e_user_1_1_user_html_ade11ce3e912d2069274ac7a092db8fac"><div class="ttname"><a href="class_web_api_demo_1_1_entities_1_1_e_user_1_1_user.html#ade11ce3e912d2069274ac7a092db8fac">WebApiDemo.Entities.EUser.User.UserLevel</a></div><div class="ttdeci">int UserLevel</div><div class="ttdef"><b>定义</b> <a href="_user_8cs_source.html#l00041">User.cs:41</a></div></div>
+<div class="ttc" id="aclass_web_api_demo_1_1_entities_1_1_e_user_1_1_user_html_af4473319929eb396a03ab03b66635cd0"><div class="ttname"><a href="class_web_api_demo_1_1_entities_1_1_e_user_1_1_user.html#af4473319929eb396a03ab03b66635cd0">WebApiDemo.Entities.EUser.User.Gender</a></div><div class="ttdeci">Gender? Gender</div><div class="ttdef"><b>定义</b> <a href="_user_8cs_source.html#l00036">User.cs:36</a></div></div>
+<div class="ttc" id="anamespace_web_api_demo_1_1_d_a_l_1_1_mapper_html"><div class="ttname"><a href="namespace_web_api_demo_1_1_d_a_l_1_1_mapper.html">WebApiDemo.DAL.Mapper</a></div><div class="ttdef"><b>定义</b> <a href="_user_b_to_d_mapper_8cs_source.html#l00004">UserBToDMapper.cs:5</a></div></div>
+<div class="ttc" id="anamespace_web_api_demo_1_1_entities_1_1_b_models_html"><div class="ttname"><a href="namespace_web_api_demo_1_1_entities_1_1_b_models.html">WebApiDemo.Entities.BModels</a></div><div class="ttdef"><b>定义</b> <a href="_post_list_b_model_8cs_source.html#l00001">PostListBModel.cs:2</a></div></div>
+<div class="ttc" id="anamespace_web_api_demo_1_1_entities_1_1_e_user_html"><div class="ttname"><a href="namespace_web_api_demo_1_1_entities_1_1_e_user.html">WebApiDemo.Entities.EUser</a></div><div class="ttdef"><b>定义</b> <a href="_user_8cs_source.html#l00001">User.cs:2</a></div></div>
+<div class="ttc" id="anamespace_web_api_demo_1_1_entities_1_1_e_user_html_add189f2fd71fe3cc369de29dcece20e2"><div class="ttname"><a href="namespace_web_api_demo_1_1_entities_1_1_e_user.html#add189f2fd71fe3cc369de29dcece20e2">WebApiDemo.Entities.EUser.Gender</a></div><div class="ttdeci">Gender</div><div class="ttdef"><b>定义</b> <a href="_user_8cs_source.html#l00003">User.cs:4</a></div></div>
+</div><!-- fragment --></div><!-- contents -->
+</div><!-- doc-content -->
+<!-- start footer part -->
+<div id="nav-path" class="navpath"><!-- id is needed for treeview function! -->
+  <ul>
+    <li class="navelem"><a class="el" href="dir_4efaabbdc4f83e856a611f58a497240d.html">WebApiDemo.DAL</a></li><li class="navelem"><a class="el" href="dir_ab8a97933da78bad6b4f3f190c0bcedc.html">Mapper</a></li><li class="navelem"><a class="el" href="_user_d_to_b_mapper_8cs.html">UserDToBMapper.cs</a></li>
+    <li class="footer">制作者 <a href="https://www.doxygen.org/index.html"><img class="footer" src="doxygen.svg" width="104" height="31" alt="doxygen"/></a> 1.12.0 </li>
+  </ul>
+</div>
+</body>
+</html>
