@@ -3,7 +3,7 @@
  * @Date         : 2024-05-16 15:10:29
  * @LastEditors  : NieFire planet_class@foxmail.com
  * @LastEditTime : 2024-08-04 18:01:05
- * @FilePath     : \CS_Computer-Science-and-Technologye:\CX\WebapiDemo\WebapiDemo\Controllers\LoginApiController.cs
+ * @FilePath     : \CS_Computer-Science-and-Technologye:\CX\WebApiDemo\WebApiDemo\Controllers\LoginApiController.cs
  * @Description  : 用户登录相关API
  * ( ﾟ∀。)只要加满注释一切都会好起来的( ﾟ∀。)
  * Copyright (c) 2024 by NieFire, All Rights Reserved.
@@ -12,7 +12,7 @@
  */
 using Microsoft.AspNetCore.Cors;
 using Microsoft.AspNetCore.Mvc;
-using WebapiDemo.Models;
+using WebApiDemo.Models;
 using WebApiDemo.BLL.Interfaces;
 using WebApiDemo.Entities.BModels;
 
@@ -21,7 +21,7 @@ using WebApiDemo.Entities.BModels;
 * 3. 你启用了 EnableCors("any")。根据安全要求，建议在生产环境中限制允许的域，而不是允许所有域。
 */
 
-namespace WebapiDemo.Controllers
+namespace WebApiDemo.Controllers
 {
     [ApiController]
     // [Route("api/[controller]/[action]")]

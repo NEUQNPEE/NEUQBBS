@@ -1,7 +1,7 @@
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Filters;
 
-namespace WebapiDemo.Filter
+namespace WebApiDemo.Filter
 {
     public class GlobalExceptionFilter : IExceptionFilter
     {

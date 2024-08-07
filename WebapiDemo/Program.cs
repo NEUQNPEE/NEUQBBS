@@ -2,8 +2,8 @@
  * @Author       : NieFire planet_class@foxmail.com
  * @Date         : 2024-04-15 16:23:07
  * @LastEditors  : NieFire planet_class@foxmail.com
- * @LastEditTime : 2024-08-05 16:56:53
- * @FilePath     : \CS_Computer-Science-and-Technologye:\CX\WebapiDemo\WebapiDemo\Program.cs
+ * @LastEditTime : 2024-08-07 19:51:22
+ * @FilePath     : \CS_Computer-Science-and-Technologye:\CX\WebapiDemo\WebApiDemo\Program.cs
  * @Description  : 
  * ( ﾟ∀。)只要加满注释一切都会好起来的( ﾟ∀。)
  * Copyright (c) 2024 by NieFire, All Rights Reserved. 
@@ -17,7 +17,7 @@ using WebApiDemo.DAL.Factorys;
 using WebApiDemo.DAL.Interfaces;
 using Serilog;
 using Serilog.Events;
-using WebapiDemo.Filter;
+using WebApiDemo.Filter;
 
 var builder = WebApplication.CreateBuilder(args);
 

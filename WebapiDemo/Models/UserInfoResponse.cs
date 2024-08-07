@@ -1,6 +1,6 @@
 using WebApiDemo.Entities.BModels;
 
-namespace WebapiDemo.Models
+namespace WebApiDemo.Models
 {
     public class UserInfoResponse
     {

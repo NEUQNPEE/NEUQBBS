@@ -1,12 +1,12 @@
 using Microsoft.AspNetCore.Cors;
 using Microsoft.AspNetCore.Mvc;
-using WebapiDemo.Models;
+using WebApiDemo.Models;
 
 using WebApiDemo.BLL.Interfaces;
 using WebApiDemo.Entities.EPost;
 using WebApiDemo.Entities.ESection;
 
-namespace WebapiDemo.Controllers
+namespace WebApiDemo.Controllers
 {
     [ApiController]
     [Route("[controller]")]

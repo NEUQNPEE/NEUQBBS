@@ -1,6 +1,6 @@
 using WebApiDemo.Entities.EPost;
 
-namespace WebapiDemo.Models
+namespace WebApiDemo.Models
 {
     public class LastReplyInfoResponse
     {
