@@ -1,0 +1,22 @@
+var searchData=
+[
+  ['icon_0',['Icon',['../class_web_api_demo_1_1_entities_1_1_e_section_1_1_section.html#a6bd520e5d068161c412bfb568a1eff5d',1,'WebApiDemo::Entities::ESection::Section']]],
+  ['id_1',['Id',['../class_web_api_demo_1_1_entities_1_1_b_models_1_1_user_b_model.html#adc1083090830575e7ccfe1c90cb3ed68',1,'WebApiDemo.Entities.BModels.UserBModel.Id'],['../class_web_api_demo_1_1_entities_1_1_e_post_1_1_post.html#a5f83bc494535adbf597b0c6ab0704195',1,'WebApiDemo.Entities.EPost.Post.Id'],['../class_web_api_demo_1_1_entities_1_1_e_section_1_1_section.html#a43df061fc65d1c46c31c30fb399432de',1,'WebApiDemo.Entities.ESection.Section.Id'],['../class_web_api_demo_1_1_entities_1_1_e_temp_1_1_web4_user.html#adf2040ec0af269fea311489bc46705f7',1,'WebApiDemo.Entities.ETemp.Web4User.Id'],['../class_web_api_demo_1_1_entities_1_1_e_user_1_1_user.html#a5a29cb60b02ab9a1aedca4953266b1f4',1,'WebApiDemo.Entities.EUser.User.Id'],['../class_web_api_demo_1_1_models_1_1_user_base_info_response.html#a84377793ea960c37fae5288f56ed0d4e',1,'WebApiDemo.Models.UserBaseInfoResponse.Id'],['../class_web_api_demo_1_1_models_1_1_user_info_response.html#aa0da0916347cc70d96e5cb5f5a047dad',1,'WebApiDemo.Models.UserInfoResponse.Id'],['../class_web_api_demo_1_1_models_1_1_user_update_request.html#a38eeaa0734edfbb1e7de6a06ed240e26',1,'WebApiDemo.Models.UserUpdateRequest.Id']]],
+  ['if_2',['if',['../_web_api_demo_2_program_8cs.html#a79a944c7f0e25196ca3c5a8638b919b9',1,'Program.cs']]],
+  ['initpostsandsections_3',['InitPostsAndSections',['../class_web_api_demo_1_1_entities_1_1_migrations_1_1_init_posts_and_sections.html',1,'WebApiDemo::Entities::Migrations']]],
+  ['initusersandtokens_4',['InitUsersAndTokens',['../class_web_api_demo_1_1_entities_1_1_migrations_1_1_init_users_and_tokens.html',1,'WebApiDemo::Entities::Migrations']]],
+  ['initweb4user_5',['InitWeb4User',['../class_web_api_demo_1_1_entities_1_1_migrations_1_1_init_web4_user.html',1,'WebApiDemo::Entities::Migrations']]],
+  ['insert_6',['Insert',['../class_web_api_demo_1_1_controllers_1_1_login_api_controller.html#ab4a06d2b5e3c7d1fc4470f55cb1f2407',1,'WebApiDemo.Controllers.LoginApiController.Insert()'],['../class_web_api_demo_1_1_controllers_1_1_post_api_controller.html#abe01fe846622ee4f3d2f86f9017ce5e1',1,'WebApiDemo.Controllers.PostApiController.Insert()']]],
+  ['ipostbll_7',['IPostBll',['../interface_web_api_demo_1_1_b_l_l_1_1_interfaces_1_1_i_post_bll.html',1,'WebApiDemo::BLL::Interfaces']]],
+  ['ipostbll_2ecs_8',['IPostBll.cs',['../_i_post_bll_8cs.html',1,'']]],
+  ['ipostdal_9',['IPostDal',['../interface_web_api_demo_1_1_d_a_l_1_1_interfaces_1_1_i_post_dal.html',1,'WebApiDemo::DAL::Interfaces']]],
+  ['ipostdal_2ecs_10',['IPostDal.cs',['../_i_post_dal_8cs.html',1,'']]],
+  ['ipostdalfactory_11',['IPostDalFactory',['../interface_web_api_demo_1_1_d_a_l_1_1_interfaces_1_1_i_post_dal_factory.html',1,'WebApiDemo::DAL::Interfaces']]],
+  ['ipostdalfactory_2ecs_12',['IPostDalFactory.cs',['../_i_post_dal_factory_8cs.html',1,'']]],
+  ['isdeleted_13',['IsDeleted',['../class_web_api_demo_1_1_entities_1_1_b_models_1_1_user_b_model.html#a3d6f9219f1083427394b6668289e62ab',1,'WebApiDemo.Entities.BModels.UserBModel.IsDeleted'],['../class_web_api_demo_1_1_entities_1_1_e_post_1_1_post.html#ae67ff23cb3de09011084ed5263436e6e',1,'WebApiDemo.Entities.EPost.Post.IsDeleted'],['../class_web_api_demo_1_1_entities_1_1_e_user_1_1_user.html#a771183846dca6f35d9a22eb51f602aa2',1,'WebApiDemo.Entities.EUser.User.IsDeleted']]],
+  ['isectionbll_14',['ISectionBll',['../interface_web_api_demo_1_1_b_l_l_1_1_interfaces_1_1_i_section_bll.html',1,'WebApiDemo::BLL::Interfaces']]],
+  ['isectionbll_2ecs_15',['ISectionBll.cs',['../_i_section_bll_8cs.html',1,'']]],
+  ['ismainpost_16',['IsMainPost',['../class_web_api_demo_1_1_entities_1_1_e_post_1_1_post.html#af605b8f6d5266a8b993190c500c29192',1,'WebApiDemo.Entities.EPost.Post.IsMainPost'],['../class_web_api_demo_1_1_models_1_1_post_insert_request.html#a6dcc808c9ad86e5e2db9a9aca56b1dc6',1,'WebApiDemo.Models.PostInsertRequest.IsMainPost']]],
+  ['iuserbll_17',['IUserBll',['../interface_web_api_demo_1_1_b_l_l_1_1_interfaces_1_1_i_user_bll.html',1,'WebApiDemo::BLL::Interfaces']]],
+  ['iuserbll_2ecs_18',['IUserBll.cs',['../_i_user_bll_8cs.html',1,'']]]
+];
