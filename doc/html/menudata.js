@@ -85,8 +85,7 @@ var menudata={children:[
 {text:"s",url:"functions_prop.html#index_s"},
 {text:"t",url:"functions_prop.html#index_t"},
 {text:"u",url:"functions_prop.html#index_u"},
-{text:"v",url:"functions_prop.html#index_v"},
-{text:"w",url:"functions_prop.html#index_w"}]}]}]},
+{text:"v",url:"functions_prop.html#index_v"}]}]}]},
 {text:"文件",url:"files.html",children:[
 {text:"文件列表",url:"files.html"},
 {text:"文件成员",url:"globals.html",children:[

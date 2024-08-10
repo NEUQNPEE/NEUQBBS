@@ -1,14 +1,14 @@
 var indexSectionsWithContent =
 {
   0: ".2abcdefgilmnoprstuvw分前后学运项",
-  1: "acdfgilmpstuvw",
+  1: "acdfgilmpstuw",
   2: "bw",
-  3: ".2abcdgilmprsuvw学",
+  3: ".2abcdgilmprsuw学",
   4: "abcdgilmoprstuw",
   5: "abl",
   6: "g",
   7: "fmop",
-  8: "abcdegilmnprstuvw",
+  8: "abcdegilmnprstuv",
   9: "分学"
 };
 

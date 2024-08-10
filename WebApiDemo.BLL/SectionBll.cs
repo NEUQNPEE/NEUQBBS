@@ -4,49 +4,56 @@ using WebApiDemo.DAL.Interfaces;
 using WebApiDemo.Entities.EPost;
 using WebApiDemo.Entities.ESection;
 
-namespace WebApiDemo.BLL
+namespace WebApiDemo.BLL;
+
+/// <summary>
+/// 版块业务逻辑实现
+/// </summary>
+public class SectionBll : ISectionBll
 {
-    public class SectionBll : ISectionBll
+    private readonly IPostDalFactory _postDalFactory;
+
+    /// <inheritdoc />
+    public SectionBll(IPostDalFactory postDalFactory)
     {
-        private readonly IPostDalFactory _postDalFactory;
+        _postDalFactory = postDalFactory;
+    }
 
-        public SectionBll(IPostDalFactory postDalFactory)
+    /// <inheritdoc />
+    public List<Section>? GetAllSections()
+    {
+        return SectionDal.GetAllSections();
+    }
+
+    /// <inheritdoc />
+    public List<Post>? GetMainPosts(int sectionId)
+    {
+        string? tableName = SectionDal.GetSectionById(sectionId)?.TableName;
+        if (tableName == null)
         {
-            _postDalFactory = postDalFactory;
+            return null;
         }
+        return _postDalFactory.GetPostDal(tableName).GetMainPosts();
+    }
 
-        public List<Section>? GetAllSections()
-        {
-            return SectionDal.GetAllSections();
-        }
+    /// <inheritdoc />
+    public Section? GetSectionById(int id)
+    {
+        return SectionDal.GetSectionById(id);
+    }
 
-        public List<Post>? GetMainPosts(int sectionId)
+    /// <inheritdoc />
+    public List<Section>? GetSectionsByIds(List<int> ids)
+    {
+        List<Section> sections = new();
+        foreach (int id in ids)
         {
-            string? tableName = SectionDal.GetSectionById(sectionId)?.TableName;
-            if (tableName == null)
+            Section? section = GetSectionById(id);
+            if (section != null)
             {
-                return null;
+                sections.Add(section);
             }
-            return _postDalFactory.GetPostDal(tableName).GetMainPosts();
         }
-
-        public Section? GetSectionById(int id)
-        {
-            return SectionDal.GetSectionById(id);
-        }
-
-        public List<Section>? GetSectionsByIds(List<int> ids)
-        {
-            List<Section> sections = new();
-            foreach (int id in ids)
-            {
-                Section? section = GetSectionById(id);
-                if (section != null)
-                {
-                    sections.Add(section);
-                }
-            }
-            return sections;
-        }
+        return sections;
     }
 }

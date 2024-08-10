@@ -48,9 +48,6 @@ var annotated_dup =
         [ "ESection", "namespace_web_api_demo_1_1_entities_1_1_e_section.html", [
           [ "Section", "class_web_api_demo_1_1_entities_1_1_e_section_1_1_section.html", "class_web_api_demo_1_1_entities_1_1_e_section_1_1_section" ]
         ] ],
-        [ "ETemp", "namespace_web_api_demo_1_1_entities_1_1_e_temp.html", [
-          [ "Web4User", "class_web_api_demo_1_1_entities_1_1_e_temp_1_1_web4_user.html", "class_web_api_demo_1_1_entities_1_1_e_temp_1_1_web4_user" ]
-        ] ],
         [ "EUser", "namespace_web_api_demo_1_1_entities_1_1_e_user.html", [
           [ "User", "class_web_api_demo_1_1_entities_1_1_e_user_1_1_user.html", "class_web_api_demo_1_1_entities_1_1_e_user_1_1_user" ]
         ] ],
@@ -87,8 +84,7 @@ var annotated_dup =
         [ "UserInfoResponse", "class_web_api_demo_1_1_models_1_1_user_info_response.html", "class_web_api_demo_1_1_models_1_1_user_info_response" ],
         [ "UserInsertRequest", "class_web_api_demo_1_1_models_1_1_user_insert_request.html", "class_web_api_demo_1_1_models_1_1_user_insert_request" ],
         [ "UserUpdateRequest", "class_web_api_demo_1_1_models_1_1_user_update_request.html", "class_web_api_demo_1_1_models_1_1_user_update_request" ]
-      ] ],
-      [ "ValuesController", "class_web_api_demo_1_1_values_controller.html", "class_web_api_demo_1_1_values_controller" ]
+      ] ]
     ] ],
     [ "WebApiTestDemo", "namespace_web_api_test_demo.html", [
       [ "EPost", "namespace_web_api_test_demo_1_1_e_post.html", [

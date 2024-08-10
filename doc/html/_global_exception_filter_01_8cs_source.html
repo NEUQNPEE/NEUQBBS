@@ -106,46 +106,41 @@ $(function(){initNavTree('_global_exception_filter_01_8cs_source.html',''); init
 <div class="foldopen" id="foldopen00004" data-start="{" data-end="}">
 <div class="line"><a id="l00004" name="l00004"></a><span class="lineno"><a class="line" href="namespace_web_api_demo_1_1_filter.html">    4</a></span><span class="keyword">namespace </span><a class="code hl_namespace" href="namespace_web_api_demo_1_1_filter.html">WebApiDemo.Filter</a></div>
 <div class="line"><a id="l00005" name="l00005"></a><span class="lineno">    5</span>{</div>
-<div class="foldopen" id="foldopen00006" data-start="{" data-end="};">
-<div class="line"><a id="l00006" name="l00006"></a><span class="lineno"><a class="line" href="class_web_api_demo_1_1_filter_1_1_global_exception_filter.html">    6</a></span>    <span class="keyword">public</span> <span class="keyword">class </span><a class="code hl_class" href="class_web_api_demo_1_1_filter_1_1_global_exception_filter.html">GlobalExceptionFilter</a> : IExceptionFilter</div>
-<div class="line"><a id="l00007" name="l00007"></a><span class="lineno">    7</span>    {</div>
-<div class="line"><a id="l00008" name="l00008"></a><span class="lineno">    8</span>        <span class="keyword">private</span> readonly ILogger&lt;GlobalExceptionFilter&gt; _logger;</div>
-<div class="line"><a id="l00009" name="l00009"></a><span class="lineno">    9</span> </div>
-<div class="foldopen" id="foldopen00010" data-start="{" data-end="}">
-<div class="line"><a id="l00010" name="l00010"></a><span class="lineno"><a class="line" href="class_web_api_demo_1_1_filter_1_1_global_exception_filter.html#a9d0f5d9de882a0d9755dbdad922d1bfc">   10</a></span>        <span class="keyword">public</span> <a class="code hl_function" href="class_web_api_demo_1_1_filter_1_1_global_exception_filter.html#a9d0f5d9de882a0d9755dbdad922d1bfc">GlobalExceptionFilter</a>(ILogger&lt;GlobalExceptionFilter&gt; logger)</div>
-<div class="line"><a id="l00011" name="l00011"></a><span class="lineno">   11</span>        {</div>
-<div class="line"><a id="l00012" name="l00012"></a><span class="lineno">   12</span>            _logger = logger;</div>
-<div class="line"><a id="l00013" name="l00013"></a><span class="lineno">   13</span>        }</div>
+<div class="foldopen" id="foldopen00009" data-start="{" data-end="};">
+<div class="line"><a id="l00009" name="l00009"></a><span class="lineno"><a class="line" href="class_web_api_demo_1_1_filter_1_1_global_exception_filter.html">    9</a></span>    <span class="keyword">public</span> <span class="keyword">class </span><a class="code hl_class" href="class_web_api_demo_1_1_filter_1_1_global_exception_filter.html">GlobalExceptionFilter</a> : IExceptionFilter</div>
+<div class="line"><a id="l00010" name="l00010"></a><span class="lineno">   10</span>    {</div>
+<div class="line"><a id="l00011" name="l00011"></a><span class="lineno">   11</span>        <span class="keyword">private</span> readonly ILogger&lt;GlobalExceptionFilter&gt; _logger;</div>
+<div class="line"><a id="l00012" name="l00012"></a><span class="lineno">   12</span> </div>
+<div class="foldopen" id="foldopen00017" data-start="{" data-end="}">
+<div class="line"><a id="l00017" name="l00017"></a><span class="lineno"><a class="line" href="class_web_api_demo_1_1_filter_1_1_global_exception_filter.html#a9d0f5d9de882a0d9755dbdad922d1bfc">   17</a></span>        <span class="keyword">public</span> <a class="code hl_function" href="class_web_api_demo_1_1_filter_1_1_global_exception_filter.html#a9d0f5d9de882a0d9755dbdad922d1bfc">GlobalExceptionFilter</a>(ILogger&lt;GlobalExceptionFilter&gt; logger)</div>
+<div class="line"><a id="l00018" name="l00018"></a><span class="lineno">   18</span>        {</div>
+<div class="line"><a id="l00019" name="l00019"></a><span class="lineno">   19</span>            _logger = logger;</div>
+<div class="line"><a id="l00020" name="l00020"></a><span class="lineno">   20</span>        }</div>
 </div>
-<div class="line"><a id="l00014" name="l00014"></a><span class="lineno">   14</span> </div>
-<div class="foldopen" id="foldopen00015" data-start="{" data-end="}">
-<div class="line"><a id="l00015" name="l00015"></a><span class="lineno"><a class="line" href="class_web_api_demo_1_1_filter_1_1_global_exception_filter.html#aaa3605011204badedc2afc69ec6e7bf1">   15</a></span>        <span class="keyword">public</span> <span class="keywordtype">void</span> <a class="code hl_function" href="class_web_api_demo_1_1_filter_1_1_global_exception_filter.html#aaa3605011204badedc2afc69ec6e7bf1">OnException</a>(ExceptionContext context)</div>
-<div class="line"><a id="l00016" name="l00016"></a><span class="lineno">   16</span>        {</div>
-<div class="line"><a id="l00017" name="l00017"></a><span class="lineno">   17</span>            _logger.LogError(</div>
-<div class="line"><a id="l00018" name="l00018"></a><span class="lineno">   18</span>                context.Exception,</div>
-<div class="line"><a id="l00019" name="l00019"></a><span class="lineno">   19</span>                <span class="stringliteral">&quot;发生未处理异常。请求路径：{Path},查询字符串：{QueryString},User:{User}&quot;</span>,</div>
-<div class="line"><a id="l00020" name="l00020"></a><span class="lineno">   20</span>                context.HttpContext.Request.Path,</div>
-<div class="line"><a id="l00021" name="l00021"></a><span class="lineno">   21</span>                context.HttpContext.Request.QueryString,</div>
-<div class="line"><a id="l00022" name="l00022"></a><span class="lineno">   22</span>                context.HttpContext.User.Identity?.Name</div>
-<div class="line"><a id="l00023" name="l00023"></a><span class="lineno">   23</span>            );</div>
-<div class="line"><a id="l00024" name="l00024"></a><span class="lineno">   24</span> </div>
-<div class="line"><a id="l00025" name="l00025"></a><span class="lineno">   25</span>            <span class="comment">// 设置响应状态码为 500 并返回错误信息</span></div>
-<div class="line"><a id="l00026" name="l00026"></a><span class="lineno">   26</span>            context.Result = <span class="keyword">new</span> ObjectResult(</div>
-<div class="line"><a id="l00027" name="l00027"></a><span class="lineno">   27</span>                <span class="keyword">new</span> { Message = <span class="stringliteral">&quot;发生未知错误，请重试&quot;</span> }</div>
-<div class="line"><a id="l00028" name="l00028"></a><span class="lineno">   28</span>            )</div>
-<div class="line"><a id="l00029" name="l00029"></a><span class="lineno">   29</span>            {</div>
-<div class="line"><a id="l00030" name="l00030"></a><span class="lineno">   30</span>                StatusCode = 500</div>
-<div class="line"><a id="l00031" name="l00031"></a><span class="lineno">   31</span>            };</div>
-<div class="line"><a id="l00032" name="l00032"></a><span class="lineno">   32</span>            context.ExceptionHandled = <span class="keyword">true</span>;</div>
-<div class="line"><a id="l00033" name="l00033"></a><span class="lineno">   33</span>        }</div>
+<div class="line"><a id="l00021" name="l00021"></a><span class="lineno">   21</span> </div>
+<div class="foldopen" id="foldopen00026" data-start="{" data-end="}">
+<div class="line"><a id="l00026" name="l00026"></a><span class="lineno"><a class="line" href="class_web_api_demo_1_1_filter_1_1_global_exception_filter.html#aaa3605011204badedc2afc69ec6e7bf1">   26</a></span>        <span class="keyword">public</span> <span class="keywordtype">void</span> <a class="code hl_function" href="class_web_api_demo_1_1_filter_1_1_global_exception_filter.html#aaa3605011204badedc2afc69ec6e7bf1">OnException</a>(ExceptionContext context)</div>
+<div class="line"><a id="l00027" name="l00027"></a><span class="lineno">   27</span>        {</div>
+<div class="line"><a id="l00028" name="l00028"></a><span class="lineno">   28</span>            _logger.LogError(</div>
+<div class="line"><a id="l00029" name="l00029"></a><span class="lineno">   29</span>                context.Exception,</div>
+<div class="line"><a id="l00030" name="l00030"></a><span class="lineno">   30</span>                <span class="stringliteral">&quot;发生未处理异常。请求路径：{Path},查询字符串：{QueryString},User:{User}&quot;</span>,</div>
+<div class="line"><a id="l00031" name="l00031"></a><span class="lineno">   31</span>                context.HttpContext.Request.Path,</div>
+<div class="line"><a id="l00032" name="l00032"></a><span class="lineno">   32</span>                context.HttpContext.Request.QueryString,</div>
+<div class="line"><a id="l00033" name="l00033"></a><span class="lineno">   33</span>                context.HttpContext.User.Identity?.Name</div>
+<div class="line"><a id="l00034" name="l00034"></a><span class="lineno">   34</span>            );</div>
+<div class="line"><a id="l00035" name="l00035"></a><span class="lineno">   35</span> </div>
+<div class="line"><a id="l00036" name="l00036"></a><span class="lineno">   36</span>            <span class="comment">// 设置响应状态码为 500 并返回错误信息</span></div>
+<div class="line"><a id="l00037" name="l00037"></a><span class="lineno">   37</span>            context.Result = <span class="keyword">new</span> ObjectResult(<span class="keyword">new</span> { Message = <span class="stringliteral">&quot;未知错误，请重试&quot;</span> }) { StatusCode = 500 };</div>
+<div class="line"><a id="l00038" name="l00038"></a><span class="lineno">   38</span>            context.ExceptionHandled = <span class="keyword">true</span>;</div>
+<div class="line"><a id="l00039" name="l00039"></a><span class="lineno">   39</span>        }</div>
 </div>
-<div class="line"><a id="l00034" name="l00034"></a><span class="lineno">   34</span>    }</div>
+<div class="line"><a id="l00040" name="l00040"></a><span class="lineno">   40</span>    }</div>
 </div>
-<div class="line"><a id="l00035" name="l00035"></a><span class="lineno">   35</span>}</div>
+<div class="line"><a id="l00041" name="l00041"></a><span class="lineno">   41</span>}</div>
 </div>
-<div class="ttc" id="aclass_web_api_demo_1_1_filter_1_1_global_exception_filter_html"><div class="ttname"><a href="class_web_api_demo_1_1_filter_1_1_global_exception_filter.html">WebApiDemo.Filter.GlobalExceptionFilter</a></div><div class="ttdef"><b>定义</b> <a href="#l00006">GlobalExceptionFilter .cs:7</a></div></div>
-<div class="ttc" id="aclass_web_api_demo_1_1_filter_1_1_global_exception_filter_html_a9d0f5d9de882a0d9755dbdad922d1bfc"><div class="ttname"><a href="class_web_api_demo_1_1_filter_1_1_global_exception_filter.html#a9d0f5d9de882a0d9755dbdad922d1bfc">WebApiDemo.Filter.GlobalExceptionFilter.GlobalExceptionFilter</a></div><div class="ttdeci">GlobalExceptionFilter(ILogger&lt; GlobalExceptionFilter &gt; logger)</div><div class="ttdef"><b>定义</b> <a href="#l00010">GlobalExceptionFilter .cs:10</a></div></div>
-<div class="ttc" id="aclass_web_api_demo_1_1_filter_1_1_global_exception_filter_html_aaa3605011204badedc2afc69ec6e7bf1"><div class="ttname"><a href="class_web_api_demo_1_1_filter_1_1_global_exception_filter.html#aaa3605011204badedc2afc69ec6e7bf1">WebApiDemo.Filter.GlobalExceptionFilter.OnException</a></div><div class="ttdeci">void OnException(ExceptionContext context)</div><div class="ttdef"><b>定义</b> <a href="#l00015">GlobalExceptionFilter .cs:15</a></div></div>
+<div class="ttc" id="aclass_web_api_demo_1_1_filter_1_1_global_exception_filter_html"><div class="ttname"><a href="class_web_api_demo_1_1_filter_1_1_global_exception_filter.html">WebApiDemo.Filter.GlobalExceptionFilter</a></div><div class="ttdoc">全局异常处理（实际上是控制器级别的异常处理）</div><div class="ttdef"><b>定义</b> <a href="#l00009">GlobalExceptionFilter .cs:10</a></div></div>
+<div class="ttc" id="aclass_web_api_demo_1_1_filter_1_1_global_exception_filter_html_a9d0f5d9de882a0d9755dbdad922d1bfc"><div class="ttname"><a href="class_web_api_demo_1_1_filter_1_1_global_exception_filter.html#a9d0f5d9de882a0d9755dbdad922d1bfc">WebApiDemo.Filter.GlobalExceptionFilter.GlobalExceptionFilter</a></div><div class="ttdeci">GlobalExceptionFilter(ILogger&lt; GlobalExceptionFilter &gt; logger)</div><div class="ttdoc">构造函数</div><div class="ttdef"><b>定义</b> <a href="#l00017">GlobalExceptionFilter .cs:17</a></div></div>
+<div class="ttc" id="aclass_web_api_demo_1_1_filter_1_1_global_exception_filter_html_aaa3605011204badedc2afc69ec6e7bf1"><div class="ttname"><a href="class_web_api_demo_1_1_filter_1_1_global_exception_filter.html#aaa3605011204badedc2afc69ec6e7bf1">WebApiDemo.Filter.GlobalExceptionFilter.OnException</a></div><div class="ttdeci">void OnException(ExceptionContext context)</div><div class="ttdoc">处理异常</div><div class="ttdef"><b>定义</b> <a href="#l00026">GlobalExceptionFilter .cs:26</a></div></div>
 <div class="ttc" id="anamespace_web_api_demo_1_1_filter_html"><div class="ttname"><a href="namespace_web_api_demo_1_1_filter.html">WebApiDemo.Filter</a></div><div class="ttdef"><b>定义</b> <a href="#l00004">GlobalExceptionFilter .cs:5</a></div></div>
 </div><!-- fragment --></div><!-- contents -->
 </div><!-- doc-content -->

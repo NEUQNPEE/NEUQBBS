@@ -4,201 +4,210 @@ using WebApiDemo.DAL.Interfaces;
 using WebApiDemo.Entities.BModels;
 using WebApiDemo.Entities.EPost;
 
-namespace WebApiDemo.BLL
+namespace WebApiDemo.BLL;
+
+/// <inheritdoc />
+public class PostBll : IPostBll
 {
-    public class PostBll : IPostBll
+    private readonly IPostDalFactory _postDalFactory;
+
+    /// <inheritdoc/>
+    public PostBll(IPostDalFactory postDalFactory)
     {
-        private readonly IPostDalFactory _postDalFactory;
+        _postDalFactory = postDalFactory;
+    }
 
-        public PostBll(IPostDalFactory postDalFactory)
+    /// <inheritdoc/>
+    public List<Post>? GetAllPosts(int sectionId)
+    {
+        string? tableName = SectionDal.GetSectionById(sectionId)?.TableName;
+        if (tableName == null)
         {
-            _postDalFactory = postDalFactory;
+            return null;
+        }
+        return _postDalFactory.GetPostDal(tableName).GetAllPosts();
+    }
+
+    /// <inheritdoc/>
+    public List<UserBModel>? GetAllUsers(int sectionId)
+    {
+        string? tableName = SectionDal.GetSectionById(sectionId)?.TableName;
+        if (tableName == null)
+        {
+            return null;
+        }
+        List<UserBModel>? users = _postDalFactory.GetPostDal(tableName).GetAllUsers();
+        // 保留Id, UserName, RegisterTime和Points字段，注意排除IsDeleted字段
+        if (users == null)
+        {
+            return null;
         }
 
-        public List<Post>? GetAllPosts(int sectionId)
+        List<UserBModel>? result = new();
+        foreach (UserBModel? user in users)
         {
-            string? tableName = SectionDal.GetSectionById(sectionId)?.TableName;
-            if (tableName == null)
+            if (user == null)
             {
-                return null;
+                continue;
             }
-            return _postDalFactory.GetPostDal(tableName).GetAllPosts();
-        }
-
-        public List<UserBModel>? GetAllUsers(int sectionId)
-        {
-            string? tableName = SectionDal.GetSectionById(sectionId)?.TableName;
-            if (tableName == null)
-            {
-                return null;
-            }
-            List<UserBModel>? users = _postDalFactory.GetPostDal(tableName).GetAllUsers();
-            // 保留Id,userName,RigisterTime和Points字段,注意排除IsDeleted字段
-            if (users == null)
-            {
-                return null;
-            }
-
-            List<UserBModel>? result = new();
-            foreach (UserBModel? user in users)
-            {
-                if (user == null)
+            result.Add(
+                new UserBModel
                 {
-                    continue;
+                    Id = user.Id,
+                    UserName = user.UserName,
+                    RegisterTime = user.RegisterTime,
+                    Points = user.Points
                 }
-                result.Add(
-                    new UserBModel
-                    {
-                        Id = user.Id,
-                        UserName = user.UserName,
-                        RegisterTime = user.RegisterTime,
-                        Points = user.Points
-                    }
-                );
-            }
-
-            return result;
+            );
         }
 
-        public List<Post>? GetPosts(PostListBModel postListBModel)
+        return result;
+    }
+
+    /// <inheritdoc/>
+    public List<Post>? GetPosts(PostListBModel postListBModel)
+    {
+        string? tableName = SectionDal.GetSectionById(postListBModel.SectionId)?.TableName;
+        if (tableName == null)
         {
-            string? tableName = SectionDal.GetSectionById(postListBModel.SectionId)?.TableName;
-            if (tableName == null)
-            {
-                return null;
-            }
-            return _postDalFactory
-                .GetPostDal(tableName)
-                .GetPosts(postListBModel.BeginNum, postListBModel.NeedNum);
+            return null;
+        }
+        return _postDalFactory
+            .GetPostDal(tableName)
+            .GetPosts(postListBModel.BeginNum, postListBModel.NeedNum);
+    }
+
+    /// <inheritdoc/>
+    public List<Post>? GetPosts(int sectionId, int mainPostId)
+    {
+        string? tableName = SectionDal.GetSectionById(sectionId)?.TableName;
+        if (tableName == null)
+        {
+            return null;
+        }
+        return _postDalFactory.GetPostDal(tableName).GetPosts(mainPostId);
+    }
+
+    /// <inheritdoc/>
+    public int AddPost(int sectionId, Post post)
+    {
+        string? tableName = SectionDal.GetSectionById(sectionId)?.TableName;
+        if (tableName == null)
+        {
+            return -1;
+        }
+        int id = _postDalFactory.GetPostDal(tableName).AddPost(post);
+        Post? mainPost = _postDalFactory.GetPostDal(tableName).GetPostById(post.MainPostId);
+        if (mainPost != null)
+        {
+            mainPost.ReplyNum = GetPosts(sectionId, post.MainPostId)?.Count - 1 ?? 0;
+            _postDalFactory.GetPostDal(tableName).UpdatePost(mainPost);
         }
 
-        public List<Post>? GetPosts(int sectionId, int mainPostId)
+        return id;
+    }
+
+    /// <inheritdoc/>
+    public List<UserBModel>? GetUsers(PostListBModel postListBModel)
+    {
+        string? tableName = SectionDal.GetSectionById(postListBModel.SectionId)?.TableName;
+        if (tableName == null)
         {
-            string? tableName = SectionDal.GetSectionById(sectionId)?.TableName;
-            if (tableName == null)
-            {
-                return null;
-            }
-            return _postDalFactory.GetPostDal(tableName).GetPosts(mainPostId);
+            return null;
+        }
+        List<UserBModel>? users = _postDalFactory
+            .GetPostDal(tableName)
+            .GetUsers(postListBModel.BeginNum, postListBModel.NeedNum);
+        // 保留Id, UserName, RegisterTime和Points字段，注意排除IsDeleted字段
+        if (users == null)
+        {
+            return null;
         }
 
-        public int AddPost(int sectionId, Post post)
+        List<UserBModel>? result = new();
+        foreach (UserBModel? user in users)
         {
-            string? tableName = SectionDal.GetSectionById(sectionId)?.TableName;
-            if (tableName == null)
+            if (user == null)
             {
-                return -1;
+                continue;
             }
-            int id =_postDalFactory.GetPostDal(tableName).AddPost(post);
-            Post? mainPost = _postDalFactory
-                .GetPostDal(tableName)
-                .GetPostById(post.MainPostId);
-            if (mainPost != null)
-            {
-                mainPost.ReplyNum = GetPosts(sectionId, post.MainPostId)?.Count-1 ?? 0;
-                _postDalFactory.GetPostDal(tableName).UpdatePost(mainPost);
-            }
-            
-            return id;
-        }
-
-        public List<UserBModel>? GetUsers(PostListBModel postListBModel)
-        {
-            string? tableName = SectionDal.GetSectionById(postListBModel.SectionId)?.TableName;
-            if (tableName == null)
-            {
-                return null;
-            }
-            List<UserBModel>? users = _postDalFactory
-                .GetPostDal(tableName)
-                .GetUsers(postListBModel.BeginNum, postListBModel.NeedNum);
-            // 保留Id,userName,RigisterTime和Points字段,注意排除IsDeleted字段
-            if (users == null)
-            {
-                return null;
-            }
-
-            List<UserBModel>? result = new();
-            foreach (UserBModel? user in users)
-            {
-                if (user == null)
+            result.Add(
+                new UserBModel
                 {
-                    continue;
+                    Id = user.Id,
+                    UserName = user.UserName,
+                    RegisterTime = user.RegisterTime,
+                    Points = user.Points
                 }
-                result.Add(
-                    new UserBModel
-                    {
-                        Id = user.Id,
-                        UserName = user.UserName,
-                        RegisterTime = user.RegisterTime,
-                        Points = user.Points
-                    }
-                );
-            }
-
-            return result;
+            );
         }
 
-        public Post? GetLastReplyPosts(int sectionId, int mainPostId)
+        return result;
+    }
+
+    /// <inheritdoc/>
+    public Post? GetLastReplyPosts(int sectionId, int mainPostId)
+    {
+        string? tableName = SectionDal.GetSectionById(sectionId)?.TableName;
+        if (tableName == null)
         {
-            string? tableName = SectionDal.GetSectionById(sectionId)?.TableName;
-            if (tableName == null)
-            {
-                return null;
-            }
-
-            return _postDalFactory.GetPostDal(tableName).GetLastReplyPosts(mainPostId);
+            return null;
         }
 
-        public void UpVote(int sectionId, int postId)
+        return _postDalFactory.GetPostDal(tableName).GetLastReplyPosts(mainPostId);
+    }
+
+    /// <inheritdoc/>
+    public void UpVote(int sectionId, int postId)
+    {
+        string? tableName = SectionDal.GetSectionById(sectionId)?.TableName;
+        if (tableName == null)
         {
-            string? tableName = SectionDal.GetSectionById(sectionId)?.TableName;
-            if (tableName == null)
-            {
-                return;
-            }
-
-            Post? post = _postDalFactory.GetPostDal(tableName).GetPostById(postId);
-            if (post == null)
-            {
-                return;
-            }
-            post.UpVote++;
-            _postDalFactory.GetPostDal(tableName).UpdatePost(post);
+            return;
         }
 
-        public void DownVote(int sectionId, int postId)
+        Post? post = _postDalFactory.GetPostDal(tableName).GetPostById(postId);
+        if (post == null)
         {
-            string? tableName = SectionDal.GetSectionById(sectionId)?.TableName;
-            if (tableName == null)
-            {
-                return;
-            }
-
-            Post? post = _postDalFactory.GetPostDal(tableName).GetPostById(postId);
-            if (post == null)
-            {
-                return;
-            }
-            post.DownVote++;
-            _postDalFactory.GetPostDal(tableName).UpdatePost(post);
+            return;
         }
+        post.UpVote++;
+        _postDalFactory.GetPostDal(tableName).UpdatePost(post);
+    }
 
-        public void UpdateView(int sectionId, int postId)
+    /// <inheritdoc/>
+    public void DownVote(int sectionId, int postId)
+    {
+        string? tableName = SectionDal.GetSectionById(sectionId)?.TableName;
+        if (tableName == null)
         {
-            string? tableName = SectionDal.GetSectionById(sectionId)?.TableName;
-            if (tableName == null)
-            {
-                return;
-            }
-
-            Post? post = _postDalFactory.GetPostDal(tableName).GetPostById(postId);
-            if (post == null)
-            {
-                return;
-            }
-            post.ViewNum++;
-            _postDalFactory.GetPostDal(tableName).UpdatePost(post);
+            return;
         }
+
+        Post? post = _postDalFactory.GetPostDal(tableName).GetPostById(postId);
+        if (post == null)
+        {
+            return;
+        }
+        post.DownVote++;
+        _postDalFactory.GetPostDal(tableName).UpdatePost(post);
+    }
+
+    /// <inheritdoc/>
+    public void UpdateView(int sectionId, int postId)
+    {
+        string? tableName = SectionDal.GetSectionById(sectionId)?.TableName;
+        if (tableName == null)
+        {
+            return;
+        }
+
+        Post? post = _postDalFactory.GetPostDal(tableName).GetPostById(postId);
+        if (post == null)
+        {
+            return;
+        }
+        post.ViewNum++;
+        _postDalFactory.GetPostDal(tableName).UpdatePost(post);
     }
 }

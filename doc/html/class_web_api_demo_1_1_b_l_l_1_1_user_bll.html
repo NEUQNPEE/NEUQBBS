@@ -104,7 +104,7 @@ $(function(){initNavTree('class_web_api_demo_1_1_b_l_l_1_1_user_bll.html',''); i
 </div><!--header-->
 <div class="contents">
 
-<p>用户相关业务逻辑的实现  
+<p>用户业务逻辑接口实现  
  <a href="#details">更多...</a></p>
 <div class="dynheader">
 类 WebApiDemo.BLL.UserBll 继承关系图:</div>
@@ -112,61 +112,161 @@ $(function(){initNavTree('class_web_api_demo_1_1_b_l_l_1_1_user_bll.html',''); i
  <div class="center">
   <img src="class_web_api_demo_1_1_b_l_l_1_1_user_bll.png" usemap="#WebApiDemo.BLL.UserBll_map" alt=""/>
   <map id="WebApiDemo.BLL.UserBll_map" name="WebApiDemo.BLL.UserBll_map">
-<area href="interface_web_api_demo_1_1_b_l_l_1_1_interfaces_1_1_i_user_bll.html" title="用户相关业务逻辑的接口" alt="WebApiDemo.BLL.Interfaces.IUserBll" shape="rect" coords="0,0,221,24"/>
+<area href="interface_web_api_demo_1_1_b_l_l_1_1_interfaces_1_1_i_user_bll.html" title="用户业务逻辑接口" alt="WebApiDemo.BLL.Interfaces.IUserBll" shape="rect" coords="0,0,221,24"/>
   </map>
 </div></div>
 <table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="pub-methods" name="pub-methods"></a>
 Public 成员函数</h2></td></tr>
-<tr class="memitem:ae6e5ee6300bcbb97babb19f0ea8ddb40" id="r_ae6e5ee6300bcbb97babb19f0ea8ddb40"><td class="memItemLeft" align="right" valign="top">List&lt; <a class="el" href="class_web_api_demo_1_1_entities_1_1_b_models_1_1_user_b_model.html">UserBModel</a> &gt;?&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#ae6e5ee6300bcbb97babb19f0ea8ddb40">DebugGetAllUsers</a> ()</td></tr>
-<tr class="memdesc:ae6e5ee6300bcbb97babb19f0ea8ddb40"><td class="mdescLeft">&#160;</td><td class="mdescRight">debug 获取所有用户  <br /></td></tr>
-<tr class="separator:ae6e5ee6300bcbb97babb19f0ea8ddb40"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a0db43b01757578a75f35cf12b5f69e6a" id="r_a0db43b01757578a75f35cf12b5f69e6a"><td class="memItemLeft" align="right" valign="top">List&lt; <a class="el" href="class_web_api_demo_1_1_entities_1_1_b_models_1_1_user_b_model.html">UserBModel</a> &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a0db43b01757578a75f35cf12b5f69e6a">DebugGetAllUsers</a> ()</td></tr>
+<tr class="memdesc:a0db43b01757578a75f35cf12b5f69e6a"><td class="mdescLeft">&#160;</td><td class="mdescRight">debug 获取所有用户<dl class="section return"><dt>返回</dt><dd>所有用户的列表，或在无用户时返回空列表。</dd></dl>
+  <br /></td></tr>
+<tr class="separator:a0db43b01757578a75f35cf12b5f69e6a"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a9b5ac25ed4a41ed33b73ff91b8033891" id="r_a9b5ac25ed4a41ed33b73ff91b8033891"><td class="memItemLeft" align="right" valign="top"><a class="el" href="class_web_api_demo_1_1_entities_1_1_b_models_1_1_user_b_model.html">UserBModel</a>?&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a9b5ac25ed4a41ed33b73ff91b8033891">DebugGetUserById</a> (int id)</td></tr>
-<tr class="memdesc:a9b5ac25ed4a41ed33b73ff91b8033891"><td class="mdescLeft">&#160;</td><td class="mdescRight">debug 获取用户  <br /></td></tr>
+<tr class="memdesc:a9b5ac25ed4a41ed33b73ff91b8033891"><td class="mdescLeft">&#160;</td><td class="mdescRight">debug 获取用户<dl class="params"><dt>参数</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">id</td><td>用户 ID</td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>返回</dt><dd>用户信息，或在用户不存在时返回 null。</dd></dl>
+  <br /></td></tr>
 <tr class="separator:a9b5ac25ed4a41ed33b73ff91b8033891"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a2394484e1a4e3e8752c42c64348e8d5c" id="r_a2394484e1a4e3e8752c42c64348e8d5c"><td class="memItemLeft" align="right" valign="top"><a class="el" href="class_web_api_demo_1_1_entities_1_1_b_models_1_1_user_b_model.html">UserBModel</a>?&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a2394484e1a4e3e8752c42c64348e8d5c">GetUserById</a> (int id)</td></tr>
-<tr class="memdesc:a2394484e1a4e3e8752c42c64348e8d5c"><td class="mdescLeft">&#160;</td><td class="mdescRight">获取用户  <br /></td></tr>
+<tr class="memdesc:a2394484e1a4e3e8752c42c64348e8d5c"><td class="mdescLeft">&#160;</td><td class="mdescRight">获取用户<dl class="params"><dt>参数</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">id</td><td>用户 ID</td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>返回</dt><dd>用户信息，或在用户不存在时返回 null。</dd></dl>
+  <br /></td></tr>
 <tr class="separator:a2394484e1a4e3e8752c42c64348e8d5c"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a257192f8b7078be0591d76ebb29efed3" id="r_a257192f8b7078be0591d76ebb29efed3"><td class="memItemLeft" align="right" valign="top">string&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a257192f8b7078be0591d76ebb29efed3">GetUserNameById</a> (int id)</td></tr>
-<tr class="memdesc:a257192f8b7078be0591d76ebb29efed3"><td class="mdescLeft">&#160;</td><td class="mdescRight">根据用户ID获取用户名  <br /></td></tr>
+<tr class="memdesc:a257192f8b7078be0591d76ebb29efed3"><td class="mdescLeft">&#160;</td><td class="mdescRight">根据用户ID获取用户名<dl class="params"><dt>参数</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">id</td><td>用户 ID</td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>返回</dt><dd>用户名，如果用户不存在则返回 "未找到"。</dd></dl>
+  <br /></td></tr>
 <tr class="separator:a257192f8b7078be0591d76ebb29efed3"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a007ddd5583d1583f57534a7ddaf7f944" id="r_a007ddd5583d1583f57534a7ddaf7f944"><td class="memItemLeft" align="right" valign="top">List&lt; string &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a007ddd5583d1583f57534a7ddaf7f944">GetUserNamesByIds</a> (List&lt; int &gt; ids)</td></tr>
-<tr class="memdesc:a007ddd5583d1583f57534a7ddaf7f944"><td class="mdescLeft">&#160;</td><td class="mdescRight">根据用户ID列表获取用户名列表  <br /></td></tr>
+<tr class="memdesc:a007ddd5583d1583f57534a7ddaf7f944"><td class="mdescLeft">&#160;</td><td class="mdescRight">根据用户ID列表获取用户名列表<dl class="params"><dt>参数</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">ids</td><td>用户 ID 列表</td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>返回</dt><dd>用户名列表，或在无对应用户时返回空列表。</dd></dl>
+  <br /></td></tr>
 <tr class="separator:a007ddd5583d1583f57534a7ddaf7f944"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a31d520a06efe69fa734c7c5c6fa3863e" id="r_a31d520a06efe69fa734c7c5c6fa3863e"><td class="memItemLeft" align="right" valign="top"><a class="el" href="class_web_api_demo_1_1_entities_1_1_b_models_1_1_user_b_model.html">UserBModel</a>?&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a31d520a06efe69fa734c7c5c6fa3863e">GetUserByIdForPost</a> (int id)</td></tr>
-<tr class="memdesc:a31d520a06efe69fa734c7c5c6fa3863e"><td class="mdescLeft">&#160;</td><td class="mdescRight">根据用户ID获取用户用于POST的数据，只保留userName,RigisterTime和Points字段，注意排除IsDeleted字段  <br /></td></tr>
+<tr class="memdesc:a31d520a06efe69fa734c7c5c6fa3863e"><td class="mdescLeft">&#160;</td><td class="mdescRight">根据用户ID获取用户用于POST的数据，只保留 userName, RegisterTime 和 Points 字段，注意排除 IsDeleted 字段<dl class="params"><dt>参数</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">id</td><td>用户 ID</td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>返回</dt><dd>用户信息，或在用户不存在时返回 null。</dd></dl>
+  <br /></td></tr>
 <tr class="separator:a31d520a06efe69fa734c7c5c6fa3863e"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:af0d3aaeae3a8cf1c6125f83038fc2b16" id="r_af0d3aaeae3a8cf1c6125f83038fc2b16"><td class="memItemLeft" align="right" valign="top"><a class="el" href="class_web_api_demo_1_1_entities_1_1_b_models_1_1_user_b_model.html">UserBModel</a>?&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#af0d3aaeae3a8cf1c6125f83038fc2b16">GetUserBaseInfoById</a> (int id)</td></tr>
-<tr class="memdesc:af0d3aaeae3a8cf1c6125f83038fc2b16"><td class="mdescLeft">&#160;</td><td class="mdescRight">根据用户ID获取用户基本信息  <br /></td></tr>
+<tr class="memdesc:af0d3aaeae3a8cf1c6125f83038fc2b16"><td class="mdescLeft">&#160;</td><td class="mdescRight">根据用户ID获取用户基本信息<dl class="params"><dt>参数</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">id</td><td>用户 ID</td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>返回</dt><dd>用户基本信息，或在用户不存在时返回 null。</dd></dl>
+  <br /></td></tr>
 <tr class="separator:af0d3aaeae3a8cf1c6125f83038fc2b16"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a7995b04eea790e1e26d2b2077e2db341" id="r_a7995b04eea790e1e26d2b2077e2db341"><td class="memItemLeft" align="right" valign="top"><a class="el" href="class_web_api_demo_1_1_entities_1_1_b_models_1_1_user_b_model.html">UserBModel</a>?&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a7995b04eea790e1e26d2b2077e2db341">GetUserDetailInfoById</a> (int id)</td></tr>
-<tr class="memdesc:a7995b04eea790e1e26d2b2077e2db341"><td class="mdescLeft">&#160;</td><td class="mdescRight">根据用户ID获取用户详细信息  <br /></td></tr>
+<tr class="memdesc:a7995b04eea790e1e26d2b2077e2db341"><td class="mdescLeft">&#160;</td><td class="mdescRight">根据用户ID获取用户详细信息<dl class="params"><dt>参数</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">id</td><td>用户 ID</td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>返回</dt><dd>用户详细信息，或在用户不存在时返回 null。</dd></dl>
+  <br /></td></tr>
 <tr class="separator:a7995b04eea790e1e26d2b2077e2db341"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a7df5d49af9c214f06b1a168a1c5bc7fd" id="r_a7df5d49af9c214f06b1a168a1c5bc7fd"><td class="memItemLeft" align="right" valign="top">bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a7df5d49af9c214f06b1a168a1c5bc7fd">CheckUserExist</a> (string userName)</td></tr>
-<tr class="memdesc:a7df5d49af9c214f06b1a168a1c5bc7fd"><td class="mdescLeft">&#160;</td><td class="mdescRight">检查用户是否存在  <br /></td></tr>
+<tr class="memdesc:a7df5d49af9c214f06b1a168a1c5bc7fd"><td class="mdescLeft">&#160;</td><td class="mdescRight">检查用户是否存在<dl class="params"><dt>参数</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">userName</td><td>用户名</td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>返回</dt><dd>如果用户存在，则返回 true；否则返回 false。</dd></dl>
+  <br /></td></tr>
 <tr class="separator:a7df5d49af9c214f06b1a168a1c5bc7fd"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a46ea4c41951fccca2ab85dfa7c9c47d4" id="r_a46ea4c41951fccca2ab85dfa7c9c47d4"><td class="memItemLeft" align="right" valign="top">int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a46ea4c41951fccca2ab85dfa7c9c47d4">CheckLogin</a> (string userName, string password)</td></tr>
-<tr class="memdesc:a46ea4c41951fccca2ab85dfa7c9c47d4"><td class="mdescLeft">&#160;</td><td class="mdescRight">检查登录  <br /></td></tr>
+<tr class="memdesc:a46ea4c41951fccca2ab85dfa7c9c47d4"><td class="mdescLeft">&#160;</td><td class="mdescRight">检查登录<dl class="params"><dt>参数</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">userName</td><td>用户名</td></tr>
+    <tr><td class="paramname">password</td><td>密码</td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>返回</dt><dd>如果登录成功，返回用户 ID；否则返回 -1。</dd></dl>
+  <br /></td></tr>
 <tr class="separator:a46ea4c41951fccca2ab85dfa7c9c47d4"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a5f22bb7c78152302784df7ac4e2c712b" id="r_a5f22bb7c78152302784df7ac4e2c712b"><td class="memItemLeft" align="right" valign="top">string&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a5f22bb7c78152302784df7ac4e2c712b">GenerateAutoLoginToken</a> (int userId)</td></tr>
-<tr class="memdesc:a5f22bb7c78152302784df7ac4e2c712b"><td class="mdescLeft">&#160;</td><td class="mdescRight">生成自动登录token  <br /></td></tr>
+<tr class="memdesc:a5f22bb7c78152302784df7ac4e2c712b"><td class="mdescLeft">&#160;</td><td class="mdescRight">生成自动登录 token<dl class="params"><dt>参数</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">userId</td><td>用户 ID</td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>返回</dt><dd>生成的自动登录 token。</dd></dl>
+  <br /></td></tr>
 <tr class="separator:a5f22bb7c78152302784df7ac4e2c712b"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:ad7bafacd9c86fe44e46a090126c21d25" id="r_ad7bafacd9c86fe44e46a090126c21d25"><td class="memItemLeft" align="right" valign="top">int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#ad7bafacd9c86fe44e46a090126c21d25">CheckAutoLoginToken</a> (string token)</td></tr>
-<tr class="memdesc:ad7bafacd9c86fe44e46a090126c21d25"><td class="mdescLeft">&#160;</td><td class="mdescRight">检查自动登录token  <br /></td></tr>
+<tr class="memdesc:ad7bafacd9c86fe44e46a090126c21d25"><td class="mdescLeft">&#160;</td><td class="mdescRight">检查自动登录 token<dl class="params"><dt>参数</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">token</td><td>自动登录 token</td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>返回</dt><dd>有效的用户 ID，如果 token 无效，则返回 0 或负值。</dd></dl>
+  <br /></td></tr>
 <tr class="separator:ad7bafacd9c86fe44e46a090126c21d25"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a6dc44cc896f877e4d4986c1591bf4d20" id="r_a6dc44cc896f877e4d4986c1591bf4d20"><td class="memItemLeft" align="right" valign="top">int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a6dc44cc896f877e4d4986c1591bf4d20">AddUser</a> (<a class="el" href="class_web_api_demo_1_1_entities_1_1_b_models_1_1_user_b_model.html">UserBModel</a> userBModel)</td></tr>
-<tr class="memdesc:a6dc44cc896f877e4d4986c1591bf4d20"><td class="mdescLeft">&#160;</td><td class="mdescRight">添加用户  <br /></td></tr>
+<tr class="memdesc:a6dc44cc896f877e4d4986c1591bf4d20"><td class="mdescLeft">&#160;</td><td class="mdescRight">添加用户<dl class="params"><dt>参数</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">userBModel</td><td>用户模型</td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>返回</dt><dd>添加的用户 ID，如果添加失败，则返回 -1。</dd></dl>
+  <br /></td></tr>
 <tr class="separator:a6dc44cc896f877e4d4986c1591bf4d20"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:af0699548e9c32492ed4687060ab32e34" id="r_af0699548e9c32492ed4687060ab32e34"><td class="memItemLeft" align="right" valign="top">string&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#af0699548e9c32492ed4687060ab32e34">UpdateUser</a> (<a class="el" href="class_web_api_demo_1_1_entities_1_1_b_models_1_1_user_b_model.html">UserBModel</a> userBModel)</td></tr>
-<tr class="memdesc:af0699548e9c32492ed4687060ab32e34"><td class="mdescLeft">&#160;</td><td class="mdescRight">更新用户  <br /></td></tr>
+<tr class="memdesc:af0699548e9c32492ed4687060ab32e34"><td class="mdescLeft">&#160;</td><td class="mdescRight">更新用户<dl class="params"><dt>参数</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">userBModel</td><td>用户模型</td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>返回</dt><dd>更新结果消息，成功时返回 "更新成功"，否则返回 "更新失败"。</dd></dl>
+  <br /></td></tr>
 <tr class="separator:af0699548e9c32492ed4687060ab32e34"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:ae053771478df3bc78391c0b0b1ceca3f" id="r_ae053771478df3bc78391c0b0b1ceca3f"><td class="memItemLeft" align="right" valign="top">string&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#ae053771478df3bc78391c0b0b1ceca3f">RemoveUser</a> (int id)</td></tr>
-<tr class="memdesc:ae053771478df3bc78391c0b0b1ceca3f"><td class="mdescLeft">&#160;</td><td class="mdescRight">删除用户  <br /></td></tr>
+<tr class="memdesc:ae053771478df3bc78391c0b0b1ceca3f"><td class="mdescLeft">&#160;</td><td class="mdescRight">删除用户<dl class="params"><dt>参数</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">id</td><td>用户 ID</td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>返回</dt><dd>删除结果消息，成功时返回 "删除成功"，否则返回 "删除失败"。</dd></dl>
+  <br /></td></tr>
 <tr class="separator:ae053771478df3bc78391c0b0b1ceca3f"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="inherit_header pub_methods_interface_web_api_demo_1_1_b_l_l_1_1_interfaces_1_1_i_user_bll"><td colspan="2" onclick="javascript:dynsection.toggleInherit('pub_methods_interface_web_api_demo_1_1_b_l_l_1_1_interfaces_1_1_i_user_bll')"><img src="closed.png" alt="-"/>&#160;Public 成员函数 继承自 <a class="el" href="interface_web_api_demo_1_1_b_l_l_1_1_interfaces_1_1_i_user_bll.html">WebApiDemo.BLL.Interfaces.IUserBll</a></td></tr>
 </table>
 <a name="details" id="details"></a><h2 class="groupheader">详细描述</h2>
-<div class="textblock"><p>用户相关业务逻辑的实现 </p>
+<div class="textblock"><p>用户业务逻辑接口实现 </p>
 
 <p class="definition">在文件 <a class="el" href="_user_bll_8cs_source.html">UserBll.cs</a> 第 <a class="el" href="_user_bll_8cs_source.html#l00011">11</a> 行定义.</p>
 </div><h2 class="groupheader">成员函数说明</h2>
@@ -185,18 +285,18 @@ Public 成员函数</h2></td></tr>
       </table>
 </div><div class="memdoc">
 
-<p>添加用户 </p>
-<dl class="params"><dt>参数</dt><dd>
+<p>添加用户<dl class="params"><dt>参数</dt><dd>
   <table class="params">
-    <tr><td class="paramname">userBModel</td><td></td></tr>
+    <tr><td class="paramname">userBModel</td><td>用户模型</td></tr>
   </table>
   </dd>
 </dl>
-<dl class="section return"><dt>返回</dt><dd></dd></dl>
+<dl class="section return"><dt>返回</dt><dd>添加的用户 ID，如果添加失败，则返回 -1。</dd></dl>
+ </p>
 
 <p>实现了 <a class="el" href="interface_web_api_demo_1_1_b_l_l_1_1_interfaces_1_1_i_user_bll.html#aab133424c07ce0efb17f1b5ab31c5983">WebApiDemo.BLL.Interfaces.IUserBll</a>.</p>
 
-<p class="definition">在文件 <a class="el" href="_user_bll_8cs_source.html">UserBll.cs</a> 第 <a class="el" href="_user_bll_8cs_source.html#l00193">193</a> 行定义.</p>
+<p class="definition">在文件 <a class="el" href="_user_bll_8cs_source.html">UserBll.cs</a> 第 <a class="el" href="_user_bll_8cs_source.html#l00141">141</a> 行定义.</p>
 
 </div>
 </div>
@@ -215,18 +315,18 @@ Public 成员函数</h2></td></tr>
       </table>
 </div><div class="memdoc">
 
-<p>检查自动登录token </p>
-<dl class="params"><dt>参数</dt><dd>
+<p>检查自动登录 token<dl class="params"><dt>参数</dt><dd>
   <table class="params">
-    <tr><td class="paramname">token</td><td></td></tr>
+    <tr><td class="paramname">token</td><td>自动登录 token</td></tr>
   </table>
   </dd>
 </dl>
-<dl class="section return"><dt>返回</dt><dd></dd></dl>
+<dl class="section return"><dt>返回</dt><dd>有效的用户 ID，如果 token 无效，则返回 0 或负值。</dd></dl>
+ </p>
 
 <p>实现了 <a class="el" href="interface_web_api_demo_1_1_b_l_l_1_1_interfaces_1_1_i_user_bll.html#ab2779bbf270eafa0b25782cff067b935">WebApiDemo.BLL.Interfaces.IUserBll</a>.</p>
 
-<p class="definition">在文件 <a class="el" href="_user_bll_8cs_source.html">UserBll.cs</a> 第 <a class="el" href="_user_bll_8cs_source.html#l00178">178</a> 行定义.</p>
+<p class="definition">在文件 <a class="el" href="_user_bll_8cs_source.html">UserBll.cs</a> 第 <a class="el" href="_user_bll_8cs_source.html#l00130">130</a> 行定义.</p>
 
 </div>
 </div>
@@ -249,19 +349,19 @@ Public 成员函数</h2></td></tr>
       </table>
 </div><div class="memdoc">
 
-<p>检查登录 </p>
-<dl class="params"><dt>参数</dt><dd>
+<p>检查登录<dl class="params"><dt>参数</dt><dd>
   <table class="params">
-    <tr><td class="paramname">userName</td><td></td></tr>
-    <tr><td class="paramname">password</td><td></td></tr>
+    <tr><td class="paramname">userName</td><td>用户名</td></tr>
+    <tr><td class="paramname">password</td><td>密码</td></tr>
   </table>
   </dd>
 </dl>
-<dl class="section return"><dt>返回</dt><dd></dd></dl>
+<dl class="section return"><dt>返回</dt><dd>如果登录成功，返回用户 ID；否则返回 -1。</dd></dl>
+ </p>
 
 <p>实现了 <a class="el" href="interface_web_api_demo_1_1_b_l_l_1_1_interfaces_1_1_i_user_bll.html#a02cd6651077f9f792196e47b32a3673c">WebApiDemo.BLL.Interfaces.IUserBll</a>.</p>
 
-<p class="definition">在文件 <a class="el" href="_user_bll_8cs_source.html">UserBll.cs</a> 第 <a class="el" href="_user_bll_8cs_source.html#l00143">143</a> 行定义.</p>
+<p class="definition">在文件 <a class="el" href="_user_bll_8cs_source.html">UserBll.cs</a> 第 <a class="el" href="_user_bll_8cs_source.html#l00103">103</a> 行定义.</p>
 
 </div>
 </div>
@@ -280,29 +380,29 @@ Public 成员函数</h2></td></tr>
       </table>
 </div><div class="memdoc">
 
-<p>检查用户是否存在 </p>
-<dl class="params"><dt>参数</dt><dd>
+<p>检查用户是否存在<dl class="params"><dt>参数</dt><dd>
   <table class="params">
-    <tr><td class="paramname">userName</td><td></td></tr>
+    <tr><td class="paramname">userName</td><td>用户名</td></tr>
   </table>
   </dd>
 </dl>
-<dl class="section return"><dt>返回</dt><dd></dd></dl>
+<dl class="section return"><dt>返回</dt><dd>如果用户存在，则返回 true；否则返回 false。</dd></dl>
+ </p>
 
 <p>实现了 <a class="el" href="interface_web_api_demo_1_1_b_l_l_1_1_interfaces_1_1_i_user_bll.html#a7afd34b5595c1e014f95dc81ec49216e">WebApiDemo.BLL.Interfaces.IUserBll</a>.</p>
 
-<p class="definition">在文件 <a class="el" href="_user_bll_8cs_source.html">UserBll.cs</a> 第 <a class="el" href="_user_bll_8cs_source.html#l00132">132</a> 行定义.</p>
+<p class="definition">在文件 <a class="el" href="_user_bll_8cs_source.html">UserBll.cs</a> 第 <a class="el" href="_user_bll_8cs_source.html#l00097">97</a> 行定义.</p>
 
 </div>
 </div>
-<a id="ae6e5ee6300bcbb97babb19f0ea8ddb40" name="ae6e5ee6300bcbb97babb19f0ea8ddb40"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#ae6e5ee6300bcbb97babb19f0ea8ddb40">&#9670;&#160;</a></span>DebugGetAllUsers()</h2>
+<a id="a0db43b01757578a75f35cf12b5f69e6a" name="a0db43b01757578a75f35cf12b5f69e6a"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a0db43b01757578a75f35cf12b5f69e6a">&#9670;&#160;</a></span>DebugGetAllUsers()</h2>
 
 <div class="memitem">
 <div class="memproto">
       <table class="memname">
         <tr>
-          <td class="memname">List&lt; <a class="el" href="class_web_api_demo_1_1_entities_1_1_b_models_1_1_user_b_model.html">UserBModel</a> &gt;? WebApiDemo.BLL.UserBll.DebugGetAllUsers </td>
+          <td class="memname">List&lt; <a class="el" href="class_web_api_demo_1_1_entities_1_1_b_models_1_1_user_b_model.html">UserBModel</a> &gt; WebApiDemo.BLL.UserBll.DebugGetAllUsers </td>
           <td>(</td>
           <td class="paramname"><span class="paramname"><em></em></span></td><td>)</td>
           <td></td>
@@ -310,12 +410,12 @@ Public 成员函数</h2></td></tr>
       </table>
 </div><div class="memdoc">
 
-<p>debug 获取所有用户 </p>
-<dl class="section return"><dt>返回</dt><dd></dd></dl>
+<p>debug 获取所有用户<dl class="section return"><dt>返回</dt><dd>所有用户的列表，或在无用户时返回空列表。</dd></dl>
+ </p>
 
-<p>实现了 <a class="el" href="interface_web_api_demo_1_1_b_l_l_1_1_interfaces_1_1_i_user_bll.html#a9d75c7afd2a2dfe5acd7c9da102a2407">WebApiDemo.BLL.Interfaces.IUserBll</a>.</p>
+<p>实现了 <a class="el" href="interface_web_api_demo_1_1_b_l_l_1_1_interfaces_1_1_i_user_bll.html#aac3b2fc0e4e855d48b38901f1e476b63">WebApiDemo.BLL.Interfaces.IUserBll</a>.</p>
 
-<p class="definition">在文件 <a class="el" href="_user_bll_8cs_source.html">UserBll.cs</a> 第 <a class="el" href="_user_bll_8cs_source.html#l00017">17</a> 行定义.</p>
+<p class="definition">在文件 <a class="el" href="_user_bll_8cs_source.html">UserBll.cs</a> 第 <a class="el" href="_user_bll_8cs_source.html#l00014">14</a> 行定义.</p>
 
 </div>
 </div>
@@ -334,18 +434,18 @@ Public 成员函数</h2></td></tr>
       </table>
 </div><div class="memdoc">
 
-<p>debug 获取用户 </p>
-<dl class="params"><dt>参数</dt><dd>
+<p>debug 获取用户<dl class="params"><dt>参数</dt><dd>
   <table class="params">
-    <tr><td class="paramname">id</td><td></td></tr>
+    <tr><td class="paramname">id</td><td>用户 ID</td></tr>
   </table>
   </dd>
 </dl>
-<dl class="section return"><dt>返回</dt><dd></dd></dl>
+<dl class="section return"><dt>返回</dt><dd>用户信息，或在用户不存在时返回 null。</dd></dl>
+ </p>
 
 <p>实现了 <a class="el" href="interface_web_api_demo_1_1_b_l_l_1_1_interfaces_1_1_i_user_bll.html#ad89ed34be52de4ee724cbe6dc6b51f78">WebApiDemo.BLL.Interfaces.IUserBll</a>.</p>
 
-<p class="definition">在文件 <a class="el" href="_user_bll_8cs_source.html">UserBll.cs</a> 第 <a class="el" href="_user_bll_8cs_source.html#l00027">27</a> 行定义.</p>
+<p class="definition">在文件 <a class="el" href="_user_bll_8cs_source.html">UserBll.cs</a> 第 <a class="el" href="_user_bll_8cs_source.html#l00020">20</a> 行定义.</p>
 
 </div>
 </div>
@@ -364,18 +464,18 @@ Public 成员函数</h2></td></tr>
       </table>
 </div><div class="memdoc">
 
-<p>生成自动登录token </p>
-<dl class="params"><dt>参数</dt><dd>
+<p>生成自动登录 token<dl class="params"><dt>参数</dt><dd>
   <table class="params">
-    <tr><td class="paramname">userId</td><td></td></tr>
+    <tr><td class="paramname">userId</td><td>用户 ID</td></tr>
   </table>
   </dd>
 </dl>
-<dl class="section return"><dt>返回</dt><dd></dd></dl>
+<dl class="section return"><dt>返回</dt><dd>生成的自动登录 token。</dd></dl>
+ </p>
 
 <p>实现了 <a class="el" href="interface_web_api_demo_1_1_b_l_l_1_1_interfaces_1_1_i_user_bll.html#aaa99c3a223a0529b99115130e397d63d">WebApiDemo.BLL.Interfaces.IUserBll</a>.</p>
 
-<p class="definition">在文件 <a class="el" href="_user_bll_8cs_source.html">UserBll.cs</a> 第 <a class="el" href="_user_bll_8cs_source.html#l00168">168</a> 行定义.</p>
+<p class="definition">在文件 <a class="el" href="_user_bll_8cs_source.html">UserBll.cs</a> 第 <a class="el" href="_user_bll_8cs_source.html#l00124">124</a> 行定义.</p>
 
 </div>
 </div>
@@ -394,18 +494,18 @@ Public 成员函数</h2></td></tr>
       </table>
 </div><div class="memdoc">
 
-<p>根据用户ID获取用户基本信息 </p>
-<dl class="params"><dt>参数</dt><dd>
+<p>根据用户ID获取用户基本信息<dl class="params"><dt>参数</dt><dd>
   <table class="params">
-    <tr><td class="paramname">id</td><td></td></tr>
+    <tr><td class="paramname">id</td><td>用户 ID</td></tr>
   </table>
   </dd>
 </dl>
-<dl class="section return"><dt>返回</dt><dd></dd></dl>
+<dl class="section return"><dt>返回</dt><dd>用户基本信息，或在用户不存在时返回 null。</dd></dl>
+ </p>
 
 <p>实现了 <a class="el" href="interface_web_api_demo_1_1_b_l_l_1_1_interfaces_1_1_i_user_bll.html#a56e09003fb8a5c2c2beb0ad3676e922a">WebApiDemo.BLL.Interfaces.IUserBll</a>.</p>
 
-<p class="definition">在文件 <a class="el" href="_user_bll_8cs_source.html">UserBll.cs</a> 第 <a class="el" href="_user_bll_8cs_source.html#l00100">100</a> 行定义.</p>
+<p class="definition">在文件 <a class="el" href="_user_bll_8cs_source.html">UserBll.cs</a> 第 <a class="el" href="_user_bll_8cs_source.html#l00073">73</a> 行定义.</p>
 
 </div>
 </div>
@@ -424,18 +524,18 @@ Public 成员函数</h2></td></tr>
       </table>
 </div><div class="memdoc">
 
-<p>获取用户 </p>
-<dl class="params"><dt>参数</dt><dd>
+<p>获取用户<dl class="params"><dt>参数</dt><dd>
   <table class="params">
-    <tr><td class="paramname">id</td><td></td></tr>
+    <tr><td class="paramname">id</td><td>用户 ID</td></tr>
   </table>
   </dd>
 </dl>
-<dl class="section return"><dt>返回</dt><dd></dd></dl>
+<dl class="section return"><dt>返回</dt><dd>用户信息，或在用户不存在时返回 null。</dd></dl>
+ </p>
 
 <p>实现了 <a class="el" href="interface_web_api_demo_1_1_b_l_l_1_1_interfaces_1_1_i_user_bll.html#ab9e0517e73a533c6c17f0c4ad48e486f">WebApiDemo.BLL.Interfaces.IUserBll</a>.</p>
 
-<p class="definition">在文件 <a class="el" href="_user_bll_8cs_source.html">UserBll.cs</a> 第 <a class="el" href="_user_bll_8cs_source.html#l00037">37</a> 行定义.</p>
+<p class="definition">在文件 <a class="el" href="_user_bll_8cs_source.html">UserBll.cs</a> 第 <a class="el" href="_user_bll_8cs_source.html#l00026">26</a> 行定义.</p>
 
 </div>
 </div>
@@ -454,18 +554,18 @@ Public 成员函数</h2></td></tr>
       </table>
 </div><div class="memdoc">
 
-<p>根据用户ID获取用户用于POST的数据，只保留userName,RigisterTime和Points字段，注意排除IsDeleted字段 </p>
-<dl class="params"><dt>参数</dt><dd>
+<p>根据用户ID获取用户用于POST的数据，只保留 userName, RegisterTime 和 Points 字段，注意排除 IsDeleted 字段<dl class="params"><dt>参数</dt><dd>
   <table class="params">
-    <tr><td class="paramname">id</td><td></td></tr>
+    <tr><td class="paramname">id</td><td>用户 ID</td></tr>
   </table>
   </dd>
 </dl>
-<dl class="section return"><dt>返回</dt><dd></dd></dl>
+<dl class="section return"><dt>返回</dt><dd>用户信息，或在用户不存在时返回 null。</dd></dl>
+ </p>
 
 <p>实现了 <a class="el" href="interface_web_api_demo_1_1_b_l_l_1_1_interfaces_1_1_i_user_bll.html#ad6a6725b18476c0b42198dcd6d6977d7">WebApiDemo.BLL.Interfaces.IUserBll</a>.</p>
 
-<p class="definition">在文件 <a class="el" href="_user_bll_8cs_source.html">UserBll.cs</a> 第 <a class="el" href="_user_bll_8cs_source.html#l00079">79</a> 行定义.</p>
+<p class="definition">在文件 <a class="el" href="_user_bll_8cs_source.html">UserBll.cs</a> 第 <a class="el" href="_user_bll_8cs_source.html#l00056">56</a> 行定义.</p>
 
 </div>
 </div>
@@ -484,18 +584,18 @@ Public 成员函数</h2></td></tr>
       </table>
 </div><div class="memdoc">
 
-<p>根据用户ID获取用户详细信息 </p>
-<dl class="params"><dt>参数</dt><dd>
+<p>根据用户ID获取用户详细信息<dl class="params"><dt>参数</dt><dd>
   <table class="params">
-    <tr><td class="paramname">id</td><td></td></tr>
+    <tr><td class="paramname">id</td><td>用户 ID</td></tr>
   </table>
   </dd>
 </dl>
-<dl class="section return"><dt>返回</dt><dd></dd></dl>
+<dl class="section return"><dt>返回</dt><dd>用户详细信息，或在用户不存在时返回 null。</dd></dl>
+ </p>
 
 <p>实现了 <a class="el" href="interface_web_api_demo_1_1_b_l_l_1_1_interfaces_1_1_i_user_bll.html#a3c32a321203c85cd7d82dd1652aab129">WebApiDemo.BLL.Interfaces.IUserBll</a>.</p>
 
-<p class="definition">在文件 <a class="el" href="_user_bll_8cs_source.html">UserBll.cs</a> 第 <a class="el" href="_user_bll_8cs_source.html#l00122">122</a> 行定义.</p>
+<p class="definition">在文件 <a class="el" href="_user_bll_8cs_source.html">UserBll.cs</a> 第 <a class="el" href="_user_bll_8cs_source.html#l00091">91</a> 行定义.</p>
 
 </div>
 </div>
@@ -514,18 +614,18 @@ Public 成员函数</h2></td></tr>
       </table>
 </div><div class="memdoc">
 
-<p>根据用户ID获取用户名 </p>
-<dl class="params"><dt>参数</dt><dd>
+<p>根据用户ID获取用户名<dl class="params"><dt>参数</dt><dd>
   <table class="params">
-    <tr><td class="paramname">id</td><td></td></tr>
+    <tr><td class="paramname">id</td><td>用户 ID</td></tr>
   </table>
   </dd>
 </dl>
-<dl class="section return"><dt>返回</dt><dd></dd></dl>
+<dl class="section return"><dt>返回</dt><dd>用户名，如果用户不存在则返回 "未找到"。</dd></dl>
+ </p>
 
 <p>实现了 <a class="el" href="interface_web_api_demo_1_1_b_l_l_1_1_interfaces_1_1_i_user_bll.html#afd540a42ce210a799c3755ec0828889e">WebApiDemo.BLL.Interfaces.IUserBll</a>.</p>
 
-<p class="definition">在文件 <a class="el" href="_user_bll_8cs_source.html">UserBll.cs</a> 第 <a class="el" href="_user_bll_8cs_source.html#l00047">47</a> 行定义.</p>
+<p class="definition">在文件 <a class="el" href="_user_bll_8cs_source.html">UserBll.cs</a> 第 <a class="el" href="_user_bll_8cs_source.html#l00032">32</a> 行定义.</p>
 
 </div>
 </div>
@@ -544,18 +644,18 @@ Public 成员函数</h2></td></tr>
       </table>
 </div><div class="memdoc">
 
-<p>根据用户ID列表获取用户名列表 </p>
-<dl class="params"><dt>参数</dt><dd>
+<p>根据用户ID列表获取用户名列表<dl class="params"><dt>参数</dt><dd>
   <table class="params">
-    <tr><td class="paramname">ids</td><td></td></tr>
+    <tr><td class="paramname">ids</td><td>用户 ID 列表</td></tr>
   </table>
   </dd>
 </dl>
-<dl class="section return"><dt>返回</dt><dd></dd></dl>
+<dl class="section return"><dt>返回</dt><dd>用户名列表，或在无对应用户时返回空列表。</dd></dl>
+ </p>
 
 <p>实现了 <a class="el" href="interface_web_api_demo_1_1_b_l_l_1_1_interfaces_1_1_i_user_bll.html#af5dad2b75d95e4070f2aebda03a3baa6">WebApiDemo.BLL.Interfaces.IUserBll</a>.</p>
 
-<p class="definition">在文件 <a class="el" href="_user_bll_8cs_source.html">UserBll.cs</a> 第 <a class="el" href="_user_bll_8cs_source.html#l00063">63</a> 行定义.</p>
+<p class="definition">在文件 <a class="el" href="_user_bll_8cs_source.html">UserBll.cs</a> 第 <a class="el" href="_user_bll_8cs_source.html#l00044">44</a> 行定义.</p>
 
 </div>
 </div>
@@ -574,18 +674,18 @@ Public 成员函数</h2></td></tr>
       </table>
 </div><div class="memdoc">
 
-<p>删除用户 </p>
-<dl class="params"><dt>参数</dt><dd>
+<p>删除用户<dl class="params"><dt>参数</dt><dd>
   <table class="params">
-    <tr><td class="paramname">id</td><td></td></tr>
+    <tr><td class="paramname">id</td><td>用户 ID</td></tr>
   </table>
   </dd>
 </dl>
-<dl class="section return"><dt>返回</dt><dd></dd></dl>
+<dl class="section return"><dt>返回</dt><dd>删除结果消息，成功时返回 "删除成功"，否则返回 "删除失败"。</dd></dl>
+ </p>
 
 <p>实现了 <a class="el" href="interface_web_api_demo_1_1_b_l_l_1_1_interfaces_1_1_i_user_bll.html#ac962a553f2eaa9a40b3aeed557fc1b0b">WebApiDemo.BLL.Interfaces.IUserBll</a>.</p>
 
-<p class="definition">在文件 <a class="el" href="_user_bll_8cs_source.html">UserBll.cs</a> 第 <a class="el" href="_user_bll_8cs_source.html#l00223">223</a> 行定义.</p>
+<p class="definition">在文件 <a class="el" href="_user_bll_8cs_source.html">UserBll.cs</a> 第 <a class="el" href="_user_bll_8cs_source.html#l00163">163</a> 行定义.</p>
 
 </div>
 </div>
@@ -604,18 +704,18 @@ Public 成员函数</h2></td></tr>
       </table>
 </div><div class="memdoc">
 
-<p>更新用户 </p>
-<dl class="params"><dt>参数</dt><dd>
+<p>更新用户<dl class="params"><dt>参数</dt><dd>
   <table class="params">
-    <tr><td class="paramname">userBModel</td><td></td></tr>
+    <tr><td class="paramname">userBModel</td><td>用户模型</td></tr>
   </table>
   </dd>
 </dl>
-<dl class="section return"><dt>返回</dt><dd></dd></dl>
+<dl class="section return"><dt>返回</dt><dd>更新结果消息，成功时返回 "更新成功"，否则返回 "更新失败"。</dd></dl>
+ </p>
 
 <p>实现了 <a class="el" href="interface_web_api_demo_1_1_b_l_l_1_1_interfaces_1_1_i_user_bll.html#a826bfcd9123640961f1a3d73ace16c59">WebApiDemo.BLL.Interfaces.IUserBll</a>.</p>
 
-<p class="definition">在文件 <a class="el" href="_user_bll_8cs_source.html">UserBll.cs</a> 第 <a class="el" href="_user_bll_8cs_source.html#l00209">209</a> 行定义.</p>
+<p class="definition">在文件 <a class="el" href="_user_bll_8cs_source.html">UserBll.cs</a> 第 <a class="el" href="_user_bll_8cs_source.html#l00153">153</a> 行定义.</p>
 
 </div>
 </div>

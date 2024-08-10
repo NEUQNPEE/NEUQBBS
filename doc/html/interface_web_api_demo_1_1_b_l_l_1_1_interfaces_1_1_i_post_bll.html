@@ -103,6 +103,9 @@ $(function(){initNavTree('interface_web_api_demo_1_1_b_l_l_1_1_interfaces_1_1_i_
   <div class="headertitle"><div class="title">WebApiDemo.BLL.Interfaces.IPostBll接口 参考</div></div>
 </div><!--header-->
 <div class="contents">
+
+<p>帖子业务逻辑接口  
+ <a href="#details">更多...</a></p>
 <div class="dynheader">
 类 WebApiDemo.BLL.Interfaces.IPostBll 继承关系图:</div>
 <div class="dyncontent">
@@ -116,29 +119,40 @@ $(function(){initNavTree('interface_web_api_demo_1_1_b_l_l_1_1_interfaces_1_1_i_
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="pub-methods" name="pub-methods"></a>
 Public 成员函数</h2></td></tr>
 <tr class="memitem:a58f0b89fc2f76bdf5d42a8b46f7b1b81" id="r_a58f0b89fc2f76bdf5d42a8b46f7b1b81"><td class="memItemLeft" align="right" valign="top">List&lt; <a class="el" href="class_web_api_demo_1_1_entities_1_1_e_post_1_1_post.html">Post</a> &gt;?&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a58f0b89fc2f76bdf5d42a8b46f7b1b81">GetAllPosts</a> (int sectionId)</td></tr>
+<tr class="memdesc:a58f0b89fc2f76bdf5d42a8b46f7b1b81"><td class="mdescLeft">&#160;</td><td class="mdescRight">获取指定版块的所有帖子。  <br /></td></tr>
 <tr class="separator:a58f0b89fc2f76bdf5d42a8b46f7b1b81"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:afeb53084d5245580ba2ce8aa44579f56" id="r_afeb53084d5245580ba2ce8aa44579f56"><td class="memItemLeft" align="right" valign="top">List&lt; <a class="el" href="class_web_api_demo_1_1_entities_1_1_b_models_1_1_user_b_model.html">UserBModel</a> &gt;?&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#afeb53084d5245580ba2ce8aa44579f56">GetAllUsers</a> (int sectionId)</td></tr>
+<tr class="memdesc:afeb53084d5245580ba2ce8aa44579f56"><td class="mdescLeft">&#160;</td><td class="mdescRight">获取在指定版块发过帖的所有用户的部分信息，包括：Id, UserName, RegisterTime和Points  <br /></td></tr>
 <tr class="separator:afeb53084d5245580ba2ce8aa44579f56"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a7036240e1d37c1a1bcf6f826b49c0833" id="r_a7036240e1d37c1a1bcf6f826b49c0833"><td class="memItemLeft" align="right" valign="top">List&lt; <a class="el" href="class_web_api_demo_1_1_entities_1_1_e_post_1_1_post.html">Post</a> &gt;?&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a7036240e1d37c1a1bcf6f826b49c0833">GetPosts</a> (<a class="el" href="class_web_api_demo_1_1_entities_1_1_b_models_1_1_post_list_b_model.html">PostListBModel</a> postListBModel)</td></tr>
+<tr class="memdesc:a7036240e1d37c1a1bcf6f826b49c0833"><td class="mdescLeft">&#160;</td><td class="mdescRight">根据帖子列表业务模型获取帖子。用于分页功能。  <br /></td></tr>
 <tr class="separator:a7036240e1d37c1a1bcf6f826b49c0833"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a51bf2fff0a1666c6768dc21fc958dfd0" id="r_a51bf2fff0a1666c6768dc21fc958dfd0"><td class="memItemLeft" align="right" valign="top">List&lt; <a class="el" href="class_web_api_demo_1_1_entities_1_1_e_post_1_1_post.html">Post</a> &gt;?&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a51bf2fff0a1666c6768dc21fc958dfd0">GetPosts</a> (int sectionId, int mainPostId)</td></tr>
+<tr class="memdesc:a51bf2fff0a1666c6768dc21fc958dfd0"><td class="mdescLeft">&#160;</td><td class="mdescRight">获取指定版块和主帖 ID 的帖子。  <br /></td></tr>
 <tr class="separator:a51bf2fff0a1666c6768dc21fc958dfd0"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a6a5526fb443d9bd181abca7ccc1f63c1" id="r_a6a5526fb443d9bd181abca7ccc1f63c1"><td class="memItemLeft" align="right" valign="top">int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a6a5526fb443d9bd181abca7ccc1f63c1">AddPost</a> (int sectionId, <a class="el" href="class_web_api_demo_1_1_entities_1_1_e_post_1_1_post.html">Post</a> post)</td></tr>
+<tr class="memdesc:a6a5526fb443d9bd181abca7ccc1f63c1"><td class="mdescLeft">&#160;</td><td class="mdescRight">在指定版块中添加新帖。  <br /></td></tr>
 <tr class="separator:a6a5526fb443d9bd181abca7ccc1f63c1"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:aa5244da781954dc5629f36ac6919c934" id="r_aa5244da781954dc5629f36ac6919c934"><td class="memItemLeft" align="right" valign="top">List&lt; <a class="el" href="class_web_api_demo_1_1_entities_1_1_b_models_1_1_user_b_model.html">UserBModel</a> &gt;?&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#aa5244da781954dc5629f36ac6919c934">GetUsers</a> (<a class="el" href="class_web_api_demo_1_1_entities_1_1_b_models_1_1_post_list_b_model.html">PostListBModel</a> postListBModel)</td></tr>
+<tr class="memdesc:aa5244da781954dc5629f36ac6919c934"><td class="mdescLeft">&#160;</td><td class="mdescRight">根据帖子列表业务模型获取用户。用于获取一个分页上的帖子的所属用户。  <br /></td></tr>
 <tr class="separator:aa5244da781954dc5629f36ac6919c934"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:af73175c9e2879a9e12b376fd229726ad" id="r_af73175c9e2879a9e12b376fd229726ad"><td class="memItemLeft" align="right" valign="top"><a class="el" href="class_web_api_demo_1_1_entities_1_1_e_post_1_1_post.html">Post</a>?&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#af73175c9e2879a9e12b376fd229726ad">GetLastReplyPosts</a> (int sectionId, int mainPostId)</td></tr>
+<tr class="memdesc:af73175c9e2879a9e12b376fd229726ad"><td class="mdescLeft">&#160;</td><td class="mdescRight">获取指定版块和主帖 ID 的最后回复帖。  <br /></td></tr>
 <tr class="separator:af73175c9e2879a9e12b376fd229726ad"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a22f581f72d0839c2224016b9cffd550a" id="r_a22f581f72d0839c2224016b9cffd550a"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a22f581f72d0839c2224016b9cffd550a">UpVote</a> (int sectionId, int postId)</td></tr>
+<tr class="memdesc:a22f581f72d0839c2224016b9cffd550a"><td class="mdescLeft">&#160;</td><td class="mdescRight">为指定版块和帖子 ID 点赞。  <br /></td></tr>
 <tr class="separator:a22f581f72d0839c2224016b9cffd550a"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a9e2479196d4cd9d0fdf77eecad952493" id="r_a9e2479196d4cd9d0fdf77eecad952493"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a9e2479196d4cd9d0fdf77eecad952493">DownVote</a> (int sectionId, int postId)</td></tr>
+<tr class="memdesc:a9e2479196d4cd9d0fdf77eecad952493"><td class="mdescLeft">&#160;</td><td class="mdescRight">为指定版块和帖子 ID 点踩。  <br /></td></tr>
 <tr class="separator:a9e2479196d4cd9d0fdf77eecad952493"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a2d7a7d10f4a1d77d2698df2a6d74da05" id="r_a2d7a7d10f4a1d77d2698df2a6d74da05"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a2d7a7d10f4a1d77d2698df2a6d74da05">UpdateView</a> (int sectionId, int postId)</td></tr>
+<tr class="memdesc:a2d7a7d10f4a1d77d2698df2a6d74da05"><td class="mdescLeft">&#160;</td><td class="mdescRight">更新指定版块和帖子 ID 的浏览量。  <br /></td></tr>
 <tr class="separator:a2d7a7d10f4a1d77d2698df2a6d74da05"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
 <a name="details" id="details"></a><h2 class="groupheader">详细描述</h2>
-<div class="textblock">
-<p class="definition">在文件 <a class="el" href="_i_post_bll_8cs_source.html">IPostBll.cs</a> 第 <a class="el" href="_i_post_bll_8cs_source.html#l00006">6</a> 行定义.</p>
+<div class="textblock"><p>帖子业务逻辑接口 </p>
+
+<p class="definition">在文件 <a class="el" href="_i_post_bll_8cs_source.html">IPostBll.cs</a> 第 <a class="el" href="_i_post_bll_8cs_source.html#l00009">9</a> 行定义.</p>
 </div><h2 class="groupheader">成员函数说明</h2>
 <a id="a6a5526fb443d9bd181abca7ccc1f63c1" name="a6a5526fb443d9bd181abca7ccc1f63c1"></a>
 <h2 class="memtitle"><span class="permalink"><a href="#a6a5526fb443d9bd181abca7ccc1f63c1">&#9670;&#160;</a></span>AddPost()</h2>
@@ -158,6 +172,16 @@ Public 成员函数</h2></td></tr>
         </tr>
       </table>
 </div><div class="memdoc">
+
+<p>在指定版块中添加新帖。 </p>
+<dl class="params"><dt>参数</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">sectionId</td><td>版块 ID</td></tr>
+    <tr><td class="paramname">post</td><td>要添加的帖子</td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>返回</dt><dd>添加的帖子的 ID。</dd></dl>
 
 <p>在 <a class="el" href="class_web_api_demo_1_1_b_l_l_1_1_post_bll.html#a1ea07fe3c4d8794e3fcfdcbd5d8f3d8e">WebApiDemo.BLL.PostBll</a> 内被实现.</p>
 
@@ -182,6 +206,15 @@ Public 成员函数</h2></td></tr>
       </table>
 </div><div class="memdoc">
 
+<p>为指定版块和帖子 ID 点踩。 </p>
+<dl class="params"><dt>参数</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">sectionId</td><td>版块 ID</td></tr>
+    <tr><td class="paramname">postId</td><td>帖子 ID</td></tr>
+  </table>
+  </dd>
+</dl>
+
 <p>在 <a class="el" href="class_web_api_demo_1_1_b_l_l_1_1_post_bll.html#a0984ecb49b6688f4018174a9808b1344">WebApiDemo.BLL.PostBll</a> 内被实现.</p>
 
 </div>
@@ -201,6 +234,15 @@ Public 成员函数</h2></td></tr>
       </table>
 </div><div class="memdoc">
 
+<p>获取指定版块的所有帖子。 </p>
+<dl class="params"><dt>参数</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">sectionId</td><td>版块 ID</td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>返回</dt><dd>帖子列表，或在无帖子时返回空列表。</dd></dl>
+
 <p>在 <a class="el" href="class_web_api_demo_1_1_b_l_l_1_1_post_bll.html#afe585a69bfe307d9667e9a173aea449d">WebApiDemo.BLL.PostBll</a> 内被实现.</p>
 
 </div>
@@ -219,6 +261,15 @@ Public 成员函数</h2></td></tr>
         </tr>
       </table>
 </div><div class="memdoc">
+
+<p>获取在指定版块发过帖的所有用户的部分信息，包括：Id, UserName, RegisterTime和Points </p>
+<dl class="params"><dt>参数</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">sectionId</td><td>版块 ID</td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>返回</dt><dd>用户业务模型列表，或在无用户时返回空列表。</dd></dl>
 
 <p>在 <a class="el" href="class_web_api_demo_1_1_b_l_l_1_1_post_bll.html#a5386ab7cc1bab4e6eb4374109f2c11cc">WebApiDemo.BLL.PostBll</a> 内被实现.</p>
 
@@ -243,6 +294,16 @@ Public 成员函数</h2></td></tr>
       </table>
 </div><div class="memdoc">
 
+<p>获取指定版块和主帖 ID 的最后回复帖。 </p>
+<dl class="params"><dt>参数</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">sectionId</td><td>版块 ID</td></tr>
+    <tr><td class="paramname">mainPostId</td><td>主帖 ID</td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>返回</dt><dd>最后回复的帖子，或在无回复时返回 null。</dd></dl>
+
 <p>在 <a class="el" href="class_web_api_demo_1_1_b_l_l_1_1_post_bll.html#ae8b4131f25a48b452216075ef46b59a1">WebApiDemo.BLL.PostBll</a> 内被实现.</p>
 
 </div>
@@ -266,6 +327,16 @@ Public 成员函数</h2></td></tr>
       </table>
 </div><div class="memdoc">
 
+<p>获取指定版块和主帖 ID 的帖子。 </p>
+<dl class="params"><dt>参数</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">sectionId</td><td>版块 ID</td></tr>
+    <tr><td class="paramname">mainPostId</td><td>主帖 ID</td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>返回</dt><dd>帖子列表，或在无匹配帖子时返回 null。</dd></dl>
+
 <p>在 <a class="el" href="class_web_api_demo_1_1_b_l_l_1_1_post_bll.html#ac7bea46506f85a220f61fc346319f186">WebApiDemo.BLL.PostBll</a> 内被实现.</p>
 
 </div>
@@ -285,6 +356,15 @@ Public 成员函数</h2></td></tr>
       </table>
 </div><div class="memdoc">
 
+<p>根据帖子列表业务模型获取帖子。用于分页功能。 </p>
+<dl class="params"><dt>参数</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">postListBModel</td><td>帖子列表业务模型</td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>返回</dt><dd>符合条件的帖子列表，或在无匹配帖子时返回空列表。</dd></dl>
+
 <p>在 <a class="el" href="class_web_api_demo_1_1_b_l_l_1_1_post_bll.html#aff725a5fa917bedcc6c636ea51c62a78">WebApiDemo.BLL.PostBll</a> 内被实现.</p>
 
 </div>
@@ -303,6 +383,15 @@ Public 成员函数</h2></td></tr>
         </tr>
       </table>
 </div><div class="memdoc">
+
+<p>根据帖子列表业务模型获取用户。用于获取一个分页上的帖子的所属用户。 </p>
+<dl class="params"><dt>参数</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">postListBModel</td><td>帖子列表业务模型</td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>返回</dt><dd>用户业务模型列表，或在无匹配用户时返回空列表。</dd></dl>
 
 <p>在 <a class="el" href="class_web_api_demo_1_1_b_l_l_1_1_post_bll.html#abbb25a97317fca20f7dc8667b46b61fb">WebApiDemo.BLL.PostBll</a> 内被实现.</p>
 
@@ -327,6 +416,15 @@ Public 成员函数</h2></td></tr>
       </table>
 </div><div class="memdoc">
 
+<p>更新指定版块和帖子 ID 的浏览量。 </p>
+<dl class="params"><dt>参数</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">sectionId</td><td>版块 ID</td></tr>
+    <tr><td class="paramname">postId</td><td>帖子 ID</td></tr>
+  </table>
+  </dd>
+</dl>
+
 <p>在 <a class="el" href="class_web_api_demo_1_1_b_l_l_1_1_post_bll.html#a3534c460769b5874bac57c6a46295d65">WebApiDemo.BLL.PostBll</a> 内被实现.</p>
 
 </div>
@@ -349,6 +447,15 @@ Public 成员函数</h2></td></tr>
         </tr>
       </table>
 </div><div class="memdoc">
+
+<p>为指定版块和帖子 ID 点赞。 </p>
+<dl class="params"><dt>参数</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">sectionId</td><td>版块 ID</td></tr>
+    <tr><td class="paramname">postId</td><td>帖子 ID</td></tr>
+  </table>
+  </dd>
+</dl>
 
 <p>在 <a class="el" href="class_web_api_demo_1_1_b_l_l_1_1_post_bll.html#a484a42aa85934fab91afe549cc6fc342">WebApiDemo.BLL.PostBll</a> 内被实现.</p>
 

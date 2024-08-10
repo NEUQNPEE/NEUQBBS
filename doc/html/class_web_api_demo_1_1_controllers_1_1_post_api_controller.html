@@ -103,6 +103,9 @@ $(function(){initNavTree('class_web_api_demo_1_1_controllers_1_1_post_api_contro
   <div class="headertitle"><div class="title">WebApiDemo.Controllers.PostApiController类 参考</div></div>
 </div><!--header-->
 <div class="contents">
+
+<p>帖子相关API  
+ <a href="#details">更多...</a></p>
 <div class="dynheader">
 类 WebApiDemo.Controllers.PostApiController 继承关系图:</div>
 <div class="dyncontent">
@@ -113,6 +116,7 @@ $(function(){initNavTree('class_web_api_demo_1_1_controllers_1_1_post_api_contro
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="pub-methods" name="pub-methods"></a>
 Public 成员函数</h2></td></tr>
 <tr class="memitem:aacfb1afb047ecce8c2bf14062a7dde41" id="r_aacfb1afb047ecce8c2bf14062a7dde41"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#aacfb1afb047ecce8c2bf14062a7dde41">PostApiController</a> (<a class="el" href="interface_web_api_demo_1_1_b_l_l_1_1_interfaces_1_1_i_post_bll.html">IPostBll</a> postBll, ILogger&lt; <a class="el" href="class_web_api_demo_1_1_controllers_1_1_post_api_controller.html">PostApiController</a> &gt; logger)</td></tr>
+<tr class="memdesc:aacfb1afb047ecce8c2bf14062a7dde41"><td class="mdescLeft">&#160;</td><td class="mdescRight">构造函数  <br /></td></tr>
 <tr class="separator:aacfb1afb047ecce8c2bf14062a7dde41"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a181d18bb39f727896d256fa997c2772e" id="r_a181d18bb39f727896d256fa997c2772e"><td class="memItemLeft" align="right" valign="top">ActionResult&lt; List&lt; <a class="el" href="class_web_api_demo_1_1_entities_1_1_e_post_1_1_post.html">Post</a> &gt; &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a181d18bb39f727896d256fa997c2772e">GetAllPostsBySectionId</a> (int sectionId)</td></tr>
 <tr class="memdesc:a181d18bb39f727896d256fa997c2772e"><td class="mdescLeft">&#160;</td><td class="mdescRight">获取板块({sectionId})的所有帖子  <br /></td></tr>
@@ -127,17 +131,22 @@ Public 成员函数</h2></td></tr>
 <tr class="memdesc:ade04d8d871bae2e860acc8844c8e62f6"><td class="mdescLeft">&#160;</td><td class="mdescRight">获取板块({sectionId})自第{beginNum}条开始的{needNum}条帖子  <br /></td></tr>
 <tr class="separator:ade04d8d871bae2e860acc8844c8e62f6"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:afcc044044204865980ac0ae691fd757a" id="r_afcc044044204865980ac0ae691fd757a"><td class="memItemLeft" align="right" valign="top">ActionResult&lt; IEnumerable&lt; <a class="el" href="class_web_api_demo_1_1_models_1_1_user_base_info_response.html">UserBaseInfoResponse</a> &gt; &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#afcc044044204865980ac0ae691fd757a">GetUsersBaseInfoInRangeBySectionId</a> ([FromQuery] int sectionId, [FromQuery] int beginNum, [FromQuery] int needNum)</td></tr>
+<tr class="memdesc:afcc044044204865980ac0ae691fd757a"><td class="mdescLeft">&#160;</td><td class="mdescRight">获取板块({sectionId})自第{beginNum}条开始的{needNum}条帖子的用户基本信息  <br /></td></tr>
 <tr class="separator:afcc044044204865980ac0ae691fd757a"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:abe01fe846622ee4f3d2f86f9017ce5e1" id="r_abe01fe846622ee4f3d2f86f9017ce5e1"><td class="memItemLeft" align="right" valign="top">ActionResult&lt; int &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#abe01fe846622ee4f3d2f86f9017ce5e1">Insert</a> (int sectionId, [FromBody] <a class="el" href="class_web_api_demo_1_1_models_1_1_post_insert_request.html">PostInsertRequest</a> request)</td></tr>
+<tr class="memdesc:abe01fe846622ee4f3d2f86f9017ce5e1"><td class="mdescLeft">&#160;</td><td class="mdescRight">发表帖子  <br /></td></tr>
 <tr class="separator:abe01fe846622ee4f3d2f86f9017ce5e1"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a481eec5496d31f450b4ecfe216cb7ebc" id="r_a481eec5496d31f450b4ecfe216cb7ebc"><td class="memItemLeft" align="right" valign="top">ActionResult&lt; string &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a481eec5496d31f450b4ecfe216cb7ebc">Update</a> (int sectionId, int postId, [FromBody] <a class="el" href="class_web_api_demo_1_1_models_1_1_post_update_request.html">PostUpdateRequest</a> request)</td></tr>
+<tr class="memdesc:a481eec5496d31f450b4ecfe216cb7ebc"><td class="mdescLeft">&#160;</td><td class="mdescRight">更新帖子相关信息，目前只支持点赞与点踩  <br /></td></tr>
 <tr class="separator:a481eec5496d31f450b4ecfe216cb7ebc"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:aebb577b5523ff941e87ef17778b2e7ee" id="r_aebb577b5523ff941e87ef17778b2e7ee"><td class="memItemLeft" align="right" valign="top">IActionResult&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#aebb577b5523ff941e87ef17778b2e7ee">UpdateView</a> (int sectionId, int postId)</td></tr>
+<tr class="memdesc:aebb577b5523ff941e87ef17778b2e7ee"><td class="mdescLeft">&#160;</td><td class="mdescRight">更新浏览量  <br /></td></tr>
 <tr class="separator:aebb577b5523ff941e87ef17778b2e7ee"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
 <a name="details" id="details"></a><h2 class="groupheader">详细描述</h2>
-<div class="textblock">
-<p class="definition">在文件 <a class="el" href="_post_api_controller_8cs_source.html">PostApiController.cs</a> 第 <a class="el" href="_post_api_controller_8cs_source.html#l00014">14</a> 行定义.</p>
+<div class="textblock"><p>帖子相关API </p>
+
+<p class="definition">在文件 <a class="el" href="_post_api_controller_8cs_source.html">PostApiController.cs</a> 第 <a class="el" href="_post_api_controller_8cs_source.html#l00016">16</a> 行定义.</p>
 </div><h2 class="groupheader">构造及析构函数说明</h2>
 <a id="aacfb1afb047ecce8c2bf14062a7dde41" name="aacfb1afb047ecce8c2bf14062a7dde41"></a>
 <h2 class="memtitle"><span class="permalink"><a href="#aacfb1afb047ecce8c2bf14062a7dde41">&#9670;&#160;</a></span>PostApiController()</h2>
@@ -158,7 +167,16 @@ Public 成员函数</h2></td></tr>
       </table>
 </div><div class="memdoc">
 
-<p class="definition">在文件 <a class="el" href="_post_api_controller_8cs_source.html">PostApiController.cs</a> 第 <a class="el" href="_post_api_controller_8cs_source.html#l00019">19</a> 行定义.</p>
+<p>构造函数 </p>
+<dl class="params"><dt>参数</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">postBll</td><td></td></tr>
+    <tr><td class="paramname">logger</td><td></td></tr>
+  </table>
+  </dd>
+</dl>
+
+<p class="definition">在文件 <a class="el" href="_post_api_controller_8cs_source.html">PostApiController.cs</a> 第 <a class="el" href="_post_api_controller_8cs_source.html#l00026">26</a> 行定义.</p>
 
 </div>
 </div>
@@ -181,13 +199,13 @@ Public 成员函数</h2></td></tr>
 <p>获取板块({sectionId})的所有帖子 </p>
 <dl class="params"><dt>参数</dt><dd>
   <table class="params">
-    <tr><td class="paramname">sectionId</td><td></td></tr>
+    <tr><td class="paramname">sectionId</td><td>板块id</td></tr>
   </table>
   </dd>
 </dl>
 <dl class="section return"><dt>返回</dt><dd></dd></dl>
 
-<p class="definition">在文件 <a class="el" href="_post_api_controller_8cs_source.html">PostApiController.cs</a> 第 <a class="el" href="_post_api_controller_8cs_source.html#l00031">31</a> 行定义.</p>
+<p class="definition">在文件 <a class="el" href="_post_api_controller_8cs_source.html">PostApiController.cs</a> 第 <a class="el" href="_post_api_controller_8cs_source.html#l00038">38</a> 行定义.</p>
 
 </div>
 </div>
@@ -215,7 +233,7 @@ Public 成员函数</h2></td></tr>
 </dl>
 <dl class="section return"><dt>返回</dt><dd></dd></dl>
 
-<p class="definition">在文件 <a class="el" href="_post_api_controller_8cs_source.html">PostApiController.cs</a> 第 <a class="el" href="_post_api_controller_8cs_source.html#l00066">66</a> 行定义.</p>
+<p class="definition">在文件 <a class="el" href="_post_api_controller_8cs_source.html">PostApiController.cs</a> 第 <a class="el" href="_post_api_controller_8cs_source.html#l00073">73</a> 行定义.</p>
 
 </div>
 </div>
@@ -248,7 +266,7 @@ Public 成员函数</h2></td></tr>
 </dl>
 <dl class="section return"><dt>返回</dt><dd></dd></dl>
 
-<p class="definition">在文件 <a class="el" href="_post_api_controller_8cs_source.html">PostApiController.cs</a> 第 <a class="el" href="_post_api_controller_8cs_source.html#l00049">49</a> 行定义.</p>
+<p class="definition">在文件 <a class="el" href="_post_api_controller_8cs_source.html">PostApiController.cs</a> 第 <a class="el" href="_post_api_controller_8cs_source.html#l00056">56</a> 行定义.</p>
 
 </div>
 </div>
@@ -287,7 +305,7 @@ Public 成员函数</h2></td></tr>
 </dl>
 <dl class="section return"><dt>返回</dt><dd></dd></dl>
 
-<p class="definition">在文件 <a class="el" href="_post_api_controller_8cs_source.html">PostApiController.cs</a> 第 <a class="el" href="_post_api_controller_8cs_source.html#l00088">88</a> 行定义.</p>
+<p class="definition">在文件 <a class="el" href="_post_api_controller_8cs_source.html">PostApiController.cs</a> 第 <a class="el" href="_post_api_controller_8cs_source.html#l00095">95</a> 行定义.</p>
 
 </div>
 </div>
@@ -315,7 +333,18 @@ Public 成员函数</h2></td></tr>
       </table>
 </div><div class="memdoc">
 
-<p class="definition">在文件 <a class="el" href="_post_api_controller_8cs_source.html">PostApiController.cs</a> 第 <a class="el" href="_post_api_controller_8cs_source.html#l00118">118</a> 行定义.</p>
+<p>获取板块({sectionId})自第{beginNum}条开始的{needNum}条帖子的用户基本信息 </p>
+<dl class="params"><dt>参数</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">sectionId</td><td></td></tr>
+    <tr><td class="paramname">beginNum</td><td></td></tr>
+    <tr><td class="paramname">needNum</td><td></td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>返回</dt><dd></dd></dl>
+
+<p class="definition">在文件 <a class="el" href="_post_api_controller_8cs_source.html">PostApiController.cs</a> 第 <a class="el" href="_post_api_controller_8cs_source.html#l00132">132</a> 行定义.</p>
 
 </div>
 </div>
@@ -338,7 +367,17 @@ Public 成员函数</h2></td></tr>
       </table>
 </div><div class="memdoc">
 
-<p class="definition">在文件 <a class="el" href="_post_api_controller_8cs_source.html">PostApiController.cs</a> 第 <a class="el" href="_post_api_controller_8cs_source.html#l00157">157</a> 行定义.</p>
+<p>发表帖子 </p>
+<dl class="params"><dt>参数</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">sectionId</td><td></td></tr>
+    <tr><td class="paramname">request</td><td></td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>返回</dt><dd></dd></dl>
+
+<p class="definition">在文件 <a class="el" href="_post_api_controller_8cs_source.html">PostApiController.cs</a> 第 <a class="el" href="_post_api_controller_8cs_source.html#l00174">174</a> 行定义.</p>
 
 </div>
 </div>
@@ -366,7 +405,18 @@ Public 成员函数</h2></td></tr>
       </table>
 </div><div class="memdoc">
 
-<p class="definition">在文件 <a class="el" href="_post_api_controller_8cs_source.html">PostApiController.cs</a> 第 <a class="el" href="_post_api_controller_8cs_source.html#l00183">183</a> 行定义.</p>
+<p>更新帖子相关信息，目前只支持点赞与点踩 </p>
+<dl class="params"><dt>参数</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">sectionId</td><td></td></tr>
+    <tr><td class="paramname">postId</td><td></td></tr>
+    <tr><td class="paramname">request</td><td></td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>返回</dt><dd></dd></dl>
+
+<p class="definition">在文件 <a class="el" href="_post_api_controller_8cs_source.html">PostApiController.cs</a> 第 <a class="el" href="_post_api_controller_8cs_source.html#l00197">197</a> 行定义.</p>
 
 </div>
 </div>
@@ -389,7 +439,17 @@ Public 成员函数</h2></td></tr>
       </table>
 </div><div class="memdoc">
 
-<p class="definition">在文件 <a class="el" href="_post_api_controller_8cs_source.html">PostApiController.cs</a> 第 <a class="el" href="_post_api_controller_8cs_source.html#l00225">225</a> 行定义.</p>
+<p>更新浏览量 </p>
+<dl class="params"><dt>参数</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">sectionId</td><td></td></tr>
+    <tr><td class="paramname">postId</td><td></td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>返回</dt><dd></dd></dl>
+
+<p class="definition">在文件 <a class="el" href="_post_api_controller_8cs_source.html">PostApiController.cs</a> 第 <a class="el" href="_post_api_controller_8cs_source.html#l00236">236</a> 行定义.</p>
 
 </div>
 </div>

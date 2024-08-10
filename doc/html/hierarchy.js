@@ -4,8 +4,7 @@ var hierarchy =
     [ "ControllerBase", null, [
       [ "WebApiDemo.Controllers.LoginApiController", "class_web_api_demo_1_1_controllers_1_1_login_api_controller.html", null ],
       [ "WebApiDemo.Controllers.PostApiController", "class_web_api_demo_1_1_controllers_1_1_post_api_controller.html", null ],
-      [ "WebApiDemo.Controllers.SectionApiController", "class_web_api_demo_1_1_controllers_1_1_section_api_controller.html", null ],
-      [ "WebApiDemo.ValuesController", "class_web_api_demo_1_1_values_controller.html", null ]
+      [ "WebApiDemo.Controllers.SectionApiController", "class_web_api_demo_1_1_controllers_1_1_section_api_controller.html", null ]
     ] ],
     [ "DbContext", null, [
       [ "WebApiDemo.Entities.WebApiDemoContext", "class_web_api_demo_1_1_entities_1_1_web_api_demo_context.html", null ]
@@ -68,6 +67,5 @@ var hierarchy =
     [ "WebApiDemo.DAL.UserDal", "class_web_api_demo_1_1_d_a_l_1_1_user_dal.html", null ],
     [ "WebApiDemo.Models.UserInfoResponse", "class_web_api_demo_1_1_models_1_1_user_info_response.html", null ],
     [ "WebApiDemo.Models.UserInsertRequest", "class_web_api_demo_1_1_models_1_1_user_insert_request.html", null ],
-    [ "WebApiDemo.Models.UserUpdateRequest", "class_web_api_demo_1_1_models_1_1_user_update_request.html", null ],
-    [ "WebApiDemo.Entities.ETemp.Web4User", "class_web_api_demo_1_1_entities_1_1_e_temp_1_1_web4_user.html", null ]
+    [ "WebApiDemo.Models.UserUpdateRequest", "class_web_api_demo_1_1_models_1_1_user_update_request.html", null ]
 ];

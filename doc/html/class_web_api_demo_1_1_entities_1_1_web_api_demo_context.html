@@ -105,6 +105,9 @@ $(function(){initNavTree('class_web_api_demo_1_1_entities_1_1_web_api_demo_conte
   <div class="headertitle"><div class="title">WebApiDemo.Entities.WebApiDemoContext类 参考</div></div>
 </div><!--header-->
 <div class="contents">
+
+<p>数据库上下文类，用于与数据库交互  
+ <a href="#details">更多...</a></p>
 <div class="dynheader">
 类 WebApiDemo.Entities.WebApiDemoContext 继承关系图:</div>
 <div class="dyncontent">
@@ -115,33 +118,40 @@ $(function(){initNavTree('class_web_api_demo_1_1_entities_1_1_web_api_demo_conte
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="pub-methods" name="pub-methods"></a>
 Public 成员函数</h2></td></tr>
 <tr class="memitem:a1461c4016c893e602ad3e7edd447a806" id="r_a1461c4016c893e602ad3e7edd447a806"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a1461c4016c893e602ad3e7edd447a806">WebApiDemoContext</a> ()</td></tr>
+<tr class="memdesc:a1461c4016c893e602ad3e7edd447a806"><td class="mdescLeft">&#160;</td><td class="mdescRight">默认构造函数  <br /></td></tr>
 <tr class="separator:a1461c4016c893e602ad3e7edd447a806"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a84216c1b8552588b902c2a65f5ffdef4" id="r_a84216c1b8552588b902c2a65f5ffdef4"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a84216c1b8552588b902c2a65f5ffdef4">WebApiDemoContext</a> (DbContextOptions options)</td></tr>
+<tr class="memdesc:a84216c1b8552588b902c2a65f5ffdef4"><td class="mdescLeft">&#160;</td><td class="mdescRight">带有选项的构造函数  <br /></td></tr>
 <tr class="separator:a84216c1b8552588b902c2a65f5ffdef4"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="pro-methods" name="pro-methods"></a>
 Protected 成员函数</h2></td></tr>
 <tr class="memitem:adf281f4a356d61bb22812ba5076e5628" id="r_adf281f4a356d61bb22812ba5076e5628"><td class="memItemLeft" align="right" valign="top">override void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#adf281f4a356d61bb22812ba5076e5628">OnConfiguring</a> (DbContextOptionsBuilder optionsBuilder)</td></tr>
+<tr class="memdesc:adf281f4a356d61bb22812ba5076e5628"><td class="mdescLeft">&#160;</td><td class="mdescRight">配置数据库连接  <br /></td></tr>
 <tr class="separator:adf281f4a356d61bb22812ba5076e5628"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a69d3979ee43a975da18e6c1534e66dd2" id="r_a69d3979ee43a975da18e6c1534e66dd2"><td class="memItemLeft" align="right" valign="top">override void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a69d3979ee43a975da18e6c1534e66dd2">OnModelCreating</a> (ModelBuilder modelBuilder)</td></tr>
+<tr class="memdesc:a69d3979ee43a975da18e6c1534e66dd2"><td class="mdescLeft">&#160;</td><td class="mdescRight">配置模型创建行为  <br /></td></tr>
 <tr class="separator:a69d3979ee43a975da18e6c1534e66dd2"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="properties" name="properties"></a>
 属性</h2></td></tr>
 <tr class="memitem:a17403f036887983f6cbbc469dfe1734d" id="r_a17403f036887983f6cbbc469dfe1734d"><td class="memItemLeft" align="right" valign="top">DbSet&lt; <a class="el" href="class_web_api_demo_1_1_entities_1_1_e_user_1_1_user.html">User</a> &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a17403f036887983f6cbbc469dfe1734d">Users</a><code> [get, set]</code></td></tr>
+<tr class="memdesc:a17403f036887983f6cbbc469dfe1734d"><td class="mdescLeft">&#160;</td><td class="mdescRight">用户表  <br /></td></tr>
 <tr class="separator:a17403f036887983f6cbbc469dfe1734d"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a798d09ae0f08ca21eb8c4bc05abeb77e" id="r_a798d09ae0f08ca21eb8c4bc05abeb77e"><td class="memItemLeft" align="right" valign="top">DbSet&lt; <a class="el" href="class_web_api_demo_1_1_entities_1_1_e_auth_token_1_1_auth_token.html">AuthToken</a> &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a798d09ae0f08ca21eb8c4bc05abeb77e">AuthTokens</a><code> [get, set]</code></td></tr>
+<tr class="memdesc:a798d09ae0f08ca21eb8c4bc05abeb77e"><td class="mdescLeft">&#160;</td><td class="mdescRight">授权令牌表  <br /></td></tr>
 <tr class="separator:a798d09ae0f08ca21eb8c4bc05abeb77e"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:ad91bf38dd2470dda3674f51e389fc850" id="r_ad91bf38dd2470dda3674f51e389fc850"><td class="memItemLeft" align="right" valign="top">DbSet&lt; <a class="el" href="class_web_api_demo_1_1_entities_1_1_e_temp_1_1_web4_user.html">Web4User</a> &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#ad91bf38dd2470dda3674f51e389fc850">Web4Users</a><code> [get, set]</code></td></tr>
-<tr class="separator:ad91bf38dd2470dda3674f51e389fc850"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:ab59b2fa72eeacc694c3f53bf3fb6aed3" id="r_ab59b2fa72eeacc694c3f53bf3fb6aed3"><td class="memItemLeft" align="right" valign="top">DbSet&lt; <a class="el" href="class_web_api_demo_1_1_entities_1_1_e_post_1_1_comprehensive_section_post.html">ComprehensiveSectionPost</a> &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#ab59b2fa72eeacc694c3f53bf3fb6aed3">ComprehensiveSectionPosts</a><code> [get, set]</code></td></tr>
+<tr class="memdesc:ab59b2fa72eeacc694c3f53bf3fb6aed3"><td class="mdescLeft">&#160;</td><td class="mdescRight">综合版块帖子表  <br /></td></tr>
 <tr class="separator:ab59b2fa72eeacc694c3f53bf3fb6aed3"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:afb40eb702326b931e77e0e8c265ea1a5" id="r_afb40eb702326b931e77e0e8c265ea1a5"><td class="memItemLeft" align="right" valign="top">DbSet&lt; <a class="el" href="class_web_api_demo_1_1_entities_1_1_e_section_1_1_section.html">Section</a> &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#afb40eb702326b931e77e0e8c265ea1a5">Sections</a><code> [get, set]</code></td></tr>
+<tr class="memdesc:afb40eb702326b931e77e0e8c265ea1a5"><td class="mdescLeft">&#160;</td><td class="mdescRight">版块表  <br /></td></tr>
 <tr class="separator:afb40eb702326b931e77e0e8c265ea1a5"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
 <a name="details" id="details"></a><h2 class="groupheader">详细描述</h2>
-<div class="textblock">
-<p class="definition">在文件 <a class="el" href="_web_api_demo_context_8cs_source.html">WebApiDemoContext.cs</a> 第 <a class="el" href="_web_api_demo_context_8cs_source.html#l00011">11</a> 行定义.</p>
+<div class="textblock"><p>数据库上下文类，用于与数据库交互 </p>
+
+<p class="definition">在文件 <a class="el" href="_web_api_demo_context_8cs_source.html">WebApiDemoContext.cs</a> 第 <a class="el" href="_web_api_demo_context_8cs_source.html#l00012">12</a> 行定义.</p>
 </div><h2 class="groupheader">构造及析构函数说明</h2>
 <a id="a1461c4016c893e602ad3e7edd447a806" name="a1461c4016c893e602ad3e7edd447a806"></a>
 <h2 class="memtitle"><span class="permalink"><a href="#a1461c4016c893e602ad3e7edd447a806">&#9670;&#160;</a></span>WebApiDemoContext() <span class="overload">[1/2]</span></h2>
@@ -158,7 +168,9 @@ Protected 成员函数</h2></td></tr>
       </table>
 </div><div class="memdoc">
 
-<p class="definition">在文件 <a class="el" href="_web_api_demo_context_8cs_source.html">WebApiDemoContext.cs</a> 第 <a class="el" href="_web_api_demo_context_8cs_source.html#l00022">22</a> 行定义.</p>
+<p>默认构造函数 </p>
+
+<p class="definition">在文件 <a class="el" href="_web_api_demo_context_8cs_source.html">WebApiDemoContext.cs</a> 第 <a class="el" href="_web_api_demo_context_8cs_source.html#l00039">39</a> 行定义.</p>
 
 </div>
 </div>
@@ -177,7 +189,15 @@ Protected 成员函数</h2></td></tr>
       </table>
 </div><div class="memdoc">
 
-<p class="definition">在文件 <a class="el" href="_web_api_demo_context_8cs_source.html">WebApiDemoContext.cs</a> 第 <a class="el" href="_web_api_demo_context_8cs_source.html#l00024">24</a> 行定义.</p>
+<p>带有选项的构造函数 </p>
+<dl class="params"><dt>参数</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">options</td><td>数据库上下文选项</td></tr>
+  </table>
+  </dd>
+</dl>
+
+<p class="definition">在文件 <a class="el" href="_web_api_demo_context_8cs_source.html">WebApiDemoContext.cs</a> 第 <a class="el" href="_web_api_demo_context_8cs_source.html#l00045">45</a> 行定义.</p>
 
 </div>
 </div>
@@ -205,7 +225,15 @@ Protected 成员函数</h2></td></tr>
 </table>
 </div><div class="memdoc">
 
-<p class="definition">在文件 <a class="el" href="_web_api_demo_context_8cs_source.html">WebApiDemoContext.cs</a> 第 <a class="el" href="_web_api_demo_context_8cs_source.html#l00026">26</a> 行定义.</p>
+<p>配置数据库连接 </p>
+<dl class="params"><dt>参数</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">optionsBuilder</td><td>数据库上下文选项构建器</td></tr>
+  </table>
+  </dd>
+</dl>
+
+<p class="definition">在文件 <a class="el" href="_web_api_demo_context_8cs_source.html">WebApiDemoContext.cs</a> 第 <a class="el" href="_web_api_demo_context_8cs_source.html#l00051">51</a> 行定义.</p>
 
 </div>
 </div>
@@ -232,7 +260,15 @@ Protected 成员函数</h2></td></tr>
 </table>
 </div><div class="memdoc">
 
-<p class="definition">在文件 <a class="el" href="_web_api_demo_context_8cs_source.html">WebApiDemoContext.cs</a> 第 <a class="el" href="_web_api_demo_context_8cs_source.html#l00033">33</a> 行定义.</p>
+<p>配置模型创建行为 </p>
+<dl class="params"><dt>参数</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">modelBuilder</td><td>模型构建器</td></tr>
+  </table>
+  </dd>
+</dl>
+
+<p class="definition">在文件 <a class="el" href="_web_api_demo_context_8cs_source.html">WebApiDemoContext.cs</a> 第 <a class="el" href="_web_api_demo_context_8cs_source.html#l00062">62</a> 行定义.</p>
 
 </div>
 </div>
@@ -257,7 +293,9 @@ Protected 成员函数</h2></td></tr>
 </table>
 </div><div class="memdoc">
 
-<p class="definition">在文件 <a class="el" href="_web_api_demo_context_8cs_source.html">WebApiDemoContext.cs</a> 第 <a class="el" href="_web_api_demo_context_8cs_source.html#l00014">14</a> 行定义.</p>
+<p>授权令牌表 </p>
+
+<p class="definition">在文件 <a class="el" href="_web_api_demo_context_8cs_source.html">WebApiDemoContext.cs</a> 第 <a class="el" href="_web_api_demo_context_8cs_source.html#l00022">22</a> 行定义.</p>
 
 </div>
 </div>
@@ -281,7 +319,9 @@ Protected 成员函数</h2></td></tr>
 </table>
 </div><div class="memdoc">
 
-<p class="definition">在文件 <a class="el" href="_web_api_demo_context_8cs_source.html">WebApiDemoContext.cs</a> 第 <a class="el" href="_web_api_demo_context_8cs_source.html#l00018">18</a> 行定义.</p>
+<p>综合版块帖子表 </p>
+
+<p class="definition">在文件 <a class="el" href="_web_api_demo_context_8cs_source.html">WebApiDemoContext.cs</a> 第 <a class="el" href="_web_api_demo_context_8cs_source.html#l00029">29</a> 行定义.</p>
 
 </div>
 </div>
@@ -305,7 +345,9 @@ Protected 成员函数</h2></td></tr>
 </table>
 </div><div class="memdoc">
 
-<p class="definition">在文件 <a class="el" href="_web_api_demo_context_8cs_source.html">WebApiDemoContext.cs</a> 第 <a class="el" href="_web_api_demo_context_8cs_source.html#l00020">20</a> 行定义.</p>
+<p>版块表 </p>
+
+<p class="definition">在文件 <a class="el" href="_web_api_demo_context_8cs_source.html">WebApiDemoContext.cs</a> 第 <a class="el" href="_web_api_demo_context_8cs_source.html#l00034">34</a> 行定义.</p>
 
 </div>
 </div>
@@ -329,31 +371,9 @@ Protected 成员函数</h2></td></tr>
 </table>
 </div><div class="memdoc">
 
-<p class="definition">在文件 <a class="el" href="_web_api_demo_context_8cs_source.html">WebApiDemoContext.cs</a> 第 <a class="el" href="_web_api_demo_context_8cs_source.html#l00013">13</a> 行定义.</p>
+<p>用户表 </p>
 
-</div>
-</div>
-<a id="ad91bf38dd2470dda3674f51e389fc850" name="ad91bf38dd2470dda3674f51e389fc850"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#ad91bf38dd2470dda3674f51e389fc850">&#9670;&#160;</a></span>Web4Users</h2>
-
-<div class="memitem">
-<div class="memproto">
-<table class="mlabels">
-  <tr>
-  <td class="mlabels-left">
-      <table class="memname">
-        <tr>
-          <td class="memname">DbSet&lt;<a class="el" href="class_web_api_demo_1_1_entities_1_1_e_temp_1_1_web4_user.html">Web4User</a>&gt; WebApiDemo.Entities.WebApiDemoContext.Web4Users</td>
-        </tr>
-      </table>
-  </td>
-  <td class="mlabels-right">
-<span class="mlabels"><span class="mlabel">get</span><span class="mlabel">set</span></span>  </td>
-  </tr>
-</table>
-</div><div class="memdoc">
-
-<p class="definition">在文件 <a class="el" href="_web_api_demo_context_8cs_source.html">WebApiDemoContext.cs</a> 第 <a class="el" href="_web_api_demo_context_8cs_source.html#l00016">16</a> 行定义.</p>
+<p class="definition">在文件 <a class="el" href="_web_api_demo_context_8cs_source.html">WebApiDemoContext.cs</a> 第 <a class="el" href="_web_api_demo_context_8cs_source.html#l00017">17</a> 行定义.</p>
 
 </div>
 </div>

@@ -103,45 +103,119 @@ $(function(){initNavTree('class_web_api_demo_1_1_d_a_l_1_1_comprehensive_section
   <div class="headertitle"><div class="title">WebApiDemo.DAL.ComprehensiveSectionPostDal类 参考</div></div>
 </div><!--header-->
 <div class="contents">
+
+<p>帖子数据访问层实现。对应表：ComprehensiveSectionPost  
+ <a href="#details">更多...</a></p>
 <div class="dynheader">
 类 WebApiDemo.DAL.ComprehensiveSectionPostDal 继承关系图:</div>
 <div class="dyncontent">
  <div class="center">
   <img src="class_web_api_demo_1_1_d_a_l_1_1_comprehensive_section_post_dal.png" usemap="#WebApiDemo.DAL.ComprehensiveSectionPostDal_map" alt=""/>
   <map id="WebApiDemo.DAL.ComprehensiveSectionPostDal_map" name="WebApiDemo.DAL.ComprehensiveSectionPostDal_map">
-<area href="interface_web_api_demo_1_1_d_a_l_1_1_interfaces_1_1_i_post_dal.html" alt="WebApiDemo.DAL.Interfaces.IPostDal" shape="rect" coords="0,0,294,24"/>
+<area href="interface_web_api_demo_1_1_d_a_l_1_1_interfaces_1_1_i_post_dal.html" title="帖子数据访问层接口" alt="WebApiDemo.DAL.Interfaces.IPostDal" shape="rect" coords="0,0,294,24"/>
   </map>
 </div></div>
 <table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="pub-methods" name="pub-methods"></a>
 Public 成员函数</h2></td></tr>
 <tr class="memitem:ab6024af94b2eb17f81c0b40745cc6b84" id="r_ab6024af94b2eb17f81c0b40745cc6b84"><td class="memItemLeft" align="right" valign="top">List&lt; <a class="el" href="class_web_api_demo_1_1_entities_1_1_e_post_1_1_post.html">Post</a> &gt;?&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#ab6024af94b2eb17f81c0b40745cc6b84">GetAllPosts</a> ()</td></tr>
+<tr class="memdesc:ab6024af94b2eb17f81c0b40745cc6b84"><td class="mdescLeft">&#160;</td><td class="mdescRight">获取所有帖子<dl class="section return"><dt>返回</dt><dd>帖子列表，或在无帖子时返回空列表</dd></dl>
+  <br /></td></tr>
 <tr class="separator:ab6024af94b2eb17f81c0b40745cc6b84"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:ab476a769b4544cd8bad1b2228627623f" id="r_ab476a769b4544cd8bad1b2228627623f"><td class="memItemLeft" align="right" valign="top">List&lt; <a class="el" href="class_web_api_demo_1_1_entities_1_1_e_post_1_1_post.html">Post</a> &gt;?&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#ab476a769b4544cd8bad1b2228627623f">GetPosts</a> (int beginIndex, int needNum)</td></tr>
+<tr class="memdesc:ab476a769b4544cd8bad1b2228627623f"><td class="mdescLeft">&#160;</td><td class="mdescRight">获取指定范围内的帖子<dl class="params"><dt>参数</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">beginNum</td><td>起始数量</td></tr>
+    <tr><td class="paramname">needNum</td><td>需要数量</td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>返回</dt><dd>帖子列表，或在无帖子时返回空列表</dd></dl>
+  <br /></td></tr>
 <tr class="separator:ab476a769b4544cd8bad1b2228627623f"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a5bccf42ce47d64e273939cb89940d0bd" id="r_a5bccf42ce47d64e273939cb89940d0bd"><td class="memItemLeft" align="right" valign="top">List&lt; <a class="el" href="class_web_api_demo_1_1_entities_1_1_e_post_1_1_post.html">Post</a> &gt;?&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a5bccf42ce47d64e273939cb89940d0bd">GetPosts</a> (int mainPostId)</td></tr>
+<tr class="memdesc:a5bccf42ce47d64e273939cb89940d0bd"><td class="mdescLeft">&#160;</td><td class="mdescRight">根据主帖 ID 获取帖子<dl class="params"><dt>参数</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">mainPostId</td><td>主帖 ID</td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>返回</dt><dd>帖子列表，或在无帖子时返回空列表</dd></dl>
+  <br /></td></tr>
 <tr class="separator:a5bccf42ce47d64e273939cb89940d0bd"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a5438f1aa7826821f715cd7c01b1b45cb" id="r_a5438f1aa7826821f715cd7c01b1b45cb"><td class="memItemLeft" align="right" valign="top"><a class="el" href="class_web_api_demo_1_1_entities_1_1_e_post_1_1_post.html">Post</a>?&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a5438f1aa7826821f715cd7c01b1b45cb">GetPostById</a> (int id)</td></tr>
+<tr class="memdesc:a5438f1aa7826821f715cd7c01b1b45cb"><td class="mdescLeft">&#160;</td><td class="mdescRight">根据 ID 获取帖子<dl class="params"><dt>参数</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">id</td><td>帖子 ID</td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>返回</dt><dd>帖子信息，或在无匹配帖子时返回 null</dd></dl>
+  <br /></td></tr>
 <tr class="separator:a5438f1aa7826821f715cd7c01b1b45cb"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a3a2004ccb3980060a7ffab88e387ccfd" id="r_a3a2004ccb3980060a7ffab88e387ccfd"><td class="memItemLeft" align="right" valign="top">int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a3a2004ccb3980060a7ffab88e387ccfd">AddPost</a> (<a class="el" href="class_web_api_demo_1_1_entities_1_1_e_post_1_1_post.html">Post</a> post)</td></tr>
+<tr class="memdesc:a3a2004ccb3980060a7ffab88e387ccfd"><td class="mdescLeft">&#160;</td><td class="mdescRight">添加帖子<dl class="params"><dt>参数</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">post</td><td>帖子信息</td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>返回</dt><dd>新添加帖子的 ID</dd></dl>
+  <br /></td></tr>
 <tr class="separator:a3a2004ccb3980060a7ffab88e387ccfd"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a4ee35c98208d70655b7e67fba7416087" id="r_a4ee35c98208d70655b7e67fba7416087"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a4ee35c98208d70655b7e67fba7416087">SetMainPost</a> (int id)</td></tr>
+<tr class="memdesc:a4ee35c98208d70655b7e67fba7416087"><td class="mdescLeft">&#160;</td><td class="mdescRight">设置主帖<dl class="params"><dt>参数</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">id</td><td>帖子 ID</td></tr>
+  </table>
+  </dd>
+</dl>
+  <br /></td></tr>
 <tr class="separator:a4ee35c98208d70655b7e67fba7416087"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a523e6fd35a6e6304c3ada0ff7a954907" id="r_a523e6fd35a6e6304c3ada0ff7a954907"><td class="memItemLeft" align="right" valign="top">List&lt; <a class="el" href="class_web_api_demo_1_1_entities_1_1_b_models_1_1_user_b_model.html">UserBModel</a> &gt;?&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a523e6fd35a6e6304c3ada0ff7a954907">GetAllUsers</a> ()</td></tr>
+<tr class="memdesc:a523e6fd35a6e6304c3ada0ff7a954907"><td class="mdescLeft">&#160;</td><td class="mdescRight">获取所有用户<dl class="section return"><dt>返回</dt><dd>用户列表，或在无用户时返回空列表</dd></dl>
+  <br /></td></tr>
 <tr class="separator:a523e6fd35a6e6304c3ada0ff7a954907"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a99ab6c0f87138f3c3a568ca81f3b24f9" id="r_a99ab6c0f87138f3c3a568ca81f3b24f9"><td class="memItemLeft" align="right" valign="top">List&lt; <a class="el" href="class_web_api_demo_1_1_entities_1_1_b_models_1_1_user_b_model.html">UserBModel</a> &gt;?&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a99ab6c0f87138f3c3a568ca81f3b24f9">GetUsers</a> (int beginNum, int needNum)</td></tr>
+<tr class="memdesc:a99ab6c0f87138f3c3a568ca81f3b24f9"><td class="mdescLeft">&#160;</td><td class="mdescRight">获取指定范围内的用户<dl class="params"><dt>参数</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">beginNum</td><td>起始帖子数量</td></tr>
+    <tr><td class="paramname">needNum</td><td>需要帖子数量</td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>返回</dt><dd>用户列表，或在无用户时返回空列表</dd></dl>
+  <br /></td></tr>
 <tr class="separator:a99ab6c0f87138f3c3a568ca81f3b24f9"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a7dca3ccbd884dbe2049cf0cd0ea5b3eb" id="r_a7dca3ccbd884dbe2049cf0cd0ea5b3eb"><td class="memItemLeft" align="right" valign="top"><a class="el" href="class_web_api_demo_1_1_entities_1_1_e_post_1_1_post.html">Post</a>?&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a7dca3ccbd884dbe2049cf0cd0ea5b3eb">GetLastReplyPosts</a> (int mainPostId)</td></tr>
+<tr class="memdesc:a7dca3ccbd884dbe2049cf0cd0ea5b3eb"><td class="mdescLeft">&#160;</td><td class="mdescRight">获取最后的回复帖子<dl class="params"><dt>参数</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">mainPostId</td><td>主帖 ID</td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>返回</dt><dd>最后回复的帖子，或在无回复时返回 null</dd></dl>
+  <br /></td></tr>
 <tr class="separator:a7dca3ccbd884dbe2049cf0cd0ea5b3eb"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:ae7d01ada0d17c7cfbcee1b67c57ca4a6" id="r_ae7d01ada0d17c7cfbcee1b67c57ca4a6"><td class="memItemLeft" align="right" valign="top">List&lt; <a class="el" href="class_web_api_demo_1_1_entities_1_1_e_post_1_1_post.html">Post</a> &gt;?&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#ae7d01ada0d17c7cfbcee1b67c57ca4a6">GetMainPosts</a> ()</td></tr>
+<tr class="memdesc:ae7d01ada0d17c7cfbcee1b67c57ca4a6"><td class="mdescLeft">&#160;</td><td class="mdescRight">获取所有主帖<dl class="section return"><dt>返回</dt><dd>主帖列表，或在无主帖时返回空列表</dd></dl>
+  <br /></td></tr>
 <tr class="separator:ae7d01ada0d17c7cfbcee1b67c57ca4a6"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a643e4f007a323eb8c98ad8bf949bfe61" id="r_a643e4f007a323eb8c98ad8bf949bfe61"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a643e4f007a323eb8c98ad8bf949bfe61">UpdatePost</a> (<a class="el" href="class_web_api_demo_1_1_entities_1_1_e_post_1_1_post.html">Post</a> post)</td></tr>
+<tr class="memdesc:a643e4f007a323eb8c98ad8bf949bfe61"><td class="mdescLeft">&#160;</td><td class="mdescRight">更新帖子信息<dl class="params"><dt>参数</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">post</td><td>更新后的帖子信息</td></tr>
+  </table>
+  </dd>
+</dl>
+  <br /></td></tr>
 <tr class="separator:a643e4f007a323eb8c98ad8bf949bfe61"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="inherit_header pub_methods_interface_web_api_demo_1_1_d_a_l_1_1_interfaces_1_1_i_post_dal"><td colspan="2" onclick="javascript:dynsection.toggleInherit('pub_methods_interface_web_api_demo_1_1_d_a_l_1_1_interfaces_1_1_i_post_dal')"><img src="closed.png" alt="-"/>&#160;Public 成员函数 继承自 <a class="el" href="interface_web_api_demo_1_1_d_a_l_1_1_interfaces_1_1_i_post_dal.html">WebApiDemo.DAL.Interfaces.IPostDal</a></td></tr>
 </table>
 <a name="details" id="details"></a><h2 class="groupheader">详细描述</h2>
-<div class="textblock">
-<p class="definition">在文件 <a class="el" href="_comprehensive_section_post_dal_8cs_source.html">ComprehensiveSectionPostDal.cs</a> 第 <a class="el" href="_comprehensive_section_post_dal_8cs_source.html#l00009">9</a> 行定义.</p>
+<div class="textblock"><p>帖子数据访问层实现。对应表：ComprehensiveSectionPost </p>
+
+<p class="definition">在文件 <a class="el" href="_comprehensive_section_post_dal_8cs_source.html">ComprehensiveSectionPostDal.cs</a> 第 <a class="el" href="_comprehensive_section_post_dal_8cs_source.html#l00011">11</a> 行定义.</p>
 </div><h2 class="groupheader">成员函数说明</h2>
 <a id="a3a2004ccb3980060a7ffab88e387ccfd" name="a3a2004ccb3980060a7ffab88e387ccfd"></a>
 <h2 class="memtitle"><span class="permalink"><a href="#a3a2004ccb3980060a7ffab88e387ccfd">&#9670;&#160;</a></span>AddPost()</h2>
@@ -158,9 +232,18 @@ Public 成员函数</h2></td></tr>
       </table>
 </div><div class="memdoc">
 
+<p>添加帖子<dl class="params"><dt>参数</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">post</td><td>帖子信息</td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>返回</dt><dd>新添加帖子的 ID</dd></dl>
+ </p>
+
 <p>实现了 <a class="el" href="interface_web_api_demo_1_1_d_a_l_1_1_interfaces_1_1_i_post_dal.html#ad55940820f9bb45f83fdc00dfa9e1912">WebApiDemo.DAL.Interfaces.IPostDal</a>.</p>
 
-<p class="definition">在文件 <a class="el" href="_comprehensive_section_post_dal_8cs_source.html">ComprehensiveSectionPostDal.cs</a> 第 <a class="el" href="_comprehensive_section_post_dal_8cs_source.html#l00062">62</a> 行定义.</p>
+<p class="definition">在文件 <a class="el" href="_comprehensive_section_post_dal_8cs_source.html">ComprehensiveSectionPostDal.cs</a> 第 <a class="el" href="_comprehensive_section_post_dal_8cs_source.html#l00069">69</a> 行定义.</p>
 
 </div>
 </div>
@@ -179,9 +262,12 @@ Public 成员函数</h2></td></tr>
       </table>
 </div><div class="memdoc">
 
+<p>获取所有帖子<dl class="section return"><dt>返回</dt><dd>帖子列表，或在无帖子时返回空列表</dd></dl>
+ </p>
+
 <p>实现了 <a class="el" href="interface_web_api_demo_1_1_d_a_l_1_1_interfaces_1_1_i_post_dal.html#ac0c86d8e8c09658209cfdc8180bf863d">WebApiDemo.DAL.Interfaces.IPostDal</a>.</p>
 
-<p class="definition">在文件 <a class="el" href="_comprehensive_section_post_dal_8cs_source.html">ComprehensiveSectionPostDal.cs</a> 第 <a class="el" href="_comprehensive_section_post_dal_8cs_source.html#l00011">11</a> 行定义.</p>
+<p class="definition">在文件 <a class="el" href="_comprehensive_section_post_dal_8cs_source.html">ComprehensiveSectionPostDal.cs</a> 第 <a class="el" href="_comprehensive_section_post_dal_8cs_source.html#l00014">14</a> 行定义.</p>
 
 </div>
 </div>
@@ -200,9 +286,12 @@ Public 成员函数</h2></td></tr>
       </table>
 </div><div class="memdoc">
 
+<p>获取所有用户<dl class="section return"><dt>返回</dt><dd>用户列表，或在无用户时返回空列表</dd></dl>
+ </p>
+
 <p>实现了 <a class="el" href="interface_web_api_demo_1_1_d_a_l_1_1_interfaces_1_1_i_post_dal.html#a41fbfb55a5c62ea5b37e6b0399ef5491">WebApiDemo.DAL.Interfaces.IPostDal</a>.</p>
 
-<p class="definition">在文件 <a class="el" href="_comprehensive_section_post_dal_8cs_source.html">ComprehensiveSectionPostDal.cs</a> 第 <a class="el" href="_comprehensive_section_post_dal_8cs_source.html#l00086">86</a> 行定义.</p>
+<p class="definition">在文件 <a class="el" href="_comprehensive_section_post_dal_8cs_source.html">ComprehensiveSectionPostDal.cs</a> 第 <a class="el" href="_comprehensive_section_post_dal_8cs_source.html#l00095">95</a> 行定义.</p>
 
 </div>
 </div>
@@ -221,9 +310,18 @@ Public 成员函数</h2></td></tr>
       </table>
 </div><div class="memdoc">
 
+<p>获取最后的回复帖子<dl class="params"><dt>参数</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">mainPostId</td><td>主帖 ID</td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>返回</dt><dd>最后回复的帖子，或在无回复时返回 null</dd></dl>
+ </p>
+
 <p>实现了 <a class="el" href="interface_web_api_demo_1_1_d_a_l_1_1_interfaces_1_1_i_post_dal.html#a34acd71db269efeff0c932f4bff623fe">WebApiDemo.DAL.Interfaces.IPostDal</a>.</p>
 
-<p class="definition">在文件 <a class="el" href="_comprehensive_section_post_dal_8cs_source.html">ComprehensiveSectionPostDal.cs</a> 第 <a class="el" href="_comprehensive_section_post_dal_8cs_source.html#l00110">110</a> 行定义.</p>
+<p class="definition">在文件 <a class="el" href="_comprehensive_section_post_dal_8cs_source.html">ComprehensiveSectionPostDal.cs</a> 第 <a class="el" href="_comprehensive_section_post_dal_8cs_source.html#l00121">121</a> 行定义.</p>
 
 </div>
 </div>
@@ -242,9 +340,12 @@ Public 成员函数</h2></td></tr>
       </table>
 </div><div class="memdoc">
 
+<p>获取所有主帖<dl class="section return"><dt>返回</dt><dd>主帖列表，或在无主帖时返回空列表</dd></dl>
+ </p>
+
 <p>实现了 <a class="el" href="interface_web_api_demo_1_1_d_a_l_1_1_interfaces_1_1_i_post_dal.html#a3fe1efe853602c11e6c9f2cdcee7d55d">WebApiDemo.DAL.Interfaces.IPostDal</a>.</p>
 
-<p class="definition">在文件 <a class="el" href="_comprehensive_section_post_dal_8cs_source.html">ComprehensiveSectionPostDal.cs</a> 第 <a class="el" href="_comprehensive_section_post_dal_8cs_source.html#l00119">119</a> 行定义.</p>
+<p class="definition">在文件 <a class="el" href="_comprehensive_section_post_dal_8cs_source.html">ComprehensiveSectionPostDal.cs</a> 第 <a class="el" href="_comprehensive_section_post_dal_8cs_source.html#l00131">131</a> 行定义.</p>
 
 </div>
 </div>
@@ -263,9 +364,18 @@ Public 成员函数</h2></td></tr>
       </table>
 </div><div class="memdoc">
 
+<p>根据 ID 获取帖子<dl class="params"><dt>参数</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">id</td><td>帖子 ID</td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>返回</dt><dd>帖子信息，或在无匹配帖子时返回 null</dd></dl>
+ </p>
+
 <p>实现了 <a class="el" href="interface_web_api_demo_1_1_d_a_l_1_1_interfaces_1_1_i_post_dal.html#a5b45c0e63a978e2dc991c59581f6bfe9">WebApiDemo.DAL.Interfaces.IPostDal</a>.</p>
 
-<p class="definition">在文件 <a class="el" href="_comprehensive_section_post_dal_8cs_source.html">ComprehensiveSectionPostDal.cs</a> 第 <a class="el" href="_comprehensive_section_post_dal_8cs_source.html#l00056">56</a> 行定义.</p>
+<p class="definition">在文件 <a class="el" href="_comprehensive_section_post_dal_8cs_source.html">ComprehensiveSectionPostDal.cs</a> 第 <a class="el" href="_comprehensive_section_post_dal_8cs_source.html#l00062">62</a> 行定义.</p>
 
 </div>
 </div>
@@ -288,9 +398,19 @@ Public 成员函数</h2></td></tr>
       </table>
 </div><div class="memdoc">
 
+<p>获取指定范围内的帖子<dl class="params"><dt>参数</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">beginNum</td><td>起始数量</td></tr>
+    <tr><td class="paramname">needNum</td><td>需要数量</td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>返回</dt><dd>帖子列表，或在无帖子时返回空列表</dd></dl>
+ </p>
+
 <p>实现了 <a class="el" href="interface_web_api_demo_1_1_d_a_l_1_1_interfaces_1_1_i_post_dal.html#aa371d4e1f340cb9d43ce66199d371f52">WebApiDemo.DAL.Interfaces.IPostDal</a>.</p>
 
-<p class="definition">在文件 <a class="el" href="_comprehensive_section_post_dal_8cs_source.html">ComprehensiveSectionPostDal.cs</a> 第 <a class="el" href="_comprehensive_section_post_dal_8cs_source.html#l00018">18</a> 行定义.</p>
+<p class="definition">在文件 <a class="el" href="_comprehensive_section_post_dal_8cs_source.html">ComprehensiveSectionPostDal.cs</a> 第 <a class="el" href="_comprehensive_section_post_dal_8cs_source.html#l00022">22</a> 行定义.</p>
 
 </div>
 </div>
@@ -309,9 +429,18 @@ Public 成员函数</h2></td></tr>
       </table>
 </div><div class="memdoc">
 
+<p>根据主帖 ID 获取帖子<dl class="params"><dt>参数</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">mainPostId</td><td>主帖 ID</td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>返回</dt><dd>帖子列表，或在无帖子时返回空列表</dd></dl>
+ </p>
+
 <p>实现了 <a class="el" href="interface_web_api_demo_1_1_d_a_l_1_1_interfaces_1_1_i_post_dal.html#abe15d8ce2ddf3b89c9b043a3cf2725ba">WebApiDemo.DAL.Interfaces.IPostDal</a>.</p>
 
-<p class="definition">在文件 <a class="el" href="_comprehensive_section_post_dal_8cs_source.html">ComprehensiveSectionPostDal.cs</a> 第 <a class="el" href="_comprehensive_section_post_dal_8cs_source.html#l00032">32</a> 行定义.</p>
+<p class="definition">在文件 <a class="el" href="_comprehensive_section_post_dal_8cs_source.html">ComprehensiveSectionPostDal.cs</a> 第 <a class="el" href="_comprehensive_section_post_dal_8cs_source.html#l00037">37</a> 行定义.</p>
 
 </div>
 </div>
@@ -334,9 +463,19 @@ Public 成员函数</h2></td></tr>
       </table>
 </div><div class="memdoc">
 
+<p>获取指定范围内的用户<dl class="params"><dt>参数</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">beginNum</td><td>起始帖子数量</td></tr>
+    <tr><td class="paramname">needNum</td><td>需要帖子数量</td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>返回</dt><dd>用户列表，或在无用户时返回空列表</dd></dl>
+ </p>
+
 <p>实现了 <a class="el" href="interface_web_api_demo_1_1_d_a_l_1_1_interfaces_1_1_i_post_dal.html#a17f0eca081d17c8a57e7ce4611e21f04">WebApiDemo.DAL.Interfaces.IPostDal</a>.</p>
 
-<p class="definition">在文件 <a class="el" href="_comprehensive_section_post_dal_8cs_source.html">ComprehensiveSectionPostDal.cs</a> 第 <a class="el" href="_comprehensive_section_post_dal_8cs_source.html#l00097">97</a> 行定义.</p>
+<p class="definition">在文件 <a class="el" href="_comprehensive_section_post_dal_8cs_source.html">ComprehensiveSectionPostDal.cs</a> 第 <a class="el" href="_comprehensive_section_post_dal_8cs_source.html#l00107">107</a> 行定义.</p>
 
 </div>
 </div>
@@ -355,9 +494,17 @@ Public 成员函数</h2></td></tr>
       </table>
 </div><div class="memdoc">
 
+<p>设置主帖<dl class="params"><dt>参数</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">id</td><td>帖子 ID</td></tr>
+  </table>
+  </dd>
+</dl>
+ </p>
+
 <p>实现了 <a class="el" href="interface_web_api_demo_1_1_d_a_l_1_1_interfaces_1_1_i_post_dal.html#a2178ff1d6dc0fb00ff28b217d37223bd">WebApiDemo.DAL.Interfaces.IPostDal</a>.</p>
 
-<p class="definition">在文件 <a class="el" href="_comprehensive_section_post_dal_8cs_source.html">ComprehensiveSectionPostDal.cs</a> 第 <a class="el" href="_comprehensive_section_post_dal_8cs_source.html#l00075">75</a> 行定义.</p>
+<p class="definition">在文件 <a class="el" href="_comprehensive_section_post_dal_8cs_source.html">ComprehensiveSectionPostDal.cs</a> 第 <a class="el" href="_comprehensive_section_post_dal_8cs_source.html#l00083">83</a> 行定义.</p>
 
 </div>
 </div>
@@ -376,9 +523,17 @@ Public 成员函数</h2></td></tr>
       </table>
 </div><div class="memdoc">
 
+<p>更新帖子信息<dl class="params"><dt>参数</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">post</td><td>更新后的帖子信息</td></tr>
+  </table>
+  </dd>
+</dl>
+ </p>
+
 <p>实现了 <a class="el" href="interface_web_api_demo_1_1_d_a_l_1_1_interfaces_1_1_i_post_dal.html#aa422cf165991216269d7a16616310443">WebApiDemo.DAL.Interfaces.IPostDal</a>.</p>
 
-<p class="definition">在文件 <a class="el" href="_comprehensive_section_post_dal_8cs_source.html">ComprehensiveSectionPostDal.cs</a> 第 <a class="el" href="_comprehensive_section_post_dal_8cs_source.html#l00129">129</a> 行定义.</p>
+<p class="definition">在文件 <a class="el" href="_comprehensive_section_post_dal_8cs_source.html">ComprehensiveSectionPostDal.cs</a> 第 <a class="el" href="_comprehensive_section_post_dal_8cs_source.html#l00142">142</a> 行定义.</p>
 
 </div>
 </div>

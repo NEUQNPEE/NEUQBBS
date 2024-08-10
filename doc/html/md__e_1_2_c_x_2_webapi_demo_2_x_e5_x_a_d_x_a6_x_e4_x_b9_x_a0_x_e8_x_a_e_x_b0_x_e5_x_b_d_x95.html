@@ -219,7 +219,12 @@ $(function(){initNavTree('md__e_1_2_c_x_2_webapi_demo_2_x_e5_x_a_d_x_a6_x_e4_x_b
 <p>尝试引入XML文档自动生成工具。</p>
 <p>在C#代码中，输入“///"将自动在代码中添加XML文档注释；在.csproj文件中，添加“&lt;GenerateDocumentationFile&gt;true&lt;/GenerateDocumentationFile&gt;”将在项目生成时于bin/Debug/netx.x下生成XML注释文件。同时代码提示中会增加对公共类型或成员缺少XML注释的警告。而从 XML 注释创建输出这一步，微软推荐了三个工具：DocFX、Sandcastle、Doxygen。见&lt;a href="<a href="https://learn.microsoft.com/zh-cn/dotnet/csharp/language-reference/xmldoc/">https://learn.microsoft.com/zh-cn/dotnet/csharp/language-reference/xmldoc/</a>" &gt;接受 XML 文档输入的工具&lt;/a&gt;。
 
-再参考&lt;a href="<a href="https://www.cnblogs.com/memoyu/p/16896143.html">https://www.cnblogs.com/memoyu/p/16896143.html</a>" &gt;浅尝 API文档生成框架，迅速排除Sandcastle，剩余两者中首先考虑了DocFX，并在详细调研后发现：2022年11月Microsoft Learn不再使用DocFX作为工具，原因是Microsoft Learn转向了更动态的架构，而不再考虑静态站点生成。他们新搭建了一个组合层，该层将各种格式的数据资产组合在一起生成最终的html页面，DocFX以后只作为一个小工具用来从markdown内容中生成文档和html。其次，考虑到跨语言跨平台问题与类继承图、调用图的生成，最终排除DocFX决定采用Doxygen。 </p>
+再参考&lt;a href="<a href="https://www.cnblogs.com/memoyu/p/16896143.html">https://www.cnblogs.com/memoyu/p/16896143.html</a>" &gt;浅尝 API文档生成框架，迅速排除Sandcastle，剩余两者中首先考虑了DocFX，并在详细调研后发现：2022年11月Microsoft Learn不再使用DocFX作为工具，原因是Microsoft Learn转向了更动态的架构，而不再考虑静态站点生成。他们新搭建了一个组合层，该层将各种格式的数据资产组合在一起生成最终的html页面，DocFX以后只作为一个小工具用来从markdown内容中生成文档和html。其次，考虑到跨语言跨平台问题与类继承图、调用图的生成，最终排除DocFX决定采用Doxygen。</p>
+<h1><a class="anchor" id="autotoc_md4"></a>
+2024年8月7日</h1>
+<p><strike>为项目引入doxygen。显然文档文件不应包含在仓库中，应尝试github托管页面。</strike></p>
+<p>上午开头，下午探索，晚上解决。已成功引入doxygen，并在github上托管了静态html文档。可喜可贺。</p>
+<p>doxygen另有一个用于绘制继承图调用图等图片的绘图插件，应尝试引入。 </p>
 </div></div><!-- contents -->
 </div><!-- PageDoc -->
 </div><!-- doc-content -->

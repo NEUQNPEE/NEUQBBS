@@ -34,7 +34,7 @@ namespace WebApiDemo.Filter
             );
 
             // 设置响应状态码为 500 并返回错误信息
-            context.Result = new ObjectResult(new { Message = "发生未知错误，请重试" }) { StatusCode = 500 };
+            context.Result = new ObjectResult(new { Message = "未知错误，请重试" }) { StatusCode = 500 };
             context.ExceptionHandled = true;
         }
     }
