@@ -12,7 +12,7 @@ namespace WebApiDemo.BLL.Interfaces
         /// debug 获取所有用户
         /// </summary>
         /// <returns></returns>
-        List<UserBModel>? DebugGetAllUsers();
+        List<UserBModel> DebugGetAllUsers();
 
         /// <summary>
         /// debug 获取用户
