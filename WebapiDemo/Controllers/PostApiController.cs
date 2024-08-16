@@ -243,7 +243,7 @@ public class PostApiController : ControllerBase
         }
         catch (Exception ex)
         {
-            logger.LogError(ex, "更新浏览量时发生错误", postId);
+            logger.LogError(ex, "更新浏览量时发生错误。板块ID: {sectionId}, 帖子ID: {postId}", sectionId, postId);
             return StatusCode(500, "内部服务器错误");
         }
     }

@@ -2,7 +2,7 @@
  * @Author       : NieFire planet_class@foxmail.com
  * @Date         : 2024-05-16 15:10:29
  * @LastEditors  : NieFire planet_class@foxmail.com
- * @LastEditTime : 2024-08-10 11:08:57
+ * @LastEditTime : 2024-08-17 00:37:04
  * @FilePath     : \CS_Computer-Science-and-Technologye:\CX\WebapiDemo\WebApiDemo\Controllers\LoginApiController.cs
  * @Description  : 用户登录相关API
  * ( ﾟ∀。)只要加满注释一切都会好起来的( ﾟ∀。)
@@ -114,7 +114,7 @@ public class LoginApiController : ControllerBase
     public ActionResult<UserBaseInfoResponse> GetBaseInfoById(int id)
     {
         logger.LogInformation("id为{id}的用户获取了基本信息", id);
-        var user = userBll.GetUserById(id).ToUserBaseInfoResponse();
+        var user = userBll.GetUserById(id)?.ToUserBaseInfoResponse();
         if (user == null)
         {
             return NotFound("用户不存在");
@@ -132,7 +132,7 @@ public class LoginApiController : ControllerBase
     public ActionResult<UserInfoResponse> GetInfoById(int id)
     {
         logger.LogInformation("id为{id}的用户获取了详细信息", id);
-        var userInfo = userBll.GetUserById(id).ToResponse();
+        var userInfo = userBll.GetUserById(id)?.ToResponse();
         if (userInfo == null)
         {
             return NotFound("用户不存在");
@@ -294,17 +294,17 @@ public class LoginApiController : ControllerBase
 
     private void AddHeader(Dictionary<string, string> tokens)
     {
-        Response.Headers.Add("Access-Control-Expose-Headers", string.Join(",", tokens.Keys));
+        Response.Headers["Access-Control-Expose-Headers"] = string.Join(",", tokens.Keys);
 
         foreach (KeyValuePair<string, string> token in tokens)
         {
-            Response.Headers.Add(token.Key, token.Value);
+            Response.Headers[token.Key] = token.Value;
         }
     }
 
     private void AddHeader(string key, string value)
     {
-        Response.Headers.Add("Access-Control-Expose-Headers", key);
-        Response.Headers.Add(key, value);
+        Response.Headers["Access-Control-Expose-Headers"] = key;
+        Response.Headers[key] = value;
     }
 }
