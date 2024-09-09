@@ -1,0 +1,22 @@
+version: '3.4'
+
+services:
+  app:
+    image: webapidemo
+    ports:
+    - 5286:5286
+    working_dir: /app
+    
+    environment:
+      - ACCEPT_EULA=Y
+      - MSSQL_SA_PASSWORD=MillionAura69
+      - SQLSERVER_HOST=sql-server2022
+      - SQLSERVER_DB=WebApiDb
+
+  sqlserver:
+    image: init-sqlserver-image
+    ports:
+    - 1400:1433
+    environment:
+      - ACCEPT_EULA=Y
+      - MSSQL_SA_PASSWORD=MillionAura69
