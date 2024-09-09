@@ -2,7 +2,7 @@
  * @Author       : NieFire planet_class@foxmail.com
  * @Date         : 2024-05-16 15:10:29
  * @LastEditors  : NieFire planet_class@foxmail.com
- * @LastEditTime : 2024-08-17 00:37:04
+ * @LastEditTime : 2024-09-07 20:37:15
  * @FilePath     : \CS_Computer-Science-and-Technologye:\CX\WebapiDemo\WebApiDemo\Controllers\LoginApiController.cs
  * @Description  : 用户登录相关API
  * ( ﾟ∀。)只要加满注释一切都会好起来的( ﾟ∀。)
@@ -21,26 +21,18 @@ namespace WebApiDemo.Controllers;
 /// <summary>
 /// 用户登录相关API
 /// </summary>
+/// <remarks>
+/// 构造函数
+/// </remarks>
+/// <param name="userBll"></param>
+/// <param name="logger"></param>
 [ApiController]
 // [Route("api/[controller]/[action]")]
 [Route("[controller]")]
 // todo 处理跨域
 [EnableCors("any")]
-public class LoginApiController : ControllerBase
+public class LoginApiController(IUserBll userBll, ILogger<LoginApiController> logger) : ControllerBase
 {
-    private readonly IUserBll userBll;
-    private readonly ILogger<LoginApiController> logger;
-
-    /// <summary>
-    /// 构造函数
-    /// </summary>
-    /// <param name="userBll"></param>
-    /// <param name="logger"></param>
-    public LoginApiController(IUserBll userBll, ILogger<LoginApiController> logger)
-    {
-        this.userBll = userBll;
-        this.logger = logger;
-    }
 
     /// <summary>
     /// debug 获取所有User
@@ -50,7 +42,12 @@ public class LoginApiController : ControllerBase
     public ActionResult<List<UserBModel>> DebugGetAll()
     {
         logger.LogDebug("获取所有User");
-        return Ok(userBll.DebugGetAllUsers());
+        var result = userBll.DebugGetAllUsers();
+        if (!result.IsSuccess)
+        {
+            return NotFound("没有找到任何用户");
+        }
+        return Ok(result.Data);
     }
 
     /// <summary>
@@ -62,12 +59,12 @@ public class LoginApiController : ControllerBase
     public ActionResult<UserBModel> DebugGetById(int id)
     {
         logger.LogDebug("按id获取User全部信息");
-        var user = userBll.DebugGetUserById(id);
-        if (user == null)
+        var result = userBll.DebugGetUserById(id);
+        if (!result.IsSuccess)
         {
             return NotFound("用户不存在");
         }
-        return Ok(user);
+        return Ok(result.Data);
     }
 
     /// <summary>
@@ -79,12 +76,13 @@ public class LoginApiController : ControllerBase
     public ActionResult<UserBModel> GetById(int id)
     {
         logger.LogInformation("id为{id}的用户获取了可见信息", id);
-        var user = userBll.GetUserById(id);
-        if (user == null)
+
+        var result = userBll.GetUserById(id);
+        if (!result.IsSuccess)
         {
             return NotFound("用户不存在");
         }
-        return Ok(user);
+        return Ok(result.Data);
     }
 
     /// <summary>
@@ -96,14 +94,14 @@ public class LoginApiController : ControllerBase
     public ActionResult<string> GetUserNameById(int id)
     {
         logger.LogInformation("id为{id}的用户获取了用户名", id);
-        var username = userBll.GetUserNameById(id);
-        if (string.IsNullOrEmpty(username))
+
+        var result = userBll.GetUserNameById(id);
+        if (!result.IsSuccess)
         {
             return NotFound("用户不存在");
         }
-        return Ok(username);
+        return Ok(result.Data);
     }
-
 
     /// <summary>
     /// 按id获取基本信息
@@ -114,14 +112,14 @@ public class LoginApiController : ControllerBase
     public ActionResult<UserBaseInfoResponse> GetBaseInfoById(int id)
     {
         logger.LogInformation("id为{id}的用户获取了基本信息", id);
-        var user = userBll.GetUserById(id)?.ToUserBaseInfoResponse();
-        if (user == null)
+
+        var result = userBll.GetUserById(id);
+        if (!result.IsSuccess)
         {
             return NotFound("用户不存在");
         }
-        return Ok(user);
+        return Ok(result.Data?.ToUserBaseInfoResponse());
     }
-
 
     /// <summary>
     /// 按id获取详细信息
@@ -132,14 +130,14 @@ public class LoginApiController : ControllerBase
     public ActionResult<UserInfoResponse> GetInfoById(int id)
     {
         logger.LogInformation("id为{id}的用户获取了详细信息", id);
-        var userInfo = userBll.GetUserById(id)?.ToResponse();
-        if (userInfo == null)
+
+        var result = userBll.GetUserById(id);
+        if (!result.IsSuccess)
         {
             return NotFound("用户不存在");
         }
-        return Ok(userInfo);
+        return Ok(result.Data?.ToResponse());
     }
-
 
     /// <summary>
     /// 检查登录
@@ -149,7 +147,6 @@ public class LoginApiController : ControllerBase
     [HttpPost("login")]
     public IActionResult CheckLogin([FromBody] LoginRequest request)
     {
-        int userId;
         // 首先处理自动登录
         if (AutoLogin(request))
         {
@@ -162,8 +159,8 @@ public class LoginApiController : ControllerBase
             return BadRequest("用户名或密码为空");
         }
 
-        userId = userBll.CheckLogin(request.UserName, request.Password);
-        if (userId == -1)
+        var result = userBll.CheckLogin(request.UserName, request.Password);
+        if (!result.IsSuccess)
         {
             logger.LogWarning("用户:{userName}的登录失败", request.UserName);
             return BadRequest("用户名或密码错误");
@@ -171,13 +168,13 @@ public class LoginApiController : ControllerBase
 
         if (!request.RememberMe)
         {
-            AddHeader("UserId", userId.ToString());
+            AddHeader("UserId", result.Data.ToString());
             logger.LogInformation("用户:{userName}的登录成功，不记住密码", request.UserName);
             return Ok("登录成功！");
         }
         else
         {
-            string token = GenerateAutoLoginToken(userId);
+            string token = GenerateAutoLoginToken(result.Data);
             if (token == string.Empty)
             {
                 return BadRequest("自动登录Token生成失败");
@@ -185,7 +182,7 @@ public class LoginApiController : ControllerBase
 
             // UserId的键值对
             Dictionary<string, string> tokens =
-                new() { { "UserId", userId.ToString() }, { "AutoLoginToken", token } };
+                new() { { "UserId", result.Data.ToString() }, { "AutoLoginToken", token } };
 
             AddHeader(tokens);
 
@@ -202,22 +199,22 @@ public class LoginApiController : ControllerBase
     [HttpPost]
     public IActionResult Insert([FromBody] UserInsertRequest request)
     {
-        // 在浏览器中存储返回来的Id，如此在首次跳转登录页面时，可以直接填入用户名和密码（仅此一次）
-        if (userBll.CheckUserExist(request.UserName))
+        var result = userBll.CheckUserExist(request.UserName);
+        if (result.IsSuccess)
         {
             logger.LogWarning("用户:{userName}已存在", request.UserName);
-            return BadRequest("用户名已存在！");
+            return BadRequest("用户名已存在!");
         }
 
-        int userId = userBll.AddUser(request.ToBModel());
-        if (userId == -1)
+        var result2 = userBll.AddUser(request.ToBModel());
+        if (!result2.IsSuccess)
         {
-            logger.LogWarning("前端传入用户名或密码为空的注册请求！");
-            return BadRequest("用户名或密码为空！");
+            logger.LogWarning("前端传入用户名或密码为空的注册请求!");
+            return BadRequest("用户名或密码为空!");
         }
         else
         {
-            AddHeader("UserId", userId.ToString());
+            AddHeader("UserId", result2.Data.ToString());
             logger.LogInformation("用户:{userName}的注册成功", request.UserName);
             return Ok("注册成功！");
         }
@@ -232,14 +229,13 @@ public class LoginApiController : ControllerBase
     public IActionResult Update([FromBody] UserUpdateRequest request)
     {
         logger.LogInformation("用户更新数据请求: {request}", request);
-        string result = userBll.UpdateUser(request.ToBModel());
-        if (result == "操作失败")
+        var result = userBll.UpdateUser(request.ToBModel());
+        if (!result.IsSuccess)
         {
             return BadRequest("更新失败");
         }
         return Ok("更新成功");
     }
-
 
     /// <summary>
     /// 删除数据
@@ -250,8 +246,8 @@ public class LoginApiController : ControllerBase
     public IActionResult Remove(int id)
     {
         logger.LogInformation("用户删除数据请求: {id}", id);
-        string result = userBll.RemoveUser(id);
-        if (result == "操作失败")
+        var result = userBll.RemoveUser(id);
+        if (!result.IsSuccess)
         {
             return BadRequest("删除失败");
         }
@@ -265,15 +261,14 @@ public class LoginApiController : ControllerBase
             return false;
         }
 
-        int userId = userBll.CheckAutoLoginToken(request.AutoLoginToken);
-        if (userId == -1)
+        var result = userBll.CheckAutoLoginToken(request.AutoLoginToken);
+        if (!result.IsSuccess)
         {
-            // todo 根据用户名获取其id
             logger.LogWarning("用户:{userName}的自动登录Token无效", request.UserName);
             return false;
         }
 
-        AddHeader("UserId", userId.ToString());
+        AddHeader("UserId", result.Data.ToString());
 
         logger.LogInformation("用户:{userName}的自动登录成功", request.UserName);
         return true;
@@ -281,20 +276,18 @@ public class LoginApiController : ControllerBase
 
     private string GenerateAutoLoginToken(int userId)
     {
-        string token = userBll.GenerateAutoLoginToken(userId);
-
-        if (string.IsNullOrEmpty(token))
+        var result = userBll.GenerateAutoLoginToken(userId);
+        if (!result.IsSuccess)
         {
             logger.LogWarning("id为{id}的用户Token生成失败", userId);
             return string.Empty;
         }
-
-        return token;
+        return result.Data!;
     }
 
     private void AddHeader(Dictionary<string, string> tokens)
     {
-        Response.Headers["Access-Control-Expose-Headers"] = string.Join(",", tokens.Keys);
+        Response.Headers.AccessControlExposeHeaders = string.Join(",", tokens.Keys);
 
         foreach (KeyValuePair<string, string> token in tokens)
         {
@@ -304,7 +297,7 @@ public class LoginApiController : ControllerBase
 
     private void AddHeader(string key, string value)
     {
-        Response.Headers["Access-Control-Expose-Headers"] = key;
+        Response.Headers.AccessControlExposeHeaders = key;
         Response.Headers[key] = value;
     }
 }

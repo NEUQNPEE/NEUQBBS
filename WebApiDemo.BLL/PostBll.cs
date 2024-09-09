@@ -3,211 +3,204 @@ using WebApiDemo.DAL;
 using WebApiDemo.DAL.Interfaces;
 using WebApiDemo.Entities.BModels;
 using WebApiDemo.Entities.EPost;
+using WebApiDemo.BLL.Result;
 
 namespace WebApiDemo.BLL;
 
 /// <inheritdoc />
-public class PostBll : IPostBll
+/// <inheritdoc/>
+public class PostBll(IPostDalFactory postDalFactory) : IPostBll
 {
-    private readonly IPostDalFactory _postDalFactory;
-
     /// <inheritdoc/>
-    public PostBll(IPostDalFactory postDalFactory)
+    public BllResult<List<Post>> GetAllPosts(int sectionId)
     {
-        _postDalFactory = postDalFactory;
+        string? tableName = SectionDal.GetSectionById(sectionId).Data?.TableName;
+        if (tableName == null)
+        {
+            return BllResult<List<Post>>.Failure("未找到板块");
+        }
+
+        var posts = postDalFactory.GetPostDal(tableName).GetAllPosts().Data;
+        return BllResult<List<Post>>.Success(posts);
     }
 
     /// <inheritdoc/>
-    public List<Post>? GetAllPosts(int sectionId)
+    public BllResult<List<UserBModel>> GetAllUsers(int sectionId)
     {
-        string? tableName = SectionDal.GetSectionById(sectionId)?.TableName;
+        string? tableName = SectionDal.GetSectionById(sectionId).Data?.TableName;
         if (tableName == null)
         {
-            return null;
+            return BllResult<List<UserBModel>>.Failure("未找到板块");
         }
-        return _postDalFactory.GetPostDal(tableName).GetAllPosts();
-    }
-
-    /// <inheritdoc/>
-    public List<UserBModel>? GetAllUsers(int sectionId)
-    {
-        string? tableName = SectionDal.GetSectionById(sectionId)?.TableName;
-        if (tableName == null)
-        {
-            return null;
-        }
-        List<UserBModel>? users = _postDalFactory.GetPostDal(tableName).GetAllUsers();
-        // 保留Id, UserName, RegisterTime和Points字段，注意排除IsDeleted字段
+        
+        var users = postDalFactory.GetPostDal(tableName).GetAllUsers().Data;
         if (users == null)
         {
-            return null;
+            return BllResult<List<UserBModel>>.Failure("未找到用户");
         }
 
-        List<UserBModel>? result = new();
-        foreach (UserBModel? user in users)
+        var result = new List<UserBModel>();
+        foreach (var user in users)
         {
-            if (user == null)
+            result.Add(new UserBModel
             {
-                continue;
-            }
-            result.Add(
-                new UserBModel
-                {
-                    Id = user.Id,
-                    UserName = user.UserName,
-                    RegisterTime = user.RegisterTime,
-                    Points = user.Points
-                }
-            );
+                Id = user.Id,
+                UserName = user.UserName,
+                RegisterTime = user.RegisterTime,
+                Points = user.Points
+            });
         }
 
-        return result;
+        return BllResult<List<UserBModel>>.Success(result);
     }
 
     /// <inheritdoc/>
-    public List<Post>? GetPosts(PostListBModel postListBModel)
+    public BllResult<List<Post>> GetPosts(PostListBModel postListBModel)
     {
-        string? tableName = SectionDal.GetSectionById(postListBModel.SectionId)?.TableName;
+        string? tableName = SectionDal.GetSectionById(postListBModel.SectionId).Data?.TableName;
         if (tableName == null)
         {
-            return null;
+            return BllResult<List<Post>>.Failure("未找到板块");
         }
-        return _postDalFactory
+
+        var posts = postDalFactory
             .GetPostDal(tableName)
-            .GetPosts(postListBModel.BeginNum, postListBModel.NeedNum);
+            .GetPosts(postListBModel.BeginNum, postListBModel.NeedNum).Data;
+        return BllResult<List<Post>>.Success(posts);
     }
 
     /// <inheritdoc/>
-    public List<Post>? GetPosts(int sectionId, int mainPostId)
+    public BllResult<List<Post>> GetPosts(int sectionId, int mainPostId)
     {
-        string? tableName = SectionDal.GetSectionById(sectionId)?.TableName;
+        string? tableName = SectionDal.GetSectionById(sectionId).Data?.TableName;
         if (tableName == null)
         {
-            return null;
+            return BllResult<List<Post>>.Failure("未找到板块");
         }
-        return _postDalFactory.GetPostDal(tableName).GetPosts(mainPostId);
+
+        var posts = postDalFactory.GetPostDal(tableName).GetPosts(mainPostId).Data;
+        return BllResult<List<Post>>.Success(posts);
     }
 
     /// <inheritdoc/>
-    public int AddPost(int sectionId, Post post)
+    public BllResult<int> AddPost(int sectionId, Post post)
     {
-        string? tableName = SectionDal.GetSectionById(sectionId)?.TableName;
+        string? tableName = SectionDal.GetSectionById(sectionId).Data?.TableName;
         if (tableName == null)
         {
-            return -1;
+            return BllResult<int>.Failure("未找到板块");
         }
-        int id = _postDalFactory.GetPostDal(tableName).AddPost(post);
-        Post? mainPost = _postDalFactory.GetPostDal(tableName).GetPostById(post.MainPostId);
+
+        var id = postDalFactory.GetPostDal(tableName).AddPost(post).Data;
+        var mainPost = postDalFactory.GetPostDal(tableName).GetPostById(post.MainPostId).Data;
         if (mainPost != null)
         {
-            mainPost.ReplyNum = GetPosts(sectionId, post.MainPostId)?.Count - 1 ?? 0;
-            _postDalFactory.GetPostDal(tableName).UpdatePost(mainPost);
+            mainPost.ReplyNum = GetPosts(sectionId, post.MainPostId).Data?.Count - 1 ?? 0;
+            postDalFactory.GetPostDal(tableName).UpdatePost(mainPost);
         }
 
-        return id;
+        return BllResult<int>.Success(id);
     }
 
     /// <inheritdoc/>
-    public List<UserBModel>? GetUsers(PostListBModel postListBModel)
+    public BllResult<List<UserBModel>> GetUsers(PostListBModel postListBModel)
     {
-        string? tableName = SectionDal.GetSectionById(postListBModel.SectionId)?.TableName;
+        string? tableName = SectionDal.GetSectionById(postListBModel.SectionId).Data?.TableName;
         if (tableName == null)
         {
-            return null;
+            return BllResult<List<UserBModel>>.Failure("未找到板块");
         }
-        List<UserBModel>? users = _postDalFactory
+
+        var users = postDalFactory
             .GetPostDal(tableName)
-            .GetUsers(postListBModel.BeginNum, postListBModel.NeedNum);
-        // 保留Id, UserName, RegisterTime和Points字段，注意排除IsDeleted字段
+            .GetUsers(postListBModel.BeginNum, postListBModel.NeedNum).Data;
         if (users == null)
         {
-            return null;
+            return BllResult<List<UserBModel>>.Failure("No users found.");
         }
 
-        List<UserBModel>? result = new();
-        foreach (UserBModel? user in users)
+        var result = new List<UserBModel>();
+        foreach (var user in users)
         {
-            if (user == null)
+            result.Add(new UserBModel
             {
-                continue;
-            }
-            result.Add(
-                new UserBModel
-                {
-                    Id = user.Id,
-                    UserName = user.UserName,
-                    RegisterTime = user.RegisterTime,
-                    Points = user.Points
-                }
-            );
+                Id = user.Id,
+                UserName = user.UserName,
+                RegisterTime = user.RegisterTime,
+                Points = user.Points
+            });
         }
 
-        return result;
+        return BllResult<List<UserBModel>>.Success(result);
     }
 
     /// <inheritdoc/>
-    public Post? GetLastReplyPosts(int sectionId, int mainPostId)
+    public BllResult<Post> GetLastReplyPosts(int sectionId, int mainPostId)
     {
-        string? tableName = SectionDal.GetSectionById(sectionId)?.TableName;
+        string? tableName = SectionDal.GetSectionById(sectionId).Data?.TableName;
         if (tableName == null)
         {
-            return null;
+            return BllResult<Post>.Failure("未找到板块");
         }
 
-        return _postDalFactory.GetPostDal(tableName).GetLastReplyPosts(mainPostId);
+        var post = postDalFactory.GetPostDal(tableName).GetLastReplyPosts(mainPostId).Data;
+        return BllResult<Post>.Success(post);
     }
 
     /// <inheritdoc/>
-    public void UpVote(int sectionId, int postId)
+    public BllResult<object> UpVote(int sectionId, int postId)
     {
-        string? tableName = SectionDal.GetSectionById(sectionId)?.TableName;
+        string? tableName = SectionDal.GetSectionById(sectionId).Data?.TableName;
         if (tableName == null)
         {
-            return;
+            return BllResult<object>.Failure("未找到板块");
         }
 
-        Post? post = _postDalFactory.GetPostDal(tableName).GetPostById(postId);
+        var post = postDalFactory.GetPostDal(tableName).GetPostById(postId).Data;
         if (post == null)
         {
-            return;
+            return BllResult<object>.Failure("未找到帖子");
         }
         post.UpVote++;
-        _postDalFactory.GetPostDal(tableName).UpdatePost(post);
+        postDalFactory.GetPostDal(tableName).UpdatePost(post);
+        return BllResult<object>.Success();
     }
 
     /// <inheritdoc/>
-    public void DownVote(int sectionId, int postId)
+    public BllResult<object> DownVote(int sectionId, int postId)
     {
-        string? tableName = SectionDal.GetSectionById(sectionId)?.TableName;
+        string? tableName = SectionDal.GetSectionById(sectionId).Data?.TableName;
         if (tableName == null)
         {
-            return;
+            return BllResult<object>.Failure("未找到板块");
         }
 
-        Post? post = _postDalFactory.GetPostDal(tableName).GetPostById(postId);
+        var post = postDalFactory.GetPostDal(tableName).GetPostById(postId).Data;
         if (post == null)
         {
-            return;
+            return BllResult<object>.Failure("未找到帖子");
         }
         post.DownVote++;
-        _postDalFactory.GetPostDal(tableName).UpdatePost(post);
+        postDalFactory.GetPostDal(tableName).UpdatePost(post);
+        return BllResult<object>.Success();
     }
 
     /// <inheritdoc/>
-    public void UpdateView(int sectionId, int postId)
+    public BllResult<object> UpdateView(int sectionId, int postId)
     {
-        string? tableName = SectionDal.GetSectionById(sectionId)?.TableName;
+        string? tableName = SectionDal.GetSectionById(sectionId).Data?.TableName;
         if (tableName == null)
         {
-            return;
+            return BllResult<object>.Failure("未找到板块");
         }
 
-        Post? post = _postDalFactory.GetPostDal(tableName).GetPostById(postId);
+        var post = postDalFactory.GetPostDal(tableName).GetPostById(postId).Data;
         if (post == null)
         {
-            return;
+            return BllResult<object>.Failure("未找到帖子");
         }
         post.ViewNum++;
-        _postDalFactory.GetPostDal(tableName).UpdatePost(post);
+        postDalFactory.GetPostDal(tableName).UpdatePost(post);
+        return BllResult<object>.Success();
     }
 }

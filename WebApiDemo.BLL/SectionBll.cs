@@ -1,4 +1,5 @@
 ﻿using WebApiDemo.BLL.Interfaces;
+using WebApiDemo.BLL.Result;
 using WebApiDemo.DAL;
 using WebApiDemo.DAL.Interfaces;
 using WebApiDemo.Entities.EPost;
@@ -9,51 +10,55 @@ namespace WebApiDemo.BLL;
 /// <summary>
 /// 版块业务逻辑实现
 /// </summary>
-public class SectionBll : ISectionBll
+/// <inheritdoc />
+public class SectionBll(IPostDalFactory postDalFactory) : ISectionBll
 {
-    private readonly IPostDalFactory _postDalFactory;
-
     /// <inheritdoc />
-    public SectionBll(IPostDalFactory postDalFactory)
+    public BllResult<List<Section>> GetAllSections()
     {
-        _postDalFactory = postDalFactory;
+        var sections = SectionDal.GetAllSections().Data;
+        return sections != null 
+            ? BllResult<List<Section>>.Success(sections) 
+            : BllResult<List<Section>>.Failure("未找到版块");
     }
 
     /// <inheritdoc />
-    public List<Section>? GetAllSections()
+    public BllResult<List<Post>> GetMainPosts(int sectionId)
     {
-        return SectionDal.GetAllSections();
-    }
-
-    /// <inheritdoc />
-    public List<Post>? GetMainPosts(int sectionId)
-    {
-        string? tableName = SectionDal.GetSectionById(sectionId)?.TableName;
+        string? tableName = SectionDal.GetSectionById(sectionId).Data?.TableName;
         if (tableName == null)
         {
-            return null;
+            return BllResult<List<Post>>.Failure("未找到板块");
         }
-        return _postDalFactory.GetPostDal(tableName).GetMainPosts();
+        var posts = postDalFactory.GetPostDal(tableName).GetMainPosts().Data;
+        return posts != null 
+            ? BllResult<List<Post>>.Success(posts) 
+            : BllResult<List<Post>>.Failure("未找到板块");
     }
 
     /// <inheritdoc />
-    public Section? GetSectionById(int id)
+    public BllResult<Section> GetSectionById(int id)
     {
-        return SectionDal.GetSectionById(id);
+        var section = SectionDal.GetSectionById(id).Data;
+        return section != null 
+            ? BllResult<Section>.Success(section) 
+            : BllResult<Section>.Failure("未找到板块");
     }
 
     /// <inheritdoc />
-    public List<Section>? GetSectionsByIds(List<int> ids)
+    public BllResult<List<Section>> GetSectionsByIds(List<int> ids)
     {
-        List<Section> sections = new();
+        List<Section> sections = [];
         foreach (int id in ids)
         {
-            Section? section = GetSectionById(id);
+            var section = SectionDal.GetSectionById(id).Data;
             if (section != null)
             {
                 sections.Add(section);
             }
         }
-        return sections;
+        return sections.Count > 0 
+            ? BllResult<List<Section>>.Success(sections) 
+            : BllResult<List<Section>>.Failure("未找到板块");
     }
 }

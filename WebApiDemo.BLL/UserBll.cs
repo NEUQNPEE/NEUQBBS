@@ -1,167 +1,200 @@
 ﻿using WebApiDemo.BLL.Interfaces;
+using WebApiDemo.BLL.Result;
 using WebApiDemo.DAL;
 using WebApiDemo.Entities.BModels;
+
 using WebApiDemoCommon;
 
 namespace WebApiDemo.BLL;
 
 /// <summary>
-/// 用户业务逻辑接口实现
+/// 用户业务逻辑实现
 /// </summary>
 public class UserBll : IUserBll
 {
     /// <inheritdoc />
-    public List<UserBModel> DebugGetAllUsers()
+    public BllResult<List<UserBModel>> DebugGetAllUsers()
     {
-        return UserDal.DebugGetAllUsers();
+        var users = UserDal.DebugGetAllUsers().Data;
+        return users != null 
+            ? BllResult<List<UserBModel>>.Success(users) 
+            : BllResult<List<UserBModel>>.Failure();
     }
 
     /// <inheritdoc />
-    public UserBModel? DebugGetUserById(int id)
+    public BllResult<UserBModel> DebugGetUserById(int id)
     {
-        return UserDal.DebugGetUserById(id);
+        var user = UserDal.DebugGetUserById(id).Data;
+        return user != null 
+            ? BllResult<UserBModel>.Success(user) 
+            : BllResult<UserBModel>.Failure();
     }
 
     /// <inheritdoc />
-    public UserBModel? GetUserById(int id)
+    public BllResult<UserBModel> GetUserById(int id)
     {
-        return UserDal.GetUserById(id);
+        var user = UserDal.GetUserById(id).Data;
+        return user != null 
+            ? BllResult<UserBModel>.Success(user) 
+            : BllResult<UserBModel>.Failure();
     }
 
     /// <inheritdoc />
-    public string GetUserNameById(int id)
+    public BllResult<string> GetUserNameById(int id)
     {
-        UserBModel? user = UserDal.GetUserById(id);
-        if (user == null)
-        {
-            return "未找到";
-        }
-
-        return user.UserName ?? "用户名空引用！";
+        var user = UserDal.GetUserById(id).Data;
+        return user != null 
+            ? BllResult<string>.Success(user.UserName) 
+            : BllResult<string>.Failure("未找到");
     }
 
     /// <inheritdoc />
-    public List<string> GetUserNamesByIds(List<int> ids)
+    public BllResult<List<string>> GetUserNamesByIds(List<int> ids)
     {
-        List<string> userNames = new();
+        List<string> userNames = [];
         foreach (int id in ids)
         {
-            userNames.Add(GetUserNameById(id));
+            var result = GetUserNameById(id);
+            if (result.IsSuccess)
+            {
+                userNames.Add(result.Data!);
+            }
         }
-
-        return userNames;
+        return userNames.Count > 0 
+            ? BllResult<List<string>>.Success(userNames) 
+            : BllResult<List<string>>.Failure("未找到");
     }
 
     /// <inheritdoc />
-    public UserBModel? GetUserByIdForPost(int id)
+    public BllResult<UserBModel> GetUserByIdForPost(int id)
     {
-        UserBModel? user = UserDal.GetUserById(id);
+        var user = UserDal.GetUserById(id).Data;
         if (user == null)
         {
-            return null;
+            return BllResult<UserBModel>.Failure("未找到");
         }
 
-        return new UserBModel
+        return BllResult<UserBModel>.Success(new UserBModel
         {
             UserName = user.UserName,
             RegisterTime = user.RegisterTime,
             Points = user.Points
-        };
+        });
     }
 
     /// <inheritdoc />
-    public UserBModel? GetUserBaseInfoById(int id)
+    public BllResult<UserBModel> GetUserBaseInfoById(int id)
     {
-        UserBModel? user = UserDal.GetUserById(id);
+        var user = UserDal.GetUserById(id).Data;
         if (user == null)
         {
-            return null;
+            return BllResult<UserBModel>.Failure("未找到");
         }
 
-        return new UserBModel
+        return BllResult<UserBModel>.Success(new UserBModel
         {
             Id = user.Id,
             UserName = user.UserName,
             RegisterTime = user.RegisterTime,
             Points = user.Points
-        };
+        });
     }
 
     /// <inheritdoc />
-    public UserBModel? GetUserDetailInfoById(int id)
+    public BllResult<UserBModel> GetUserDetailInfoById(int id)
     {
-        return UserDal.GetUserById(id);
+        var user = UserDal.GetUserById(id).Data;
+        return user != null 
+            ? BllResult<UserBModel>.Success(user) 
+            : BllResult<UserBModel>.Failure("未找到");
     }
 
     /// <inheritdoc />
-    public bool CheckUserExist(string userName)
+    public BllResult<bool> CheckUserExist(string userName)
     {
-        return UserDal.CheckUserExist(userName);
+        bool exists = UserDal.CheckUserExist(userName).IsSuccess;
+        return exists
+            ? BllResult<bool>.Success(exists)
+            : BllResult<bool>.Failure("未找到");
     }
 
     /// <inheritdoc />
-    public int CheckLogin(string userName, string password)
+    public BllResult<int> CheckLogin(string userName, string password)
     {
         password = password.ToMd5();
-        List<UserBModel>? userList = UserDal.GetUserByUserNameAndPassword(userName, password);
+        var userList = UserDal.GetUserByUserNameAndPassword(userName, password).Data;
         if (userList?.Count <= 0 || userList == null)
         {
-            return -1;
+            return BllResult<int>.Failure("用户名或密码错误");
         }
 
-        // 查出非删除的用户
-        UserBModel? user = userList.Find(user => user?.IsDeleted == false);
+        var user = userList.Find(u => u?.IsDeleted == false);
         if (user == null)
         {
-            return -1;
+            return BllResult<int>.Failure("用户名或密码错误");
         }
 
         UserDal.UpdateLastLoginTime(user.Id);
-        return user.Id;
+        return BllResult<int>.Success(user.Id);
     }
 
     /// <inheritdoc />
-    public string GenerateAutoLoginToken(int userId)
+    public BllResult<string> GenerateAutoLoginToken(int userId)
     {
-        return UserDal.GenerateAutoLoginToken(userId);
-    }
-
-    /// <inheritdoc />
-    public int CheckAutoLoginToken(string token)
-    {
-        int userId = UserDal.CheckAutoLoginToken(token);
-        if (userId > 0)
+        var result = UserDal.GenerateAutoLoginToken(userId);
+        if (!result.IsSuccess)
         {
-            UserDal.UpdateLastLoginTime(userId);
+            return BllResult<string>.Failure();
         }
-        return userId;
+        return BllResult<string>.Success(result.Data);
     }
 
     /// <inheritdoc />
-    public int AddUser(UserBModel userBModel)
+    public BllResult<int> CheckAutoLoginToken(string token)
+    {
+        var result = UserDal.CheckAutoLoginToken(token);
+        if (!result.IsSuccess)
+        {
+            return BllResult<int>.Failure(result.Message);
+        }
+            
+        UserDal.UpdateLastLoginTime(result.Data);
+        return BllResult<int>.Success(result.Data);
+    }
+
+    /// <inheritdoc />
+    public BllResult<int> AddUser(UserBModel userBModel)
     {
         if (userBModel.Password == null)
         {
-            return -1;
+            return BllResult<int>.Failure("密码为空!");
         }
-        // 将密码转为md5
+
         userBModel.Password = userBModel.Password.ToMd5();
-        return UserDal.AddUser(userBModel);
+        int userId = UserDal.AddUser(userBModel).Data;
+        return BllResult<int>.Success(userId);
     }
 
     /// <inheritdoc />
-    public string UpdateUser(UserBModel userBModel)
+    public BllResult<string> UpdateUser(UserBModel userBModel)
     {
         if (userBModel.Password != null)
         {
             userBModel.Password = userBModel.Password.ToMd5();
         }
-        return UserDal.UpdateUser(userBModel) > 0 ? "更新成功" : "更新失败";
+
+        int result = UserDal.UpdateUser(userBModel).Data;
+        return result > 0 
+            ? BllResult<string>.Success("更新成功") 
+            : BllResult<string>.Failure("更新失败");
     }
 
     /// <inheritdoc />
-    public string RemoveUser(int id)
+    public BllResult<string> RemoveUser(int id)
     {
-        return UserDal.RemoveUser(id) > 0 ? "删除成功" : "删除失败";
+        int result = UserDal.RemoveUser(id).Data;
+        return result > 0 
+            ? BllResult<string>.Success("删除成功") 
+            : BllResult<string>.Failure("删除失败");
     }
 }
