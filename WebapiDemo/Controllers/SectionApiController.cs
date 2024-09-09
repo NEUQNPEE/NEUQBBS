@@ -11,50 +11,40 @@ namespace WebApiDemo.Controllers;
 /// <summary>
 /// 板块相关API
 /// </summary>
-[ApiController]
-[Route("[controller]")]
-[EnableCors("any")]
-public class SectionApiController : ControllerBase
-{
-    private readonly ISectionBll sectionBll;
-    private readonly IUserBll userBll;
-    private readonly IPostBll postBll;
-    private readonly ILogger<SectionApiController> logger;
-/// <summary>
+/// <remarks>
 /// 构造函数
-/// </summary>
+/// </remarks>
 /// <param name="sectionBll"></param>
 /// <param name="userBll"></param>
 /// <param name="postBll"></param>
 /// <param name="logger"></param>
-    public SectionApiController(
-        ISectionBll sectionBll,
-        IUserBll userBll,
-        IPostBll postBll,
-        ILogger<SectionApiController> logger
-    )
-    {
-        this.sectionBll = sectionBll;
-        this.userBll = userBll;
-        this.postBll = postBll;
-        this.logger = logger;
-    }
-/// <summary>
-/// 获取所有板块
-/// </summary>
-/// <returns></returns>
+[ApiController]
+[Route("[controller]")]
+[EnableCors("any")]
+public class SectionApiController(
+    ISectionBll sectionBll,
+    IUserBll userBll,
+    IPostBll postBll,
+    ILogger<SectionApiController> logger
+    ) : ControllerBase
+{
+
+    /// <summary>
+    /// 获取所有板块
+    /// </summary>
+    /// <returns></returns>
     [HttpGet("all")]
     public ActionResult<List<Section>> GetAllSections()
     {
         logger.LogDebug("获取所有板块对象");
-        // return sectionBll.GetAllSections();
-        var sections = sectionBll.GetAllSections();
-        if (sections == null || sections.Count == 0)
+
+        var result = sectionBll.GetAllSections();
+        if (!result.IsSuccess)
         {
             logger.LogWarning("没有找到任何板块");
             return NotFound("没有找到任何板块");
         }
-        return Ok(sections);
+        return Ok(result.Data);
     }
 
     /// <summary>
@@ -66,13 +56,14 @@ public class SectionApiController : ControllerBase
     public ActionResult<Section> GetSectionById(int id)
     {
         logger.LogInformation("获取板块id为{id}的板块对象", id);
-        var section = sectionBll.GetSectionById(id);
-        if (section == null)
+
+        var result = sectionBll.GetSectionById(id);
+        if (!result.IsSuccess)
         {
             logger.LogWarning("没有找到id为{id}的板块", id);
             return NotFound("没有找到id为{id}的板块");
         }
-        return Ok(section);
+        return Ok(result.Data);
     }
 
     /// <summary>
@@ -84,14 +75,14 @@ public class SectionApiController : ControllerBase
     public ActionResult<List<Post>> GetAllMainPostsBySectionId(int sectionId)
     {
         logger.LogInformation("根据板块id({sectionId})获取本版所有主贴", sectionId);
-        // return sectionBll.GetMainPosts(sectionId);
-        var posts = sectionBll.GetMainPosts(sectionId);
-        if (posts == null || posts.Count == 0)
+
+        var result = sectionBll.GetMainPosts(sectionId);
+        if (!result.IsSuccess)
         {
             logger.LogWarning("没有找到板块id({sectionId})下的任何主贴", sectionId);
             return NotFound("没有找到板块id({sectionId})下的任何主贴");
         }
-        return Ok(posts);
+        return Ok(result.Data);
     }
 
     /// <summary>
@@ -112,14 +103,13 @@ public class SectionApiController : ControllerBase
             return BadRequest("主贴id列表不能为空");
         }
 
-        // 获取所有主贴的最后回复帖
-        List<Post> lastReplyPosts = new();
+        var lastReplyPosts = new List<Post>();
         foreach (int mainPostId in mainPostIds)
         {
-            Post? lastReplyPost = postBll.GetLastReplyPosts(sectionId, mainPostId);
-            if (lastReplyPost != null)
+            var result = postBll.GetLastReplyPosts(sectionId, mainPostId);
+            if (result.IsSuccess)
             {
-                lastReplyPosts.Add(lastReplyPost);
+                lastReplyPosts.Add(result.Data!);
             }
         }
 
@@ -129,7 +119,7 @@ public class SectionApiController : ControllerBase
             return NotFound("没有找到板块id({sectionId})下的任何主贴的最后回复");
         }
 
-        List<LastReplyInfoResponse> lastReplyInfoResponses = new();
+        var lastReplyInfoResponses = new List<LastReplyInfoResponse>();
 
         foreach (Post lastReplyPost in lastReplyPosts)
         {
@@ -137,7 +127,7 @@ public class SectionApiController : ControllerBase
                 new LastReplyInfoResponse
                 {
                     MainPostId = lastReplyPost.MainPostId,
-                    Username = userBll.GetUserNameById(lastReplyPost.UserId),
+                    Username = userBll.GetUserNameById(lastReplyPost.UserId).Data??"未知用户",
                     ReplyTime = lastReplyPost.PublishTime
                 }
             );
