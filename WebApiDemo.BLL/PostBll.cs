@@ -110,7 +110,16 @@ public class PostBll(IPostDalFactory postDalFactory) : IPostBll
         var mainPost = postDalFactory.GetPostDal(tableName).GetPostById(post.MainPostId).Data;
         if (mainPost != null)
         {
+            // 更新回复数
             mainPost.ReplyNum = GetPosts(sectionId, post.MainPostId).Data?.Count - 1 ?? 0;
+
+            // 更新最后回复时间
+            var lastReplyTime = post.PublishTime;
+            if (lastReplyTime > mainPost.LastReplyTime)
+            {
+                mainPost.LastReplyTime = lastReplyTime;
+            }
+
             postDalFactory.GetPostDal(tableName).UpdatePost(mainPost);
         }
 

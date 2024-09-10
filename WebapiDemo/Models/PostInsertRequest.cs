@@ -67,6 +67,8 @@ public static class PostVToBMapper
             UserId = request.UserId,
             Content = request.Content,
             MainPostId = request.MainPostId,
+            PublishTime = DateTime.Now,
+            LastReplyTime = DateTime.Now,
             IsMainPost = request.IsMainPost,
             Type = request.Type,
             Title = request.Title,

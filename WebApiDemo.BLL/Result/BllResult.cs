@@ -93,15 +93,6 @@ public class BllResult<T>
     }
 
     /// <summary>
-    /// 失败返回（数据）
-    /// </summary>
-    /// <param name="data">返回的数据</param>
-    public static BllResult<T> Failure(T? data)
-    {
-        return new BllResult<T>(false, null, data);
-    }
-
-    /// <summary>
     /// 失败返回（返回信息）
     /// </summary>
     /// <param name="message">返回信息</param>

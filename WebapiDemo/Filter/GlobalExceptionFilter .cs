@@ -6,18 +6,13 @@ namespace WebApiDemo.Filter
     /// <summary>
     /// 全局异常处理（实际上是控制器级别的异常处理）
     /// </summary>
-    public class GlobalExceptionFilter : IExceptionFilter
+    /// <remarks>
+    /// 构造函数
+    /// </remarks>
+    /// <param name="logger"></param>
+    public class GlobalExceptionFilter(ILogger<GlobalExceptionFilter> logger) : IExceptionFilter
     {
-        private readonly ILogger<GlobalExceptionFilter> _logger;
-
-        /// <summary>
-        /// 构造函数
-        /// </summary>
-        /// <param name="logger"></param>
-        public GlobalExceptionFilter(ILogger<GlobalExceptionFilter> logger)
-        {
-            _logger = logger;
-        }
+        private readonly ILogger<GlobalExceptionFilter> _logger = logger;
 
         /// <summary>
         /// 处理异常
