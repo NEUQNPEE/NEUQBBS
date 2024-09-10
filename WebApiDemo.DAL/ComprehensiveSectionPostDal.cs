@@ -41,9 +41,19 @@ public class ComprehensiveSectionPostDal : IPostDal
     /// <inheritdoc />
     public DalResult<List<Post>> GetPagedMainPosts(int pageSize, int pageNumber)
     {
-        throw new NotImplementedException();
-        // using var context = DbContextFactory.GetDbContext();
-        // // 查找所有是主贴的帖子，按
+        using var context = DbContextFactory.GetDbContext();
+        // 查找所有是主贴的帖子，按时间从新到旧排序
+        var posts = context.ComprehensiveSectionPosts
+            .Where(p => p.IsMainPost)
+            .OrderByDescending(p => p.PublishTime)
+            .Skip((pageNumber - 1) * pageSize)
+            .Take(pageSize)
+            .OfType<Post>()
+            .ToList();
+
+        return posts.Count != 0
+            ? DalResult<List<Post>>.Success(posts)
+            : DalResult<List<Post>>.Success([]);
     }
 
     /// <inheritdoc />

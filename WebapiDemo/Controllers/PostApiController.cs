@@ -109,7 +109,8 @@ public class PostApiController(IPostBll postBll, ILogger<PostApiController> logg
     /// <param name="pageSize"></param>
     /// <param name="pageNumber"></param>
     /// <returns></returns>
-    public ActionResult<List<Post>> GetPagedMainPostsBySectionId(int sectionId, int pageSize, int pageNumber)
+    [HttpGet("mainpostlist/{sectionId}/{pageNumber}")]
+    public ActionResult<List<Post>> GetPagedMainPostsBySectionId(int sectionId, [FromQuery] int pageSize, int pageNumber)
     {
         logger.LogInformation("获取板块({sectionId})的一个主贴分页，每页{pageSize}条，第{pageNumber}页", sectionId, pageSize, pageNumber);
         var result = postBll.GetPagedMainPosts(sectionId, pageSize, pageNumber);
@@ -155,13 +156,13 @@ public class PostApiController(IPostBll postBll, ILogger<PostApiController> logg
     //     return Ok(result.Data);
     // }
 
-/// <summary>
-/// 获取板块({sectionId})自第{beginNum}条开始的{needNum}条帖子的用户基本信息
-/// </summary>
-/// <param name="sectionId"></param>
-/// <param name="beginNum"></param>
-/// <param name="needNum"></param>
-/// <returns></returns>
+    /// <summary>
+    /// 获取板块({sectionId})自第{beginNum}条开始的{needNum}条帖子的用户基本信息
+    /// </summary>
+    /// <param name="sectionId"></param>
+    /// <param name="beginNum"></param>
+    /// <param name="needNum"></param>
+    /// <returns></returns>
     [HttpGet("user/{sectionId}")]
     public ActionResult<IEnumerable<UserBaseInfoResponse>> GetUsersBaseInfoInRangeBySectionId(
         int sectionId,
@@ -234,14 +235,14 @@ public class PostApiController(IPostBll postBll, ILogger<PostApiController> logg
     [HttpPost("{sectionId}")]
     public ActionResult<int> Insert(int sectionId, [FromBody] PostInsertRequest request)
     {
-        logger.LogInformation("用户({UserId})在板块({SectionId})发表了帖子", request.UserId, sectionId);
-            
         var result = postBll.AddPost(sectionId, request.ToPost());
         if (!result.IsSuccess)
         {
             logger.LogError("用户({UserId})在板块({SectionId})发表帖子时出错", request.UserId, sectionId);
             return StatusCode(500, "内部服务器错误");
         }
+
+        logger.LogInformation("用户({UserId})在板块({SectionId})发表了帖子", request.UserId, sectionId);
         return Ok(result.Data);
     }
 
