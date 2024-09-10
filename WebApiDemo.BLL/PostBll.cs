@@ -32,7 +32,7 @@ public class PostBll(IPostDalFactory postDalFactory) : IPostBll
         {
             return BllResult<List<UserBModel>>.Failure("未找到板块");
         }
-        
+
         var users = postDalFactory.GetPostDal(tableName).GetAllUsers().Data;
         if (users == null)
         {
@@ -54,10 +54,25 @@ public class PostBll(IPostDalFactory postDalFactory) : IPostBll
         return BllResult<List<UserBModel>>.Success(result);
     }
 
+    // /// <inheritdoc/>
+    // public BllResult<List<Post>> GetPosts(PostListBModel postListBModel)
+    // {
+    //     string? tableName = SectionDal.GetSectionById(postListBModel.SectionId).Data?.TableName;
+    //     if (tableName == null)
+    //     {
+    //         return BllResult<List<Post>>.Failure("未找到板块");
+    //     }
+
+    //     var posts = postDalFactory
+    //         .GetPostDal(tableName)
+    //         .GetPosts(postListBModel.BeginNum, postListBModel.NeedNum).Data;
+    //     return BllResult<List<Post>>.Success(posts);
+    // }
+
     /// <inheritdoc/>
-    public BllResult<List<Post>> GetPosts(PostListBModel postListBModel)
+    public BllResult<List<Post>> GetPagedMainPosts(int sectionId, int pageSize, int pageNumber)
     {
-        string? tableName = SectionDal.GetSectionById(postListBModel.SectionId).Data?.TableName;
+        string? tableName = SectionDal.GetSectionById(sectionId).Data?.TableName;
         if (tableName == null)
         {
             return BllResult<List<Post>>.Failure("未找到板块");
@@ -65,7 +80,7 @@ public class PostBll(IPostDalFactory postDalFactory) : IPostBll
 
         var posts = postDalFactory
             .GetPostDal(tableName)
-            .GetPosts(postListBModel.BeginNum, postListBModel.NeedNum).Data;
+            .GetPagedMainPosts(pageSize, pageNumber).Data;
         return BllResult<List<Post>>.Success(posts);
     }
 

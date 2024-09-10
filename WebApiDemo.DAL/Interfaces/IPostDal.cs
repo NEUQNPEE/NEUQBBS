@@ -15,13 +15,21 @@ public interface IPostDal
     /// <returns>操作结果，包含帖子列表，或在无帖子时返回空列表</returns>
     DalResult<List<Post>> GetAllPosts();
 
+    // /// <summary>
+    // /// 获取指定范围内的帖子
+    // /// </summary>
+    // /// <param name="beginNum">起始数量</param>
+    // /// <param name="needNum">需要数量</param>
+    // /// <returns>操作结果，包含帖子列表，或在无帖子时返回空列表</returns>
+    // DalResult<List<Post>> GetPosts(int beginNum, int needNum);
+
     /// <summary>
-    /// 获取指定范围内的帖子
+    /// 
     /// </summary>
-    /// <param name="beginNum">起始数量</param>
-    /// <param name="needNum">需要数量</param>
-    /// <returns>操作结果，包含帖子列表，或在无帖子时返回空列表</returns>
-    DalResult<List<Post>> GetPosts(int beginNum, int needNum);
+    /// <param name="pageSize"></param>
+    /// <param name="pageNumber"></param>
+    /// <returns></returns>
+    DalResult<List<Post>> GetPagedMainPosts(int pageSize, int pageNumber);
 
     /// <summary>
     /// 根据主帖 ID 获取帖子

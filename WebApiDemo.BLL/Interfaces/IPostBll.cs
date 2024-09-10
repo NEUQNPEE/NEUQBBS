@@ -23,12 +23,22 @@ public interface IPostBll
     /// <returns>包含用户业务模型列表的操作结果，或在无用户时返回空列表。</returns>
     BllResult<List<UserBModel>> GetAllUsers(int sectionId);
 
+    // /// <summary>
+    // /// 根据帖子列表业务模型获取帖子。用于分页功能。
+    // /// </summary>
+    // /// <param name="postListBModel">帖子列表业务模型</param>
+    // /// <returns>符合条件的帖子列表的操作结果，或在无匹配帖子时返回空列表。</returns>
+    // BllResult<List<Post>> GetPosts(PostListBModel postListBModel);
+
     /// <summary>
-    /// 根据帖子列表业务模型获取帖子。用于分页功能。
+    /// 获取指定版块的主贴，分页。
     /// </summary>
-    /// <param name="postListBModel">帖子列表业务模型</param>
-    /// <returns>符合条件的帖子列表的操作结果，或在无匹配帖子时返回空列表。</returns>
-    BllResult<List<Post>> GetPosts(PostListBModel postListBModel);
+    /// <param name="sectionId"></param>
+    /// <param name="pageSize"></param>
+    /// <param name="pageNumber"></param>
+    /// <returns></returns>
+    BllResult<List<Post>> GetPagedMainPosts(int sectionId, int pageSize, int pageNumber);
+
 
     /// <summary>
     /// 获取指定版块和主帖 ID 的帖子。

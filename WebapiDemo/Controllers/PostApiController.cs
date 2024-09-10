@@ -98,56 +98,62 @@ public class PostApiController(IPostBll postBll, ILogger<PostApiController> logg
         return Ok(result.Data.Select(u => u.ToUserBaseInfoResponse()));
     }
 
+    // todo 该接口设计有误
+    // 在后端需要完成的分页分两种：帖子列表的分页，帖子内容的分页。
+    // 第一种分页提供的参数为板块ID，每页的条数，第n页；第二种分页提供的参数为主贴的ID,每页的条数，第n页
+
     /// <summary>
-    /// 获取板块({sectionId})自第{beginNum}条开始的{needNum}条帖子
+    /// 获取板块({sectionId})的一个主贴分页，每页{pageSize}条，第{pageNumber}页。注意pageNumber从1开始
     /// </summary>
     /// <param name="sectionId"></param>
-    /// <param name="beginNum"></param>
-    /// <param name="needNum"></param>
+    /// <param name="pageSize"></param>
+    /// <param name="pageNumber"></param>
     /// <returns></returns>
-    [HttpGet("post/{sectionId}")]
-    public ActionResult<List<Post>> GetPostsInRangeBySectionId(
-        int sectionId,
-        [FromQuery] int beginNum,
-        [FromQuery] int needNum
-    )
+    public ActionResult<List<Post>> GetPagedMainPostsBySectionId(int sectionId, int pageSize, int pageNumber)
     {
-        logger.LogInformation(
-            "获取板块({sectionId})自第{beginNum}条开始的{needNum}条帖子",
-            sectionId,
-            beginNum,
-            needNum
-        );
-        // var posts = postBll.GetPosts(
-        //     new PostListBModel
-        //     {
-        //         SectionId = sectionId,
-        //         BeginNum = beginNum,
-        //         NeedNum = needNum
-        //     }
-        // ).Data;
-
-        // if (posts == null || posts.Count == 0)
-        // {
-        //     return NotFound($"未找到板块ID为 {sectionId} 的帖子范围：{beginNum}-{beginNum + needNum - 1}");
-        // }
-
-        // return Ok(posts);
-
-        var result = postBll.GetPosts(
-            new PostListBModel
-            {
-                SectionId = sectionId,
-                BeginNum = beginNum,
-                NeedNum = needNum
-            }
-        );
-        if (!result.IsSuccess || result.Data == null)
+        logger.LogInformation("获取板块({sectionId})的一个主贴分页，每页{pageSize}条，第{pageNumber}页", sectionId, pageSize, pageNumber);
+        var result = postBll.GetPagedMainPosts(sectionId, pageSize, pageNumber);
+        if (!result.IsSuccess)
         {
-            return NotFound($"未找到板块ID为 {sectionId} 的帖子范围：{beginNum}-{beginNum + needNum - 1}");
+            return NotFound($"未找到板块ID为 {sectionId} 的主贴");
         }
         return Ok(result.Data);
     }
+
+    // /// <summary>
+    // /// 获取板块({sectionId})自第{beginNum}条开始的{needNum}条帖子
+    // /// </summary>
+    // /// <param name="sectionId"></param>
+    // /// <param name="beginNum"></param>
+    // /// <param name="needNum"></param>
+    // /// <returns></returns>
+    // [HttpGet("post/{sectionId}")]
+    // public ActionResult<List<Post>> GetPostsInRangeBySectionId(
+    //     int sectionId,
+    //     [FromQuery] int beginNum,
+    //     [FromQuery] int needNum
+    // )
+    // {
+    //     logger.LogInformation(
+    //         "获取板块({sectionId})自第{beginNum}条开始的{needNum}条帖子",
+    //         sectionId,
+    //         beginNum,
+    //         needNum
+    //     );
+    //     var result = postBll.GetPosts(
+    //         new PostListBModel
+    //         {
+    //             SectionId = sectionId,
+    //             BeginNum = beginNum,
+    //             NeedNum = needNum
+    //         }
+    //     );
+    //     if (!result.IsSuccess || result.Data == null)
+    //     {
+    //         return NotFound($"未找到板块ID为 {sectionId} 的帖子范围：{beginNum}-{beginNum + needNum - 1}");
+    //     }
+    //     return Ok(result.Data);
+    // }
 
 /// <summary>
 /// 获取板块({sectionId})自第{beginNum}条开始的{needNum}条帖子的用户基本信息

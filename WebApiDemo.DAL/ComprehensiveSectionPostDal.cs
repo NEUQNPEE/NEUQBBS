@@ -23,19 +23,27 @@ public class ComprehensiveSectionPostDal : IPostDal
             : DalResult<List<Post>>.Success([]);
     }
 
-    /// <inheritdoc />
-    public DalResult<List<Post>> GetPosts(int beginIndex, int needNum)
-    {
-        using var context = DbContextFactory.GetDbContext();
-        var posts = context.ComprehensiveSectionPosts
-            .Skip(beginIndex)
-            .Take(needNum)
-            .OfType<Post>()
-            .ToList();
+    
+    // public DalResult<List<Post>> GetPosts(int beginIndex, int needNum)
+    // {
+    //     using var context = DbContextFactory.GetDbContext();
+    //     var posts = context.ComprehensiveSectionPosts
+    //         .Skip(beginIndex)
+    //         .Take(needNum)
+    //         .OfType<Post>()
+    //         .ToList();
 
-        return posts.Count != 0
-            ? DalResult<List<Post>>.Success(posts)
-            : DalResult<List<Post>>.Success([]);
+    //     return posts.Count != 0
+    //         ? DalResult<List<Post>>.Success(posts)
+    //         : DalResult<List<Post>>.Success([]);
+    // }
+
+    /// <inheritdoc />
+    public DalResult<List<Post>> GetPagedMainPosts(int pageSize, int pageNumber)
+    {
+        throw new NotImplementedException();
+        // using var context = DbContextFactory.GetDbContext();
+        // // 查找所有是主贴的帖子，按
     }
 
     /// <inheritdoc />
