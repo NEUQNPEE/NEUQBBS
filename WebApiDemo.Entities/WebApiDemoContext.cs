@@ -140,6 +140,8 @@ public class WebApiDemoContext : DbContext
             entity.Property(e => e.Content).HasMaxLength(300);
             // PublishTime :发布时间,非空，默认为当前时间
             entity.Property(e => e.PublishTime).IsRequired().HasDefaultValueSql("GETDATE()");
+            // LastReplyTime :最后回复时间,默认为当前时间
+            entity.Property(e => e.LastReplyTime).HasDefaultValueSql("GETDATE()");
             // UpVote :点赞数,默认为 0
             entity.Property(e => e.UpVote).HasDefaultValue(0);
             // DownVote :踩数,默认为 0

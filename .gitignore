@@ -7,3 +7,4 @@ coverage.xml
 **/Logs/
 **/Logs/
 doc/Doxyfile
+WebApiDemo.Entities/Migrations/*

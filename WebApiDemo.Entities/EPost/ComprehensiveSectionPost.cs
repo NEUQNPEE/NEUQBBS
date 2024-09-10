@@ -23,6 +23,7 @@ public static class ToComprehensiveSectionPostMapper
             UserId = post.UserId,
             Content = post.Content,
             PublishTime = post.PublishTime,
+            LastReplyTime = post.LastReplyTime,
             UpVote = post.UpVote,
             DownVote = post.DownVote,
             MainPostId = post.MainPostId,
