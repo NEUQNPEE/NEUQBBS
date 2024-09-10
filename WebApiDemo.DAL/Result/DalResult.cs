@@ -75,15 +75,6 @@ public class DalResult<T>
     }
 
     /// <summary>
-    /// 成功返回（返回信息）
-    /// </summary>
-    /// <param name="message">返回信息</param>
-    public static DalResult<T> Success(string message)
-    {
-        return new DalResult<T>(true, message);
-    }
-
-    /// <summary>
     /// 成功返回（返回信息 + 数据）
     /// </summary>
     /// <param name="message">返回信息</param>
@@ -99,15 +90,6 @@ public class DalResult<T>
     public static DalResult<T> Failure()
     {
         return new DalResult<T>(false);
-    }
-
-    /// <summary>
-    /// 失败返回（数据）
-    /// </summary>
-    /// <param name="data">返回的数据</param>
-    public static DalResult<T> Failure(T data)
-    {
-        return new DalResult<T>(false, null, data);
     }
 
     /// <summary>

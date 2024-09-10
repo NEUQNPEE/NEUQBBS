@@ -174,18 +174,16 @@ public class ComprehensiveSectionPostDal : IPostDal
     {
         using var context = DbContextFactory.GetDbContext();
         var postToUpdate = context.ComprehensiveSectionPosts.Find(post.Id);
-        if (postToUpdate != null)
+        if (postToUpdate == null)
         {
-            postToUpdate.UpVote = post.UpVote;
-            postToUpdate.DownVote = post.DownVote;
-            postToUpdate.ViewNum = post.ViewNum;
-            postToUpdate.ReplyNum = post.ReplyNum;
-            context.ComprehensiveSectionPosts.Update(postToUpdate);
-
-            context.SaveChanges();
-            return DalResult<object>.Success();
+            return DalResult<object>.Failure("未找到帖子");
         }
 
-        return DalResult<object>.Failure("未找到帖子");
+        postToUpdate = post.ToComprehensiveSectionPost();
+
+        context.ComprehensiveSectionPosts.Update(postToUpdate);
+        context.SaveChanges();
+        return DalResult<object>.Success();
     }
+
 }

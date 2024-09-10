@@ -26,6 +26,11 @@ public class Post
     public DateTime PublishTime { get; set; }
 
     /// <summary>
+    /// 最后回复时间
+    /// </summary>
+    public DateTime LastReplyTime { get; set; }
+
+    /// <summary>
     /// 点赞数
     /// </summary>
     public int UpVote { get; set; }
