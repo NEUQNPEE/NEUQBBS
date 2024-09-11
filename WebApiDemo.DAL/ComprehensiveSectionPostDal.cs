@@ -1,8 +1,7 @@
 using WebApiDemo.DAL.Interfaces;
-using WebApiDemo.DAL.Mapper;
 using WebApiDemo.DAL.Result;
-using WebApiDemo.Entities.BModels;
 using WebApiDemo.Entities.EPost;
+using WebApiDemo.Entities.EUser;
 using WebApiDemo.Entities.Factorys;
 
 namespace WebApiDemo.DAL;
@@ -22,21 +21,6 @@ public class ComprehensiveSectionPostDal : IPostDal
             ? DalResult<List<Post>>.Success(posts)
             : DalResult<List<Post>>.Success([]);
     }
-
-    
-    // public DalResult<List<Post>> GetPosts(int beginIndex, int needNum)
-    // {
-    //     using var context = DbContextFactory.GetDbContext();
-    //     var posts = context.ComprehensiveSectionPosts
-    //         .Skip(beginIndex)
-    //         .Take(needNum)
-    //         .OfType<Post>()
-    //         .ToList();
-
-    //     return posts.Count != 0
-    //         ? DalResult<List<Post>>.Success(posts)
-    //         : DalResult<List<Post>>.Success([]);
-    // }
 
     /// <inheritdoc />
     public DalResult<List<Post>> GetPagedMainPosts(int pageSize, int pageNumber)
@@ -79,11 +63,37 @@ public class ComprehensiveSectionPostDal : IPostDal
     }
 
     /// <inheritdoc />
-    public DalResult<Post> GetPostById(int id)
+    public DalResult<Post> GetPostById(int postId)
     {
         using var context = DbContextFactory.GetDbContext();
-        var post = context.ComprehensiveSectionPosts.Find(id);
+        var post = context.ComprehensiveSectionPosts.Find(postId);
         return post != null ? DalResult<Post>.Success(post) : DalResult<Post>.Failure("未找到该帖子");
+    }
+
+    /// <inheritdoc />
+    public DalResult<List<Post>> GetPostsByIds(List<int> postIds)
+    {
+        using var context = DbContextFactory.GetDbContext();
+        var posts = context.ComprehensiveSectionPosts
+            .Where(p => postIds.Contains(p.Id))
+            .OfType<Post>()
+            .ToList();
+        return posts.Count != 0
+            ? DalResult<List<Post>>.Success(posts)
+            : DalResult<List<Post>>.Success([]);
+    }
+
+    /// <inheritdoc />
+    public DalResult<List<int>> GetUserIdByPostId(IEnumerable<int> postIds)
+    {
+        using var context = DbContextFactory.GetDbContext();
+        var userIds = context.ComprehensiveSectionPosts
+            .Where(p => postIds.Contains(p.Id))
+            .Select(p => p.UserId)
+            .ToList();
+        return userIds.Count != 0
+            ? DalResult<List<int>>.Success(userIds)
+            : DalResult<List<int>>.Success([]);
     }
 
     /// <inheritdoc />
@@ -117,40 +127,19 @@ public class ComprehensiveSectionPostDal : IPostDal
     }
 
     /// <inheritdoc />
-    public DalResult<List<UserBModel>> GetAllUsers()
+    public DalResult<List<User>> GetAllUsers()
     {
         using var context = DbContextFactory.GetDbContext();
         var userIds = context.ComprehensiveSectionPosts.Select(p => p.UserId).Distinct().ToList();
 
         var users = userIds
-            .Select(id => context.Users.Find(id)?.ToUserBModel())
+            .Select(id => context.Users.Find(id))
             .Select(u => u!)
             .ToList();
 
         return users.Count != 0
-            ? DalResult<List<UserBModel>>.Success(users)
-            : DalResult<List<UserBModel>>.Success([]);
-    }
-
-    /// <inheritdoc />
-    public DalResult<List<UserBModel>> GetUsers(int beginNum, int needNum)
-    {
-        using var context = DbContextFactory.GetDbContext();
-        var userIds = context.ComprehensiveSectionPosts
-            .Select(p => p.UserId)
-            .Distinct()
-            .Skip(beginNum)
-            .Take(needNum)
-            .ToList();
-
-        var users = userIds
-            .Select(id => context.Users.Find(id)?.ToUserBModel())
-            .Select(u => u!)
-            .ToList();
-
-        return users.Count != 0
-            ? DalResult<List<UserBModel>>.Success(users)
-            : DalResult<List<UserBModel>>.Success([]);
+            ? DalResult<List<User>>.Success(users)
+            : DalResult<List<User>>.Success([]);
     }
 
     /// <inheritdoc />

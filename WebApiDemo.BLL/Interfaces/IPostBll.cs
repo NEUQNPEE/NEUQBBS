@@ -1,6 +1,6 @@
 using WebApiDemo.BLL.Result;
-using WebApiDemo.Entities.BModels;
 using WebApiDemo.Entities.EPost;
+using WebApiDemo.Entities.EUser;
 
 namespace WebApiDemo.BLL.Interfaces;
 
@@ -17,18 +17,13 @@ public interface IPostBll
     BllResult<List<Post>> GetAllPosts(int sectionId);
 
     /// <summary>
-    /// 获取在指定版块发过帖的所有用户的部分信息，包括：Id, UserName, RegisterTime和Points。
+    /// 根据postIds与查询参数获取发帖用户信息
     /// </summary>
-    /// <param name="sectionId">版块 ID</param>
-    /// <returns>包含用户业务模型列表的操作结果，或在无用户时返回空列表。</returns>
-    BllResult<List<UserBModel>> GetAllUsers(int sectionId);
-
-    // /// <summary>
-    // /// 根据帖子列表业务模型获取帖子。用于分页功能。
-    // /// </summary>
-    // /// <param name="postListBModel">帖子列表业务模型</param>
-    // /// <returns>符合条件的帖子列表的操作结果，或在无匹配帖子时返回空列表。</returns>
-    // BllResult<List<Post>> GetPosts(PostListBModel postListBModel);
+    /// <param name="sectionId"></param>
+    /// <param name="postIds"></param>
+    /// <param name="fields"></param>
+    /// <returns></returns>
+    BllResult<List<User>> GetUserInfoByPostId(int sectionId, IEnumerable<int> postIds, string fields);
 
     /// <summary>
     /// 获取指定版块的主贴，分页。
@@ -38,7 +33,6 @@ public interface IPostBll
     /// <param name="pageNumber"></param>
     /// <returns></returns>
     BllResult<List<Post>> GetPagedMainPosts(int sectionId, int pageSize, int pageNumber);
-
 
     /// <summary>
     /// 获取指定版块和主帖 ID 的帖子。
@@ -55,13 +49,6 @@ public interface IPostBll
     /// <param name="post">要添加的帖子</param>
     /// <returns>包含添加的帖子的 ID 的操作结果。</returns>
     BllResult<int> AddPost(int sectionId, Post post);
-
-    /// <summary>
-    /// 根据帖子列表业务模型获取用户。用于获取一个分页上的帖子的所属用户。
-    /// </summary>
-    /// <param name="postListBModel">帖子列表业务模型</param>
-    /// <returns>用户业务模型列表的操作结果，或在无匹配用户时返回空列表。</returns>
-    BllResult<List<UserBModel>> GetUsers(PostListBModel postListBModel);
 
     /// <summary>
     /// 获取指定版块和主帖 ID 的最后回复帖。
@@ -94,4 +81,5 @@ public interface IPostBll
     /// <param name="postId">帖子 ID</param>
     /// <returns>操作结果，表示更新浏览量操作是否成功。</returns>
     BllResult<object> UpdateView(int sectionId, int postId);
+    
 }

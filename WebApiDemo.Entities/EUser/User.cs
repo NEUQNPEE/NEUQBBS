@@ -6,12 +6,12 @@ namespace WebApiDemo.Entities.EUser;
 public enum Gender
 {
     /// <summary>
-    /// 男性
+    /// 男
     /// </summary>
     Male,
 
     /// <summary>
-    /// 女性
+    /// 女
     /// </summary>
     Female,
 
@@ -27,9 +27,9 @@ public enum Gender
 }
 
 /// <summary>
-/// 字符串到性别枚举的扩展方法
+/// 性别枚举与字符串互相转换的扩展方法
 /// </summary>
-public static class StringToGenderExtensions
+public static class GenderExtensions
 {
     /// <summary>
     /// 将字符串转换为 <see cref="Gender"/> 枚举
@@ -43,16 +43,35 @@ public static class StringToGenderExtensions
         {
             return Gender.PreferNotToSay;
         }
-        if (Enum.TryParse(value, true, out Gender gender))
+
+        return value switch
         {
-            return gender;
-        }
-        else
+            "男" => Gender.Male,
+            "女" => Gender.Female,
+            "其他" => Gender.Other,
+            "不愿透露" => Gender.PreferNotToSay,
+            _ => throw new ArgumentException("Invalid gender value"),
+        };
+    }
+
+    /// <summary>
+    /// 将 <see cref="Gender"/> 枚举转换为字符串
+    /// </summary>
+    /// <param name="gender">要转换的性别枚举</param>
+    /// <returns>转换后的字符串，如果枚举值无效，则返回空字符串</returns>
+    public static string ToStringRepresentation(this Gender gender)
+    {
+        return gender switch
         {
-            throw new ArgumentException("Invalid gender value");
-        }
+            Gender.Male => "男",
+            Gender.Female => "女",
+            Gender.Other => "其他",
+            Gender.PreferNotToSay => "不愿透露",
+            _ => string.Empty,
+        };
     }
 }
+
 
 /// <summary>
 /// 用户模型，包含用户的基本信息和统计数据
@@ -67,12 +86,12 @@ public class User
     /// <summary>
     /// 用户名
     /// </summary>
-    public required string UserName { get; set; }
+    public string? UserName { get; set; }
 
     /// <summary>
     /// 密码
     /// </summary>
-    public required string Password { get; set; }
+    public string? Password { get; set; }
 
     /// <summary>
     /// 昵称
