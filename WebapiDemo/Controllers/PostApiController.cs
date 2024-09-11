@@ -2,7 +2,6 @@ using Microsoft.AspNetCore.Cors;
 using Microsoft.AspNetCore.Mvc;
 using WebApiDemo.Models;
 using WebApiDemo.BLL.Interfaces;
-using WebApiDemo.Entities.BModels;
 using WebApiDemo.Entities.EPost;
 
 namespace WebApiDemo.Controllers;
@@ -70,35 +69,7 @@ public class PostApiController(IPostBll postBll, ILogger<PostApiController> logg
         return Ok(result.Data);
     }
 
-    /// <summary>
-    /// 获取在板块({sectionId})中发过帖的所有用户
-    /// </summary>
-    /// <param name="sectionId"></param>
-    /// <returns></returns>
-    [HttpGet("alluser/{sectionId}")]
-    public ActionResult<IEnumerable<UserBaseInfoResponse>> GetAllUsersBaseInfoBySectionId(
-        int sectionId
-    )
-    {
-        // List<UserBModel>? users = postBll.GetAllUsers(sectionId).Data;
-        // if (users == null || users.Count == 0)
-        // {
-        //     return NotFound("未找到用户基本信息");
-        // }
-
-        // logger.LogInformation("获取在板块({sectionId})中发过帖的所有用户的基本信息", sectionId);
-        // return Ok(users.Select(u => u.ToUserBaseInfoResponse()));
-
-        var result = postBll.GetAllUsers(sectionId);
-        if (!result.IsSuccess||result.Data == null)
-        {
-            return NotFound("未找到用户基本信息");
-        }
-        logger.LogInformation("获取在板块{sectionId}中发过帖的所有用户的基本信息", sectionId);
-        return Ok(result.Data.Select(u => u.ToUserBaseInfoResponse()));
-    }
-
-    // todo 该接口设计有误
+    // todo
     // 在后端需要完成的分页分两种：帖子列表的分页，帖子内容的分页。
     // 第一种分页提供的参数为板块ID，每页的条数，第n页；第二种分页提供的参数为主贴的ID,每页的条数，第n页
 
@@ -121,111 +92,25 @@ public class PostApiController(IPostBll postBll, ILogger<PostApiController> logg
         return Ok(result.Data);
     }
 
-    // /// <summary>
-    // /// 获取板块({sectionId})自第{beginNum}条开始的{needNum}条帖子
-    // /// </summary>
-    // /// <param name="sectionId"></param>
-    // /// <param name="beginNum"></param>
-    // /// <param name="needNum"></param>
-    // /// <returns></returns>
-    // [HttpGet("post/{sectionId}")]
-    // public ActionResult<List<Post>> GetPostsInRangeBySectionId(
-    //     int sectionId,
-    //     [FromQuery] int beginNum,
-    //     [FromQuery] int needNum
-    // )
-    // {
-    //     logger.LogInformation(
-    //         "获取板块({sectionId})自第{beginNum}条开始的{needNum}条帖子",
-    //         sectionId,
-    //         beginNum,
-    //         needNum
-    //     );
-    //     var result = postBll.GetPosts(
-    //         new PostListBModel
-    //         {
-    //             SectionId = sectionId,
-    //             BeginNum = beginNum,
-    //             NeedNum = needNum
-    //         }
-    //     );
-    //     if (!result.IsSuccess || result.Data == null)
-    //     {
-    //         return NotFound($"未找到板块ID为 {sectionId} 的帖子范围：{beginNum}-{beginNum + needNum - 1}");
-    //     }
-    //     return Ok(result.Data);
-    // }
-
     /// <summary>
-    /// 获取板块({sectionId})自第{beginNum}条开始的{needNum}条帖子的用户基本信息
+    /// 获取帖子的用户信息，查询参数以字符串形式传入，以英文逗号分隔
     /// </summary>
     /// <param name="sectionId"></param>
-    /// <param name="beginNum"></param>
-    /// <param name="needNum"></param>
+    /// <param name="postIds"></param>
+    /// <param name="fields"></param>
     /// <returns></returns>
-    [HttpGet("user/{sectionId}")]
-    public ActionResult<IEnumerable<UserBaseInfoResponse>> GetUsersBaseInfoInRangeBySectionId(
-        int sectionId,
-        [FromQuery] int beginNum,
-        [FromQuery] int needNum
-    )
+    [HttpGet("userinfo/{sectionId}")]
+    public ActionResult<List<UserInfoResponse>> GetUserInfoByPostId(int sectionId, IEnumerable<int> postIds, [FromQuery] string fields)
     {
-        // List<UserBModel>? users = postBll.GetUsers(
-        //     new PostListBModel
-        //     {
-        //         SectionId = sectionId,
-        //         BeginNum = beginNum,
-        //         NeedNum = needNum
-        //     }
-        // ).Data;
-
-        // if (users == null || users.Count == 0)
-        // {
-        //     logger.LogWarning(
-        //         "获取板块({sectionId})自第{beginNum}条开始的{needNum}条帖子的用户基本信息表为空！",
-        //         sectionId,
-        //         beginNum,
-        //         needNum
-        //     );
-        //     return NotFound($"未找到板块ID为 {sectionId} 的用户信息范围：{beginNum}-{beginNum + needNum - 1}");
-        // }
-
-        // logger.LogInformation(
-        //     "获取板块({sectionId})自第{beginNum}条开始的{needNum}条帖子的用户基本信息表",
-        //     sectionId,
-        //     beginNum,
-        //     needNum
-        // );
-
-        // return Ok(ConvertToUserBaseInfoResponse(users));
-
-        var result = postBll.GetUsers(
-            new PostListBModel
-            {
-                SectionId = sectionId,
-                BeginNum = beginNum,
-                NeedNum = needNum
-            }
-        );
+        logger.LogInformation("获取板块({SectionId})中帖子({postIds})的用户信息，查询内容为{fields}",sectionId, postIds, fields);
+        var result = postBll.GetUserInfoByPostId(sectionId, postIds, fields);
         if (!result.IsSuccess)
         {
-            logger.LogWarning(
-                "获取板块({sectionId})自第{beginNum}条开始的{needNum}条帖子的用户基本信息表为空！",
-                sectionId,
-                beginNum,
-                needNum
-            );
-            return NotFound($"未找到板块ID为 {sectionId} 的用户信息范围：{beginNum}-{beginNum + needNum - 1}");
+            return NotFound($"未找到帖子ID为 {postIds} 的用户");
         }
-        logger.LogInformation(
-            "获取板块({sectionId})自第{beginNum}条开始的{needNum}条帖子的用户基本信息表",
-            sectionId,
-            beginNum,
-            needNum
-        );
-
-        return Ok(result.Data!.Select(u => u.ToUserBaseInfoResponse()).ToList());
+        return Ok(result.Data!.ToResponse());
     }
+
     /// <summary>
     /// 发表帖子
     /// </summary>

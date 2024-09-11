@@ -1,9 +1,10 @@
-using WebApiDemo.Entities.BModels;
+using WebApiDemo.Entities.EUser;
 
 namespace WebApiDemo.Models;
 
 /// <summary>
 /// 用户信息响应
+/// 与User的差异在于：无密码字段，时间类型字段精度为日
 /// </summary>
 public class UserInfoResponse
 {
@@ -15,37 +16,37 @@ public class UserInfoResponse
     /// <summary>
     /// 用户名
     /// </summary>
-    public required string UserName { get; set; }
+    public string? UserName { get; set; }
 
     /// <summary>
     /// 昵称
     /// </summary>
-    public required string NickName { get; set; }
+    public string? NickName { get; set; }
 
     /// <summary>
     /// 性别
     /// </summary>
-    public required string Gender { get; set; }
+    public string? Gender { get; set; }
 
     /// <summary>
     /// 签名
     /// </summary>
-    public required string Signature { get; set; }
+    public string? Signature { get; set; }
 
     /// <summary>
     /// 头像
     /// </summary>
-    public required string Avatar { get; set; }
+    public string? Avatar { get; set; }
 
     /// <summary>
     /// 注册时间（仅传递年月日）
     /// </summary>
-    public required string RegisterTime { get; set; }
+    public string? RegisterTime { get; set; }
 
     /// <summary>
     /// 最后登录时间（仅传递年月日）
     /// </summary>
-    public required string LastLoginTime { get; set; }
+    public string? LastLoginTime { get; set; }
 
     /// <summary>
     /// 用户等级
@@ -59,29 +60,39 @@ public class UserInfoResponse
 }
 
 /// <summary>
-/// 转换用户业务模型到用户信息响应
+/// 转换用户模型到用户信息响应
 /// </summary>
-public static class UserBToVUserInfoResponseMapper
+public static class UserToUserInfoResponse
 {
     /// <summary>
-    /// 将 <see cref="UserBModel"/> 转换为 <see cref="UserInfoResponse"/>
+    /// 将 <see cref="User"/> 转换为 <see cref="UserInfoResponse"/>
     /// </summary>
-    /// <param name="userInfoBModel">用户业务模型</param>
+    /// <param name="user">用户模型</param>
     /// <returns>用户信息响应</returns>
-    public static UserInfoResponse ToResponse(this UserBModel userInfoBModel)
+    public static UserInfoResponse ToResponse(this User user)
     {
         return new UserInfoResponse
         {
-            Id = userInfoBModel.Id,
-            UserName = userInfoBModel.UserName ?? "用户名空引用！",
-            NickName = userInfoBModel.NickName ?? "昵称空引用！",
-            Gender = userInfoBModel.Gender ?? "性别空引用！",
-            Signature = userInfoBModel.Signature ?? "签名空引用！",
-            Avatar = userInfoBModel.Avatar ?? "头像空引用！",
-            RegisterTime = userInfoBModel.RegisterTime.ToString("yyyy-MM-dd"),
-            LastLoginTime = userInfoBModel.LastLoginTime.ToString("yyyy-MM-dd"),
-            UserLevel = userInfoBModel.UserLevel,
-            Points = userInfoBModel.Points
+            Id = user.Id,
+            UserName = user.UserName,
+            NickName = user.NickName,
+            Gender = user.Gender.ToString(),
+            Signature = user.Signature,
+            Avatar = user.Avatar,
+            RegisterTime = user.RegisterTime.ToString("yyyy-MM-dd"),
+            LastLoginTime = user.LastLoginTime.ToString("yyyy-MM-dd"),
+            UserLevel = user.UserLevel,
+            Points = user.Points
         };
+    }
+
+    /// <summary>
+    /// 将 <see cref="List{User}"/> 转换为 <see cref="List{UserInfoResponse}"/>
+    /// </summary>
+    /// <param name="users">用户模型列表</param>
+    /// <returns>用户信息响应列表</returns>
+    public static List<UserInfoResponse> ToResponse(this List<User> users)
+    {
+        return users.Select(ToResponse).ToList();
     }
 }

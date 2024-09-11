@@ -1,4 +1,4 @@
-using WebApiDemo.Entities.BModels;
+using WebApiDemo.Entities.EUser;
 
 namespace WebApiDemo.Models;
 
@@ -39,23 +39,23 @@ public class UserInsertRequest
 }
 
 /// <summary>
-/// 转换用户插入请求到用户业务模型
+/// 转换用户插入请求到用户模型
 /// </summary>
-public static class UserInsertVToBMapper
+public static class UserInsertRequestExtensions
 {
     /// <summary>
-    /// 将 <see cref="UserInsertRequest"/> 转换为 <see cref="UserBModel"/>
+    /// 将 <see cref="UserInsertRequest"/> 转换为 <see cref="User"/>
     /// </summary>
-    /// <param name="request">用户插入请求</param>
-    /// <returns>用户业务模型</returns>
-    public static UserBModel ToBModel(this UserInsertRequest request)
+    /// <param name="request"></param>
+    /// <returns></returns>
+    public static User ToUser(this UserInsertRequest request)
     {
-        return new UserBModel
+        return new User
         {
             UserName = request.UserName,
             Password = request.Password,
             NickName = request.NickName,
-            Gender = request.Gender,
+            Gender = request.Gender.ToGender(),
             Signature = request.Signature,
             Avatar = request.Avatar
         };

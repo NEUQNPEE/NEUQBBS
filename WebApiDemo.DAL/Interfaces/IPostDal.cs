@@ -1,6 +1,6 @@
-using WebApiDemo.Entities.BModels;
 using WebApiDemo.Entities.EPost;
 using WebApiDemo.DAL.Result;
+using WebApiDemo.Entities.EUser;
 
 namespace WebApiDemo.DAL.Interfaces;
 
@@ -15,16 +15,8 @@ public interface IPostDal
     /// <returns>操作结果，包含帖子列表，或在无帖子时返回空列表</returns>
     DalResult<List<Post>> GetAllPosts();
 
-    // /// <summary>
-    // /// 获取指定范围内的帖子
-    // /// </summary>
-    // /// <param name="beginNum">起始数量</param>
-    // /// <param name="needNum">需要数量</param>
-    // /// <returns>操作结果，包含帖子列表，或在无帖子时返回空列表</returns>
-    // DalResult<List<Post>> GetPosts(int beginNum, int needNum);
-
     /// <summary>
-    /// 
+    /// 获取指定版块的主贴，分页
     /// </summary>
     /// <param name="pageSize"></param>
     /// <param name="pageNumber"></param>
@@ -39,11 +31,25 @@ public interface IPostDal
     DalResult<List<Post>> GetPosts(int mainPostId);
 
     /// <summary>
-    /// 根据 ID 获取帖子
+    /// 根据 postId 获取帖子
     /// </summary>
-    /// <param name="id">帖子 ID</param>
+    /// <param name="postId">帖子 ID</param>
     /// <returns>操作结果，包含帖子信息，或在无匹配帖子时返回失败消息</returns>
-    DalResult<Post> GetPostById(int id);
+    DalResult<Post> GetPostById(int postId);
+
+    /// <summary>
+    /// 根据 postIds 获取帖子
+    /// </summary>
+    /// <param name="postIds">帖子 ID 列表</param>
+    /// <returns>操作结果，包含帖子列表，或在无帖子时返回空列表</returns>
+    DalResult<List<Post>> GetPostsByIds(List<int> postIds);
+
+    /// <summary>
+    /// 根据 postIds 获取 userIds
+    /// </summary>
+    /// <param name="postIds">帖子 ID 列表</param>
+    /// <returns>操作结果，包含用户 ID 列表，或在无用户时返回空列表</returns>
+    DalResult<List<int>> GetUserIdByPostId(IEnumerable<int> postIds);
 
     /// <summary>
     /// 添加帖子
@@ -63,15 +69,7 @@ public interface IPostDal
     /// 获取所有用户
     /// </summary>
     /// <returns>操作结果，包含用户列表，或在无用户时返回空列表</returns>
-    DalResult<List<UserBModel>> GetAllUsers();
-
-    /// <summary>
-    /// 获取指定范围内的用户
-    /// </summary>
-    /// <param name="beginNum">起始帖子数量</param>
-    /// <param name="needNum">需要帖子数量</param>
-    /// <returns>操作结果，包含用户列表，或在无用户时返回空列表</returns>
-    DalResult<List<UserBModel>> GetUsers(int beginNum, int needNum);
+    DalResult<List<User>> GetAllUsers();
 
     /// <summary>
     /// 获取最后的回复帖子

@@ -1,8 +1,7 @@
 ﻿using WebApiDemo.BLL.Interfaces;
 using WebApiDemo.BLL.Result;
 using WebApiDemo.DAL;
-using WebApiDemo.Entities.BModels;
-
+using WebApiDemo.Entities.EUser;
 using WebApiDemoCommon;
 
 namespace WebApiDemo.BLL;
@@ -13,100 +12,39 @@ namespace WebApiDemo.BLL;
 public class UserBll : IUserBll
 {
     /// <inheritdoc />
-    public BllResult<List<UserBModel>> DebugGetAllUsers()
+    public BllResult<List<User>> DebugGetAllUsers()
     {
         var users = UserDal.DebugGetAllUsers().Data;
         return users != null 
-            ? BllResult<List<UserBModel>>.Success(users) 
-            : BllResult<List<UserBModel>>.Failure();
+            ? BllResult<List<User>>.Success(users) 
+            : BllResult<List<User>>.Failure();
     }
 
     /// <inheritdoc />
-    public BllResult<UserBModel> DebugGetUserById(int id)
+    public BllResult<User> DebugGetUserById(int id)
     {
         var user = UserDal.DebugGetUserById(id).Data;
         return user != null 
-            ? BllResult<UserBModel>.Success(user) 
-            : BllResult<UserBModel>.Failure();
+            ? BllResult<User>.Success(user) 
+            : BllResult<User>.Failure();
     }
 
     /// <inheritdoc />
-    public BllResult<UserBModel> GetUserById(int id)
+    public BllResult<User> GetUserInfoById(int id, string fields)
     {
-        var user = UserDal.GetUserById(id).Data;
-        return user != null 
-            ? BllResult<UserBModel>.Success(user) 
-            : BllResult<UserBModel>.Failure();
+        var user = UserDal.GetUserInfoById(id, fields).Data;
+        return user != null
+            ? BllResult<User>.Success(user)
+            : BllResult<User>.Failure();
     }
 
     /// <inheritdoc />
-    public BllResult<string> GetUserNameById(int id)
+    public BllResult<List<User>> GetUserInfoById(IEnumerable<int> ids, string fields)
     {
-        var user = UserDal.GetUserById(id).Data;
-        return user != null 
-            ? BllResult<string>.Success(user.UserName) 
-            : BllResult<string>.Failure("未找到");
-    }
-
-    /// <inheritdoc />
-    public BllResult<List<string>> GetUserNamesByIds(List<int> ids)
-    {
-        List<string> userNames = [];
-        foreach (int id in ids)
-        {
-            var result = GetUserNameById(id);
-            if (result.IsSuccess)
-            {
-                userNames.Add(result.Data!);
-            }
-        }
-        return userNames.Count > 0 
-            ? BllResult<List<string>>.Success(userNames) 
-            : BllResult<List<string>>.Failure("未找到");
-    }
-
-    /// <inheritdoc />
-    public BllResult<UserBModel> GetUserByIdForPost(int id)
-    {
-        var user = UserDal.GetUserById(id).Data;
-        if (user == null)
-        {
-            return BllResult<UserBModel>.Failure("未找到");
-        }
-
-        return BllResult<UserBModel>.Success(new UserBModel
-        {
-            UserName = user.UserName,
-            RegisterTime = user.RegisterTime,
-            Points = user.Points
-        });
-    }
-
-    /// <inheritdoc />
-    public BllResult<UserBModel> GetUserBaseInfoById(int id)
-    {
-        var user = UserDal.GetUserById(id).Data;
-        if (user == null)
-        {
-            return BllResult<UserBModel>.Failure("未找到");
-        }
-
-        return BllResult<UserBModel>.Success(new UserBModel
-        {
-            Id = user.Id,
-            UserName = user.UserName,
-            RegisterTime = user.RegisterTime,
-            Points = user.Points
-        });
-    }
-
-    /// <inheritdoc />
-    public BllResult<UserBModel> GetUserDetailInfoById(int id)
-    {
-        var user = UserDal.GetUserById(id).Data;
-        return user != null 
-            ? BllResult<UserBModel>.Success(user) 
-            : BllResult<UserBModel>.Failure("未找到");
+        var users = UserDal.GetUserInfoById(ids, fields).Data;
+        return users != null
+            ? BllResult<List<User>>.Success(users)
+            : BllResult<List<User>>.Success([]);
     }
 
     /// <inheritdoc />
@@ -163,27 +101,27 @@ public class UserBll : IUserBll
     }
 
     /// <inheritdoc />
-    public BllResult<int> AddUser(UserBModel userBModel)
+    public BllResult<int> AddUser(User User)
     {
-        if (userBModel.Password == null)
+        if (User.Password == null)
         {
             return BllResult<int>.Failure("密码为空!");
         }
 
-        userBModel.Password = userBModel.Password.ToMd5();
-        int userId = UserDal.AddUser(userBModel).Data;
+        User.Password = User.Password.ToMd5();
+        int userId = UserDal.AddUser(User).Data;
         return BllResult<int>.Success(userId);
     }
 
     /// <inheritdoc />
-    public BllResult<string> UpdateUser(UserBModel userBModel)
+    public BllResult<string> UpdateUser(User User)
     {
-        if (userBModel.Password != null)
+        if (User.Password != null)
         {
-            userBModel.Password = userBModel.Password.ToMd5();
+            User.Password = User.Password.ToMd5();
         }
 
-        int result = UserDal.UpdateUser(userBModel).Data;
+        int result = UserDal.UpdateUser(User).Data;
         return result > 0 
             ? BllResult<string>.Success("更新成功") 
             : BllResult<string>.Failure("更新失败");

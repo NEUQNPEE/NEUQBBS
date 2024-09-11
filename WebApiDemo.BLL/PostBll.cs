@@ -1,9 +1,9 @@
 using WebApiDemo.BLL.Interfaces;
 using WebApiDemo.DAL;
 using WebApiDemo.DAL.Interfaces;
-using WebApiDemo.Entities.BModels;
 using WebApiDemo.Entities.EPost;
 using WebApiDemo.BLL.Result;
+using WebApiDemo.Entities.EUser;
 
 namespace WebApiDemo.BLL;
 
@@ -25,49 +25,26 @@ public class PostBll(IPostDalFactory postDalFactory) : IPostBll
     }
 
     /// <inheritdoc/>
-    public BllResult<List<UserBModel>> GetAllUsers(int sectionId)
+    public BllResult<List<User>> GetUserInfoByPostId(int sectionId, IEnumerable<int> postIds, string fields)
     {
+        // 首先根据postIds获取userIds
         string? tableName = SectionDal.GetSectionById(sectionId).Data?.TableName;
         if (tableName == null)
         {
-            return BllResult<List<UserBModel>>.Failure("未找到板块");
+            return BllResult<List<User>>.Failure("未找到板块");
         }
 
-        var users = postDalFactory.GetPostDal(tableName).GetAllUsers().Data;
-        if (users == null)
-        {
-            return BllResult<List<UserBModel>>.Failure("未找到用户");
-        }
+        var userIds = postDalFactory
+            .GetPostDal(tableName)
+            .GetUserIdByPostId(postIds).Data;
+        
+        // 然后根据userIds和查询参数获取发帖用户信息
+        var users = UserDal
+            .GetUserInfoById(userIds!, fields)
+            .Data;
+        return BllResult<List<User>>.Success(users);
 
-        var result = new List<UserBModel>();
-        foreach (var user in users)
-        {
-            result.Add(new UserBModel
-            {
-                Id = user.Id,
-                UserName = user.UserName,
-                RegisterTime = user.RegisterTime,
-                Points = user.Points
-            });
-        }
-
-        return BllResult<List<UserBModel>>.Success(result);
     }
-
-    // /// <inheritdoc/>
-    // public BllResult<List<Post>> GetPosts(PostListBModel postListBModel)
-    // {
-    //     string? tableName = SectionDal.GetSectionById(postListBModel.SectionId).Data?.TableName;
-    //     if (tableName == null)
-    //     {
-    //         return BllResult<List<Post>>.Failure("未找到板块");
-    //     }
-
-    //     var posts = postDalFactory
-    //         .GetPostDal(tableName)
-    //         .GetPosts(postListBModel.BeginNum, postListBModel.NeedNum).Data;
-    //     return BllResult<List<Post>>.Success(posts);
-    // }
 
     /// <inheritdoc/>
     public BllResult<List<Post>> GetPagedMainPosts(int sectionId, int pageSize, int pageNumber)
@@ -124,38 +101,6 @@ public class PostBll(IPostDalFactory postDalFactory) : IPostBll
         }
 
         return BllResult<int>.Success(id);
-    }
-
-    /// <inheritdoc/>
-    public BllResult<List<UserBModel>> GetUsers(PostListBModel postListBModel)
-    {
-        string? tableName = SectionDal.GetSectionById(postListBModel.SectionId).Data?.TableName;
-        if (tableName == null)
-        {
-            return BllResult<List<UserBModel>>.Failure("未找到板块");
-        }
-
-        var users = postDalFactory
-            .GetPostDal(tableName)
-            .GetUsers(postListBModel.BeginNum, postListBModel.NeedNum).Data;
-        if (users == null)
-        {
-            return BllResult<List<UserBModel>>.Failure("No users found.");
-        }
-
-        var result = new List<UserBModel>();
-        foreach (var user in users)
-        {
-            result.Add(new UserBModel
-            {
-                Id = user.Id,
-                UserName = user.UserName,
-                RegisterTime = user.RegisterTime,
-                Points = user.Points
-            });
-        }
-
-        return BllResult<List<UserBModel>>.Success(result);
     }
 
     /// <inheritdoc/>
@@ -227,4 +172,6 @@ public class PostBll(IPostDalFactory postDalFactory) : IPostBll
         postDalFactory.GetPostDal(tableName).UpdatePost(post);
         return BllResult<object>.Success();
     }
+
+
 }

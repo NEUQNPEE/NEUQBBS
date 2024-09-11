@@ -1,5 +1,5 @@
 using WebApiDemo.BLL.Result;
-using WebApiDemo.Entities.BModels;
+using WebApiDemo.Entities.EUser;
 
 namespace WebApiDemo.BLL.Interfaces;
 
@@ -12,56 +12,30 @@ public interface IUserBll
     /// debug 获取所有用户
     /// </summary>
     /// <returns>包含所有用户列表的操作结果，或在无用户时返回空列表。</returns>
-    BllResult<List<UserBModel>> DebugGetAllUsers();
+    BllResult<List<User>> DebugGetAllUsers();
 
     /// <summary>
     /// debug 获取用户
     /// </summary>
     /// <param name="id">用户 ID</param>
     /// <returns>包含用户信息的操作结果，或在用户不存在时返回 null。</returns>
-    BllResult<UserBModel> DebugGetUserById(int id);
+    BllResult<User> DebugGetUserById(int id);
 
     /// <summary>
-    /// 获取用户
+    /// 根据用户 ID 获取用户信息
     /// </summary>
-    /// <param name="id">用户 ID</param>
-    /// <returns>包含用户信息的操作结果，或在用户不存在时返回 null。</returns>
-    BllResult<UserBModel> GetUserById(int id);
+    /// <param name="id"></param>
+    /// <param name="fields"></param>
+    /// <returns></returns>
+    BllResult<User> GetUserInfoById(int id, string fields);
 
     /// <summary>
-    /// 根据用户ID获取用户名
+    /// 根据用户 ID 列表获取用户信息
     /// </summary>
-    /// <param name="id">用户 ID</param>
-    /// <returns>包含用户名的操作结果，如果用户不存在则返回 "未找到"。</returns>
-    BllResult<string> GetUserNameById(int id);
-
-    /// <summary>
-    /// 根据用户ID列表获取用户名列表
-    /// </summary>
-    /// <param name="ids">用户 ID 列表</param>
-    /// <returns>包含用户名列表的操作结果，或在无对应用户时返回空列表。</returns>
-    BllResult<List<string>> GetUserNamesByIds(List<int> ids);
-
-    /// <summary>
-    /// 根据用户ID获取用户用于POST的数据
-    /// </summary>
-    /// <param name="id">用户 ID</param>
-    /// <returns>包含用户信息的操作结果，或在用户不存在时返回 null。</returns>
-    BllResult<UserBModel> GetUserByIdForPost(int id);
-
-    /// <summary>
-    /// 根据用户ID获取用户基本信息
-    /// </summary>
-    /// <param name="id">用户 ID</param>
-    /// <returns>包含用户基本信息的操作结果，或在用户不存在时返回 null。</returns>
-    BllResult<UserBModel> GetUserBaseInfoById(int id);
-
-    /// <summary>
-    /// 根据用户ID获取用户详细信息
-    /// </summary>
-    /// <param name="id">用户 ID</param>
-    /// <returns>包含用户详细信息的操作结果，或在用户不存在时返回 null。</returns>
-    BllResult<UserBModel> GetUserDetailInfoById(int id);
+    /// <param name="ids"></param>
+    /// <param name="fields"></param>
+    /// <returns></returns>
+    BllResult<List<User>> GetUserInfoById(IEnumerable<int> ids, string fields);
 
     /// <summary>
     /// 检查用户是否存在
@@ -95,16 +69,16 @@ public interface IUserBll
     /// <summary>
     /// 添加用户
     /// </summary>
-    /// <param name="userBModel">用户模型</param>
+    /// <param name="User">用户模型</param>
     /// <returns>包含添加用户 ID 的操作结果，如果添加失败则返回 -1。</returns>
-    BllResult<int> AddUser(UserBModel userBModel);
+    BllResult<int> AddUser(User User);
 
     /// <summary>
     /// 更新用户
     /// </summary>
-    /// <param name="userBModel">用户模型</param>
+    /// <param name="User">用户模型</param>
     /// <returns>更新结果的操作结果，成功返回 "更新成功"，否则返回 "更新失败"。</returns>
-    BllResult<string> UpdateUser(UserBModel userBModel);
+    BllResult<string> UpdateUser(User User);
 
     /// <summary>
     /// 删除用户

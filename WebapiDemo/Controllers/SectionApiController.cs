@@ -123,11 +123,12 @@ public class SectionApiController(
 
         foreach (Post lastReplyPost in lastReplyPosts)
         {
+            var userInfoResult = userBll.GetUserInfoById(lastReplyPost.UserId, "username");
             lastReplyInfoResponses.Add(
                 new LastReplyInfoResponse
                 {
                     MainPostId = lastReplyPost.MainPostId,
-                    Username = userBll.GetUserNameById(lastReplyPost.UserId).Data??"未知用户",
+                    Username = userInfoResult.IsSuccess ? userInfoResult.Data!.UserName! : "未知用户",
                     ReplyTime = lastReplyPost.PublishTime
                 }
             );
