@@ -1,0 +1,18 @@
+# Please refer https://aka.ms/HTTPSinContainer on how to setup an https developer certificate for your ASP.NET Core service.
+
+version: '3.4'
+
+services:
+  blazorbbsdemo80:
+    image: blazorbbsdemo80
+    build:
+      context: .
+      dockerfile: BlazorBBSDemo8.0/Dockerfile
+      args:
+        - configuration=Debug
+    ports:
+      - 5250:5250
+    environment:
+      - ASPNETCORE_ENVIRONMENT=Development
+    volumes:
+      - ~/.vsdbg:/remote_debugger:rw
